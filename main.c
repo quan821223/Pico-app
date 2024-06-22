@@ -59,17 +59,13 @@ void board_led_write(bool state)
 #endif
 
 static int chars_rxed = 0;
-char tud_cdc_rx_buffer[256];
 
 uint8_t temp_len = 3;
 uint8_t rx_buf_index = 0;
 char rx_buf[64];
 char return_buf[16];
+char tud_cdc_rx_buffer[256];
 bool return_request = false; // 存儲 tud_cdc_ReturnRequest() 的結果
-
-
-
-
 
 void on_uart_rx()
 {
@@ -99,23 +95,13 @@ void init_uart(){
     irq_set_exclusive_handler(UART_IRQ, on_uart_rx);
     irq_set_enabled(UART_IRQ, true);
 }
-// void i2c_uart(){
-//     //i2c_init(i2c0, 100000); // 初始化 I2C0，100kHz 的速度
-//     i2c_init(i2c0, 400 * 1000);
-//     gpio_set_function(2, GPIO_FUNC_I2C); // 將 GP02 (SDA) 設置為 I2C 功能
-//     gpio_set_function(3, GPIO_FUNC_I2C); // 將 GP03 (SCL) 設置為 I2C 功能
-//     gpio_pull_up(PICO_DEFAULT_I2C_SDA_PIN);
-//     gpio_pull_up(PICO_DEFAULT_I2C_SCL_PIN);
-//     // 配置 I2C 通道
-//     i2c_set_slave_mode(i2c0, false, 0x01); // 設置為主機模式
-// }
 
 int main()
 {
     stdio_init_all();
     tusb_init();
     init_uart();
-    
+
     HTU21DF_init();
     uint32_t last_led_toggle_time = 0;
     // LED init

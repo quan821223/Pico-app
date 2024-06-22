@@ -1,11 +1,17 @@
 #include "htu21df.h"
 #include "hardware/i2c.h"
 
-/** Read temperature register. */
+/** Read temperature register. Hold master*/
 #define HTU21DF_READTEMP (0xE3)
 
-/** Read humidity register. */
+/** Read humidity register. Hold master*/
 #define HTU21DF_READHUM (0xE5)
+
+/** Read temperature register. No Hold master*/
+#define HTU21DF_READTEMP (0xF3)
+
+/** Read humidity register. No Hold master*/
+#define HTU21DF_READHUM (0xF5)
 
 /** Write register command. */
 #define HTU21DF_WRITEREG (0xE6)
@@ -47,7 +53,7 @@ void htuRead24(uint8_t a, uint8_t buf[])
 uint8_t HTU21DF_init()
 {
     HTU21DF_setI2C(htu21_i2c, htu21_sda, htu21_scl, 0x40);
-    i2c_init(htu21_i2c, 100000);//400 * 1000);
+    i2c_init(htu21_i2c, 400000);//400 * 1000);
     gpio_set_function(htu21_sda, GPIO_FUNC_I2C);
     gpio_set_function(htu21_scl, GPIO_FUNC_I2C);
     gpio_pull_up(htu21_sda);
@@ -59,7 +65,9 @@ uint8_t HTU21DF_init()
     return 1;
 }
 
-float HTU21DF_readTemperature(void)
+
+
+float   HTU21DF_readTemperature(void)
 {
 
     uint8_t buf[3];
@@ -73,11 +81,11 @@ float HTU21DF_readTemperature(void)
     float temp = t;
     temp *= 175.72f;
     temp /= 65536.0f;
-    temp -= 46.85f;
+    //temp -= 46.85f;
     return temp;
 }
 
-float HTU21DF_readHumidity(void)
+float   HTU21DF_readHumidity(void)
 {
     uint8_t buf[3];
     htuRead24(HTU21DF_READHUM, buf);
@@ -91,6 +99,6 @@ float HTU21DF_readHumidity(void)
     float hum = h;
     hum *= 125.0f;
     hum /= 65536.0f;
-    hum -= 6.0f;
+    //hum -= 6.0f;
     return hum;
 }
