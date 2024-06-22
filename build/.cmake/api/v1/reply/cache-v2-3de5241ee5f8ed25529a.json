@@ -179,7 +179,7 @@
 			[
 				{
 					"name" : "HELPSTRING",
-					"value" : "Choose the type of build, options are: 'Debug', 'Release', 'MinSizeRel', 'RelWithDebInfo'."
+					"value" : "No help, variable specified on the command line."
 				},
 				{
 					"name" : "STRINGS",
@@ -187,7 +187,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "Release"
+			"value" : "Debug"
 		},
 		{
 			"name" : "CMAKE_CACHEFILE_DIR",
@@ -664,6 +664,18 @@
 			],
 			"type" : "STRING",
 			"value" : ""
+		},
+		{
+			"name" : "CMAKE_EXPORT_COMPILE_COMMANDS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "No help, variable specified on the command line."
+				}
+			],
+			"type" : "BOOL",
+			"value" : "TRUE"
 		},
 		{
 			"name" : "CMAKE_EXTRA_GENERATOR",
@@ -1471,7 +1483,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : " D:/YQRepo/pico/pico-sdk/src/rp2_common/cmsis D:/YQRepo/pico/pico-sdk/src/rp2040/hardware_regs D:/YQRepo/pico/pico-sdk/src/rp2_common/cmsis D:/YQRepo/pico/pico-sdk/src/rp2040/hardware_regs D:/YQRepo/pico/pico-sdk/src/rp2_common/cmsis D:/YQRepo/pico/pico-sdk/src/rp2040/hardware_regs"
+			"value" : " D:/YQRepo/pico/pico-sdk/src/rp2_common/cmsis D:/YQRepo/pico/pico-sdk/src/rp2040/hardware_regs D:/YQRepo/pico/pico-sdk/src/rp2_common/cmsis D:/YQRepo/pico/pico-sdk/src/rp2040/hardware_regs D:/YQRepo/pico/pico-sdk/src/rp2_common/cmsis D:/YQRepo/pico/pico-sdk/src/rp2040/hardware_regs D:/YQRepo/pico/pico-sdk/src/rp2_common/cmsis D:/YQRepo/pico/pico-sdk/src/rp2040/hardware_regs"
 		},
 		{
 			"name" : "PICO_DOXYGEN_PATHS",
