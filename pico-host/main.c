@@ -1,124 +1,198 @@
-/**
- * Copyright (c) 2020 Raspberry Pi (Trading) Ltd.
- *
- * SPDX-License-Identifier: BSD-3-Clause
- */
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h> /* �????��?��????��?? */
-#include <time.h>   /* ????????��????��?? */
-
-//extern uint16_t last_rand;
-uint16_t last_rand = 0xACE1U;
-
 #include "pico/stdlib.h"
 #include "hardware/uart.h"
 #include "hardware/irq.h"
 
-#include "include/ALL.h"
-#include "include/uart_bridge.h"
+#include "tud_cdc_descript.h"
+#include "ALL.h"
+#include "tusb.h"
+#include "bsp/board.h"
 
-void Clear_CMD_Assert()
+#include "pico/stdlib.h"
+#include "pico/binary_info.h"
+#include "pico/unique_id.h"
+#include "hardware/gpio.h"
+#include "hardware/sync.h"
+#include "hardware/resets.h"
+#include "hardware/structs/ioqspi.h"
+#include "hardware/structs/sio.h"
+
+//--------------------------------------------------------------------+
+// MACRO CONSTANT TYPEDEF PROTYPES
+//--------------------------------------------------------------------+
+/* Blink pattern
+ * - 250 ms  : device not mounted
+ * - 1000 ms : device mounted
+ * - 2500 ms : device is suspended
+ */
+enum
 {
-    UART_Sendor_CMD.UART_RX_flag = Disable;
-    memset(UART_Sendor_CMD.UART_RxBuffer, 0, sizeof(UART_Sendor_CMD.UART_RxBuffer));
+    BLINK_NOT_MOUNTED = 250,
+    BLINK_MOUNTED = 1000,
+    BLINK_SUSPENDED = 2500,
+};
+
+static uint32_t blink_interval_ms = BLINK_NOT_MOUNTED;
+
+void led_blinking_task(void);
+void board_led_write(bool state);
+
+void board_led_write(bool state)
+{
+    (void)state;
+
+#ifdef LED_PIN
+    gpio_put(LED_PIN, state ? LED_STATE_ON : (1 - LED_STATE_ON));
+#endif
 }
 
-void initialize_params(void)
-{
-    IsWakeup = 1;
-    IsEnableACK = No;
-    FaultInjection =1;
+#define UART_ID uart0
+#define BAUD_RATE 115200
+#define DATA_BITS 8
+#define STOP_BITS 1
+#define PARITY UART_PARITY_NONE
+#define UART_TX_PIN 0
+#define UART_RX_PIN 1
+// 設置 Pin 26 和 Pin 27
 
-    hundredth_min = 0;
-    hundredth_max = 100;
-    thousandth_min = 0;
-    thousandth_max = 1000;
-    threshold_voltage = 80;
-    threshold_brightness = 99;    
-    min_n_current = 0;
-    max_n_current = 20;
+
+
+
+#ifdef PICO_DEFAULT_LED_PIN
+#define LED_PIN PICO_DEFAULT_LED_PIN
+#endif
+
+static int chars_rxed = 0;
+char tud_cdc_rx_buffer[256];
+
+void on_uart_rx()
+{
+    while (uart_is_readable(UART_ID))
+    {
+        uint8_t ch = uart_getc(UART_ID);
+        if (uart_is_writable(UART_ID))
+        {
+            ch++;
+            uart_putc(UART_ID, ch);
+        }
+        chars_rxed++;
+    }
 }
 
-void led_blink()
-{
-    gpio_put(led_pin, true);
-    sleep_ms(500);
-    gpio_put(led_pin, false);
-    sleep_ms(500);
-}
-
-
+uint8_t temp_len = 3;
+uint8_t rx_buf_index = 0;
+char rx_buf[64];
+char return_buf[16];
+bool return_request = false; // 存儲 tud_cdc_ReturnRequest() 的結果
 
 int main()
 {
 
-    initialize_params();
-   
-    // Initialize LED pin
-    gpio_init(led_pin);
-    gpio_set_dir(led_pin, GPIO_OUT);
-
-    // Initialize chosen serial port
     stdio_init_all();
 
-    // Set up our UART with a basic baud rate.
-    uart_init(UART_ID, 2400);
-
-    // Set the TX and RX pins by using the function select on the GPIO
-    // Set datasheet for more information on function select
+    tusb_init();
+    uart_init(UART_ID, BAUD_RATE);
     gpio_set_function(UART_TX_PIN, GPIO_FUNC_UART);
     gpio_set_function(UART_RX_PIN, GPIO_FUNC_UART);
-
-    // Actually, we want a different speed
-    // The call will return the actual baud rate selected, which will be as close as
-    // possible to that requested
     int __unused actual = uart_set_baudrate(UART_ID, BAUD_RATE);
-
-    // Set UART flow control CTS/RTS, we don't want these, so turn them off
     uart_set_hw_flow(UART_ID, false, false);
-
-    // Set our data format
     uart_set_format(UART_ID, DATA_BITS, STOP_BITS, PARITY);
-
-    // Turn off FIFO's - we want to do this character by character
     uart_set_fifo_enabled(UART_ID, false);
-
-    // Set up a RX interrupt
-    // We need to set up the handler first
-    // Select correct interrupt for the UART we are using
     int UART_IRQ = UART_ID == uart0 ? UART0_IRQ : UART1_IRQ;
-
-    // And set up and enable the interrupt handlers
-    irq_set_exclusive_handler(UART_IRQ, UART_RX_INTB);
-
+    irq_set_exclusive_handler(UART_IRQ, on_uart_rx);
     irq_set_enabled(UART_IRQ, true);
-
-    // Now enable the UART to send interrupts - RX only
     uart_set_irq_enables(UART_ID, true, false);
 
-    // OK, all set up.
-    // Lets send a basic string out, and then run a loop and wait for RX interrupts
-    // The handler will count them, but also reflect the incoming data back with a slight change!
-    uart_puts(UART_ID, "\nHelo world!\r\n");
-    UART_Sendor_CMD.UART_RX_flag == false;
-    // uart_write_blocking(UART_ID, Host_ver, 3);
-    len_chars = 0;
+    //
+    // 設置 DATOUCH_PIN26 和 DATOUCH_PIN27 為輸入並啟用內部上拉電阻
+    // gpio_init(DATOUCH_PIN26);
+    // gpio_set_dir(DATOUCH_PIN26, GPIO_IN);
+    // gpio_pull_up(DATOUCH_PIN26); // 啟用內部上拉電阻
+    // gpio_set_irq_enabled_with_callback(DATOUCH_PIN26, GPIO_IRQ_EDGE_FALL, true, &gpio_callback);
 
-    memset(UART_Sendor_CMD.UART_RxBuffer, 0, sizeof(UART_Sendor_CMD.UART_RxBuffer));
-    UART_Sendor_CMD.UART_ReceiveLength = 0;
+    // gpio_init(DATOUCH_PIN27);
+    // gpio_set_dir(DATOUCH_PIN27, GPIO_IN);
+    // gpio_pull_up(DATOUCH_PIN27); // 啟用內部上拉電阻
+    // gpio_set_irq_enabled_with_callback(DATOUCH_PIN27, GPIO_IRQ_EDGE_FALL, true, &gpio_callback);
+
+    // 設置 Pin 26 和 Pin 27 為輸出
+    gpio_init(DATOUCH_PIN26);
+    gpio_set_dir(DATOUCH_PIN26, GPIO_OUT);
+    gpio_put(DATOUCH_PIN26, 0);
+    gpio_init(DATOUCH_PIN27);
+    gpio_set_dir(DATOUCH_PIN27, GPIO_OUT);
+    gpio_put(DATOUCH_PIN27, 0);
 
 
 
+
+    UHC_type_CMD ptr;
+    uint32_t last_led_toggle_time = 0;
+    // LED init
+    gpio_init(LED_PIN);
+    gpio_set_dir(LED_PIN, GPIO_OUT);
+    while (!tud_mounted())
+    {
+        tud_task();
+        sleep_ms(10);
+    }
+      
     while (1)
     {
-        
-        // generating a random number based on real time data calculations.
-        last_rand = rand(); 
-        // modified the value based on the random number 
-        //modified_status();
-        // reponse flow to TX
-        Execute_Simulator_CMD();
+        tud_task();
+        tight_loop_contents(); // 簡單等待，讓中斷處理程序來處理按鈕事件
+
+        if (tud_cdc_n_connected(2))
+        {
+            if (tud_cdc_available())
+            {
+                uint32_t count = tud_cdc_read(tud_cdc_rx_buffer, sizeof(tud_cdc_rx_buffer));
+                if (count > 0)
+                {
+                    return_request = true; // 設置標誌為 true，表示需要返回訊息
+                    receive_data(tud_cdc_rx_buffer, count);
+                }
+                count = 0;
+            }
+        }
+
+        led_blinking_task();
+        // 如果需要返回訊息，則執行相應的操作
+        if (return_request)
+        {
+            tud_cdc_read_flush();
+            tud_cdc_turnoff();
+            return_request = false; // 重置標誌為 false，以便下一次迭代
+        }
+        // 加入延遲，避免主程式死機
         sleep_ms(1);
+
+        // 控制 LED 閃爍
+        uint32_t current_time = to_ms_since_boot(get_absolute_time());
+        if (current_time - last_led_toggle_time >= 500)
+        {
+            gpio_put(LED_PIN, !gpio_get(LED_PIN)); // 切換 LED 狀態
+            last_led_toggle_time = current_time;
+        }
+
+         
     }
+}
+
+//--------------------------------------------------------------------+
+// Blinking Task
+//--------------------------------------------------------------------+
+void led_blinking_task(void)
+{
+    const uint32_t interval_ms = 1000;
+    static uint32_t start_ms = 0;
+
+    static bool led_state = false;
+
+    // Blink every interval ms
+    if (board_millis() - start_ms < interval_ms)
+        return; // not enough time
+    start_ms += interval_ms;
+
+    board_led_write(led_state);
+    led_state = 1 - led_state; // toggle
 }

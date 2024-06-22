@@ -1,8 +1,8 @@
-# Install script for directory: D:/YQRepos/pico/pico-sdk/src/common
+# Install script for directory: D:/YQRepo/pico/pico-sdk/src/common
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/blink")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/host")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -12,7 +12,7 @@ if(NOT DEFINED CMAKE_INSTALL_CONFIG_NAME)
     string(REGEX REPLACE "^[^A-Za-z0-9_]+" ""
            CMAKE_INSTALL_CONFIG_NAME "${BUILD_TYPE}")
   else()
-    set(CMAKE_INSTALL_CONFIG_NAME "Release")
+    set(CMAKE_INSTALL_CONFIG_NAME "Debug")
   endif()
   message(STATUS "Install configuration: \"${CMAKE_INSTALL_CONFIG_NAME}\"")
 endif()
@@ -39,17 +39,17 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("D:/YQRepos/SupercarrierMonitoringSystem/pico-host/build/pico-sdk/src/common/boot_picoboot/cmake_install.cmake")
-  include("D:/YQRepos/SupercarrierMonitoringSystem/pico-host/build/pico-sdk/src/common/boot_uf2/cmake_install.cmake")
-  include("D:/YQRepos/SupercarrierMonitoringSystem/pico-host/build/pico-sdk/src/common/pico_base/cmake_install.cmake")
-  include("D:/YQRepos/SupercarrierMonitoringSystem/pico-host/build/pico-sdk/src/common/pico_usb_reset_interface/cmake_install.cmake")
-  include("D:/YQRepos/SupercarrierMonitoringSystem/pico-host/build/pico-sdk/src/common/pico_bit_ops/cmake_install.cmake")
-  include("D:/YQRepos/SupercarrierMonitoringSystem/pico-host/build/pico-sdk/src/common/pico_binary_info/cmake_install.cmake")
-  include("D:/YQRepos/SupercarrierMonitoringSystem/pico-host/build/pico-sdk/src/common/pico_divider/cmake_install.cmake")
-  include("D:/YQRepos/SupercarrierMonitoringSystem/pico-host/build/pico-sdk/src/common/pico_sync/cmake_install.cmake")
-  include("D:/YQRepos/SupercarrierMonitoringSystem/pico-host/build/pico-sdk/src/common/pico_time/cmake_install.cmake")
-  include("D:/YQRepos/SupercarrierMonitoringSystem/pico-host/build/pico-sdk/src/common/pico_util/cmake_install.cmake")
-  include("D:/YQRepos/SupercarrierMonitoringSystem/pico-host/build/pico-sdk/src/common/pico_stdlib/cmake_install.cmake")
+  include("D:/YQRepo/supercarriermonitoringsystem/pico-hostII/build/pico-sdk/src/common/boot_picoboot/cmake_install.cmake")
+  include("D:/YQRepo/supercarriermonitoringsystem/pico-hostII/build/pico-sdk/src/common/boot_uf2/cmake_install.cmake")
+  include("D:/YQRepo/supercarriermonitoringsystem/pico-hostII/build/pico-sdk/src/common/pico_base/cmake_install.cmake")
+  include("D:/YQRepo/supercarriermonitoringsystem/pico-hostII/build/pico-sdk/src/common/pico_usb_reset_interface/cmake_install.cmake")
+  include("D:/YQRepo/supercarriermonitoringsystem/pico-hostII/build/pico-sdk/src/common/pico_bit_ops/cmake_install.cmake")
+  include("D:/YQRepo/supercarriermonitoringsystem/pico-hostII/build/pico-sdk/src/common/pico_binary_info/cmake_install.cmake")
+  include("D:/YQRepo/supercarriermonitoringsystem/pico-hostII/build/pico-sdk/src/common/pico_divider/cmake_install.cmake")
+  include("D:/YQRepo/supercarriermonitoringsystem/pico-hostII/build/pico-sdk/src/common/pico_sync/cmake_install.cmake")
+  include("D:/YQRepo/supercarriermonitoringsystem/pico-hostII/build/pico-sdk/src/common/pico_time/cmake_install.cmake")
+  include("D:/YQRepo/supercarriermonitoringsystem/pico-hostII/build/pico-sdk/src/common/pico_util/cmake_install.cmake")
+  include("D:/YQRepo/supercarriermonitoringsystem/pico-hostII/build/pico-sdk/src/common/pico_stdlib/cmake_install.cmake")
 
 endif()
 

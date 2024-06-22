@@ -39,7 +39,7 @@ events:
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.obj"
       
       The C compiler identification is MSVC, found in:
-        D:/YQRepos/SupercarrierMonitoringSystem/pico-host/build/elf2uf2/CMakeFiles/3.26.0-rc2/CompilerIdC/CMakeCCompilerId.exe
+        D:/pico-hostII/build/elf2uf2/CMakeFiles/3.26.0-rc2/CompilerIdC/CMakeCCompilerId.exe
       
   -
     kind: "message-v1"
@@ -51,7 +51,7 @@ events:
     message: |
       Detecting C compiler /showIncludes prefix:
         main.c
-        注意: 包含檔案: D:\\YQRepos\\SupercarrierMonitoringSystem\\pico-host\\build\\elf2uf2\\CMakeFiles\\ShowIncludes\\foo.h
+        注意: 包含檔案: D:\\pico-hostII\\build\\elf2uf2\\CMakeFiles\\ShowIncludes\\foo.h
         
       Found prefix "注意: 包含檔案: "
   -
@@ -85,7 +85,7 @@ events:
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.obj"
       
       The CXX compiler identification is MSVC, found in:
-        D:/YQRepos/SupercarrierMonitoringSystem/pico-host/build/elf2uf2/CMakeFiles/3.26.0-rc2/CompilerIdCXX/CMakeCXXCompilerId.exe
+        D:/pico-hostII/build/elf2uf2/CMakeFiles/3.26.0-rc2/CompilerIdCXX/CMakeCXXCompilerId.exe
       
   -
     kind: "message-v1"
@@ -97,7 +97,7 @@ events:
     message: |
       Detecting CXX compiler /showIncludes prefix:
         main.c
-        注意: 包含檔案: D:\\YQRepos\\SupercarrierMonitoringSystem\\pico-host\\build\\elf2uf2\\CMakeFiles\\ShowIncludes\\foo.h
+        注意: 包含檔案: D:\\pico-hostII\\build\\elf2uf2\\CMakeFiles\\ShowIncludes\\foo.h
         
       Found prefix "注意: 包含檔案: "
   -
@@ -109,8 +109,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "D:/YQRepos/SupercarrierMonitoringSystem/pico-host/build/elf2uf2/CMakeFiles/CMakeScratch/TryCompile-71zgjc"
-      binary: "D:/YQRepos/SupercarrierMonitoringSystem/pico-host/build/elf2uf2/CMakeFiles/CMakeScratch/TryCompile-71zgjc"
+      source: "D:/pico-hostII/build/elf2uf2/CMakeFiles/CMakeScratch/TryCompile-ncevve"
+      binary: "D:/pico-hostII/build/elf2uf2/CMakeFiles/CMakeScratch/TryCompile-ncevve"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS /W3"
       CMAKE_C_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
@@ -119,27 +119,27 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: D:/YQRepos/SupercarrierMonitoringSystem/pico-host/build/elf2uf2/CMakeFiles/CMakeScratch/TryCompile-71zgjc
+        Change Dir: D:/pico-hostII/build/elf2uf2/CMakeFiles/CMakeScratch/TryCompile-ncevve
         
-        Run Build Command(s):C:/Program Files/CMake/bin/cmake.exe -E env VERBOSE=1 nmake -f Makefile /nologo cmTC_82510\\fast && 	"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.34.31933\\bin\\HostX86\\x64\\nmake.exe"  -f CMakeFiles\\cmTC_82510.dir\\build.make /nologo -L                  CMakeFiles\\cmTC_82510.dir\\build
-        Building C object CMakeFiles/cmTC_82510.dir/CMakeCCompilerABI.c.obj
-        	"C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_cl_compile_depends --dep-file=CMakeFiles\\cmTC_82510.dir\\CMakeCCompilerABI.c.obj.d --working-dir=D:\\YQRepos\\SupercarrierMonitoringSystem\\pico-host\\build\\elf2uf2\\CMakeFiles\\CMakeScratch\\TryCompile-71zgjc --filter-prefix="\xaa`\xb7N: \xa5]\xa7t\xc0ɮ\xd7: " -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1434~1.319\\bin\\Hostx86\\x64\\cl.exe @C:\\Users\\YIQUAN~1\\AppData\\Local\\Temp\\nm441.tmp
+        Run Build Command(s):C:/Program Files/CMake/bin/cmake.exe -E env VERBOSE=1 nmake -f Makefile /nologo cmTC_29833\\fast && 	"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.34.31933\\bin\\HostX86\\x64\\nmake.exe"  -f CMakeFiles\\cmTC_29833.dir\\build.make /nologo -L                  CMakeFiles\\cmTC_29833.dir\\build
+        Building C object CMakeFiles/cmTC_29833.dir/CMakeCCompilerABI.c.obj
+        	"C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_cl_compile_depends --dep-file=CMakeFiles\\cmTC_29833.dir\\CMakeCCompilerABI.c.obj.d --working-dir=D:\\pico-hostII\\build\\elf2uf2\\CMakeFiles\\CMakeScratch\\TryCompile-ncevve --filter-prefix="\xaa`\xb7N: \xa5]\xa7t\xc0ɮ\xd7: " -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1434~1.319\\bin\\Hostx86\\x64\\cl.exe @C:\\Users\\YIQUAN~1\\AppData\\Local\\Temp\\nmF736.tmp
         CMakeCCompilerABI.c
-        Linking C executable cmTC_82510.exe
-        	"C:\\Program Files\\CMake\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_82510.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\mt.exe --manifests -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1434~1.319\\bin\\Hostx86\\x64\\link.exe /nologo @CMakeFiles\\cmTC_82510.dir\\objects1.rsp @C:\\Users\\YIQUAN~1\\AppData\\Local\\Temp\\nm750.tmp
+        Linking C executable cmTC_29833.exe
+        	"C:\\Program Files\\CMake\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_29833.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\mt.exe --manifests -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1434~1.319\\bin\\Hostx86\\x64\\link.exe /nologo @CMakeFiles\\cmTC_29833.dir\\objects1.rsp @C:\\Users\\YIQUAN~1\\AppData\\Local\\Temp\\nmF94A.tmp
         Visual Studio Incremental Link with embedded manifests
-        Create CMakeFiles\\cmTC_82510.dir/manifest.rc
-        Create empty: CMakeFiles\\cmTC_82510.dir/embed.manifest
+        Create CMakeFiles\\cmTC_29833.dir/manifest.rc
+        Create empty: CMakeFiles\\cmTC_29833.dir/embed.manifest
         RC Pass 1:
-        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\rc.exe /fo CMakeFiles\\cmTC_82510.dir/manifest.res CMakeFiles\\cmTC_82510.dir/manifest.rc
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\rc.exe /fo CMakeFiles\\cmTC_29833.dir/manifest.res CMakeFiles\\cmTC_29833.dir/manifest.rc
         LINK Pass 1:
-        C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1434~1.319\\bin\\Hostx86\\x64\\link.exe /nologo @CMakeFiles\\cmTC_82510.dir\\objects1.rsp /out:cmTC_82510.exe /implib:cmTC_82510.lib /pdb:D:\\YQRepos\\SupercarrierMonitoringSystem\\pico-host\\build\\elf2uf2\\CMakeFiles\\CMakeScratch\\TryCompile-71zgjc\\cmTC_82510.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_82510.dir/intermediate.manifest CMakeFiles\\cmTC_82510.dir/manifest.res
+        C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1434~1.319\\bin\\Hostx86\\x64\\link.exe /nologo @CMakeFiles\\cmTC_29833.dir\\objects1.rsp /out:cmTC_29833.exe /implib:cmTC_29833.lib /pdb:D:\\pico-hostII\\build\\elf2uf2\\CMakeFiles\\CMakeScratch\\TryCompile-ncevve\\cmTC_29833.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_29833.dir/intermediate.manifest CMakeFiles\\cmTC_29833.dir/manifest.res
         MT:
-        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\mt.exe /nologo /manifest CMakeFiles\\cmTC_82510.dir/intermediate.manifest /out:CMakeFiles\\cmTC_82510.dir/embed.manifest /notify_update
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\mt.exe /nologo /manifest CMakeFiles\\cmTC_29833.dir/intermediate.manifest /out:CMakeFiles\\cmTC_29833.dir/embed.manifest /notify_update
         RC Pass 2:
-        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\rc.exe /fo CMakeFiles\\cmTC_82510.dir/manifest.res CMakeFiles\\cmTC_82510.dir/manifest.rc
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\rc.exe /fo CMakeFiles\\cmTC_29833.dir/manifest.res CMakeFiles\\cmTC_29833.dir/manifest.rc
         FINAL LINK:
-        C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1434~1.319\\bin\\Hostx86\\x64\\link.exe /nologo @CMakeFiles\\cmTC_82510.dir\\objects1.rsp /out:cmTC_82510.exe /implib:cmTC_82510.lib /pdb:D:\\YQRepos\\SupercarrierMonitoringSystem\\pico-host\\build\\elf2uf2\\CMakeFiles\\CMakeScratch\\TryCompile-71zgjc\\cmTC_82510.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_82510.dir/intermediate.manifest CMakeFiles\\cmTC_82510.dir/manifest.res
+        C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1434~1.319\\bin\\Hostx86\\x64\\link.exe /nologo @CMakeFiles\\cmTC_29833.dir\\objects1.rsp /out:cmTC_29833.exe /implib:cmTC_29833.lib /pdb:D:\\pico-hostII\\build\\elf2uf2\\CMakeFiles\\CMakeScratch\\TryCompile-ncevve\\cmTC_29833.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_29833.dir/intermediate.manifest CMakeFiles\\cmTC_29833.dir/manifest.res
         
       exitCode: 0
   -
@@ -151,8 +151,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "D:/YQRepos/SupercarrierMonitoringSystem/pico-host/build/elf2uf2/CMakeFiles/CMakeScratch/TryCompile-r2ln2e"
-      binary: "D:/YQRepos/SupercarrierMonitoringSystem/pico-host/build/elf2uf2/CMakeFiles/CMakeScratch/TryCompile-r2ln2e"
+      source: "D:/pico-hostII/build/elf2uf2/CMakeFiles/CMakeScratch/TryCompile-8zfxh7"
+      binary: "D:/pico-hostII/build/elf2uf2/CMakeFiles/CMakeScratch/TryCompile-8zfxh7"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
       CMAKE_CXX_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
@@ -161,27 +161,27 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: D:/YQRepos/SupercarrierMonitoringSystem/pico-host/build/elf2uf2/CMakeFiles/CMakeScratch/TryCompile-r2ln2e
+        Change Dir: D:/pico-hostII/build/elf2uf2/CMakeFiles/CMakeScratch/TryCompile-8zfxh7
         
-        Run Build Command(s):C:/Program Files/CMake/bin/cmake.exe -E env VERBOSE=1 nmake -f Makefile /nologo cmTC_19cee\\fast && 	"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.34.31933\\bin\\HostX86\\x64\\nmake.exe"  -f CMakeFiles\\cmTC_19cee.dir\\build.make /nologo -L                  CMakeFiles\\cmTC_19cee.dir\\build
-        Building CXX object CMakeFiles/cmTC_19cee.dir/CMakeCXXCompilerABI.cpp.obj
-        	"C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_cl_compile_depends --dep-file=CMakeFiles\\cmTC_19cee.dir\\CMakeCXXCompilerABI.cpp.obj.d --working-dir=D:\\YQRepos\\SupercarrierMonitoringSystem\\pico-host\\build\\elf2uf2\\CMakeFiles\\CMakeScratch\\TryCompile-r2ln2e --filter-prefix="\xaa`\xb7N: \xa5]\xa7t\xc0ɮ\xd7: " -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1434~1.319\\bin\\Hostx86\\x64\\cl.exe @C:\\Users\\YIQUAN~1\\AppData\\Local\\Temp\\nm1132.tmp
+        Run Build Command(s):C:/Program Files/CMake/bin/cmake.exe -E env VERBOSE=1 nmake -f Makefile /nologo cmTC_deb01\\fast && 	"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.34.31933\\bin\\HostX86\\x64\\nmake.exe"  -f CMakeFiles\\cmTC_deb01.dir\\build.make /nologo -L                  CMakeFiles\\cmTC_deb01.dir\\build
+        Building CXX object CMakeFiles/cmTC_deb01.dir/CMakeCXXCompilerABI.cpp.obj
+        	"C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_cl_compile_depends --dep-file=CMakeFiles\\cmTC_deb01.dir\\CMakeCXXCompilerABI.cpp.obj.d --working-dir=D:\\pico-hostII\\build\\elf2uf2\\CMakeFiles\\CMakeScratch\\TryCompile-8zfxh7 --filter-prefix="\xaa`\xb7N: \xa5]\xa7t\xc0ɮ\xd7: " -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1434~1.319\\bin\\Hostx86\\x64\\cl.exe @C:\\Users\\YIQUAN~1\\AppData\\Local\\Temp\\nm475.tmp
         CMakeCXXCompilerABI.cpp
-        Linking CXX executable cmTC_19cee.exe
-        	"C:\\Program Files\\CMake\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_19cee.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\mt.exe --manifests -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1434~1.319\\bin\\Hostx86\\x64\\link.exe /nologo @CMakeFiles\\cmTC_19cee.dir\\objects1.rsp @C:\\Users\\YIQUAN~1\\AppData\\Local\\Temp\\nm1336.tmp
+        Linking CXX executable cmTC_deb01.exe
+        	"C:\\Program Files\\CMake\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_deb01.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\mt.exe --manifests -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1434~1.319\\bin\\Hostx86\\x64\\link.exe /nologo @CMakeFiles\\cmTC_deb01.dir\\objects1.rsp @C:\\Users\\YIQUAN~1\\AppData\\Local\\Temp\\nm6A8.tmp
         Visual Studio Incremental Link with embedded manifests
-        Create CMakeFiles\\cmTC_19cee.dir/manifest.rc
-        Create empty: CMakeFiles\\cmTC_19cee.dir/embed.manifest
+        Create CMakeFiles\\cmTC_deb01.dir/manifest.rc
+        Create empty: CMakeFiles\\cmTC_deb01.dir/embed.manifest
         RC Pass 1:
-        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\rc.exe /fo CMakeFiles\\cmTC_19cee.dir/manifest.res CMakeFiles\\cmTC_19cee.dir/manifest.rc
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\rc.exe /fo CMakeFiles\\cmTC_deb01.dir/manifest.res CMakeFiles\\cmTC_deb01.dir/manifest.rc
         LINK Pass 1:
-        C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1434~1.319\\bin\\Hostx86\\x64\\link.exe /nologo @CMakeFiles\\cmTC_19cee.dir\\objects1.rsp /out:cmTC_19cee.exe /implib:cmTC_19cee.lib /pdb:D:\\YQRepos\\SupercarrierMonitoringSystem\\pico-host\\build\\elf2uf2\\CMakeFiles\\CMakeScratch\\TryCompile-r2ln2e\\cmTC_19cee.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_19cee.dir/intermediate.manifest CMakeFiles\\cmTC_19cee.dir/manifest.res
+        C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1434~1.319\\bin\\Hostx86\\x64\\link.exe /nologo @CMakeFiles\\cmTC_deb01.dir\\objects1.rsp /out:cmTC_deb01.exe /implib:cmTC_deb01.lib /pdb:D:\\pico-hostII\\build\\elf2uf2\\CMakeFiles\\CMakeScratch\\TryCompile-8zfxh7\\cmTC_deb01.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_deb01.dir/intermediate.manifest CMakeFiles\\cmTC_deb01.dir/manifest.res
         MT:
-        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\mt.exe /nologo /manifest CMakeFiles\\cmTC_19cee.dir/intermediate.manifest /out:CMakeFiles\\cmTC_19cee.dir/embed.manifest /notify_update
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\mt.exe /nologo /manifest CMakeFiles\\cmTC_deb01.dir/intermediate.manifest /out:CMakeFiles\\cmTC_deb01.dir/embed.manifest /notify_update
         RC Pass 2:
-        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\rc.exe /fo CMakeFiles\\cmTC_19cee.dir/manifest.res CMakeFiles\\cmTC_19cee.dir/manifest.rc
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\rc.exe /fo CMakeFiles\\cmTC_deb01.dir/manifest.res CMakeFiles\\cmTC_deb01.dir/manifest.rc
         FINAL LINK:
-        C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1434~1.319\\bin\\Hostx86\\x64\\link.exe /nologo @CMakeFiles\\cmTC_19cee.dir\\objects1.rsp /out:cmTC_19cee.exe /implib:cmTC_19cee.lib /pdb:D:\\YQRepos\\SupercarrierMonitoringSystem\\pico-host\\build\\elf2uf2\\CMakeFiles\\CMakeScratch\\TryCompile-r2ln2e\\cmTC_19cee.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_19cee.dir/intermediate.manifest CMakeFiles\\cmTC_19cee.dir/manifest.res
+        C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1434~1.319\\bin\\Hostx86\\x64\\link.exe /nologo @CMakeFiles\\cmTC_deb01.dir\\objects1.rsp /out:cmTC_deb01.exe /implib:cmTC_deb01.lib /pdb:D:\\pico-hostII\\build\\elf2uf2\\CMakeFiles\\CMakeScratch\\TryCompile-8zfxh7\\cmTC_deb01.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_deb01.dir/intermediate.manifest CMakeFiles\\cmTC_deb01.dir/manifest.res
         
       exitCode: 0
 ...

@@ -101,12 +101,12 @@ set(CMAKE_MAKEFILE_DEPENDS
   "C:/Program Files/CMake/share/cmake-3.26/Modules/Platform/Windows-MSVC.cmake"
   "C:/Program Files/CMake/share/cmake-3.26/Modules/Platform/Windows.cmake"
   "C:/Program Files/CMake/share/cmake-3.26/Modules/Platform/WindowsPaths.cmake"
+  "D:/YQRepos/pico/pico-sdk/src/common/boot_uf2/CMakeLists.txt"
+  "D:/YQRepos/pico/pico-sdk/tools/elf2uf2/CMakeLists.txt"
   "CMakeFiles/3.26.0-rc2/CMakeCCompiler.cmake"
   "CMakeFiles/3.26.0-rc2/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.26.0-rc2/CMakeRCCompiler.cmake"
   "CMakeFiles/3.26.0-rc2/CMakeSystem.cmake"
-  "D:/YQRepos/pico/pico-sdk/src/common/boot_uf2/CMakeLists.txt"
-  "D:/YQRepos/pico/pico-sdk/tools/elf2uf2/CMakeLists.txt"
   )
 
 # The corresponding makefile is:

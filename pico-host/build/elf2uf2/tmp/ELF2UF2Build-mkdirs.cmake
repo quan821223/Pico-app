@@ -4,19 +4,19 @@
 cmake_minimum_required(VERSION 3.5)
 
 file(MAKE_DIRECTORY
-  "D:/YQRepos/pico/pico-sdk/tools/elf2uf2"
-  "D:/YQRepos/SupercarrierMonitoringSystem/pico-host/build/elf2uf2"
-  "D:/YQRepos/SupercarrierMonitoringSystem/pico-host/build/elf2uf2"
-  "D:/YQRepos/SupercarrierMonitoringSystem/pico-host/build/elf2uf2/tmp"
-  "D:/YQRepos/SupercarrierMonitoringSystem/pico-host/build/elf2uf2/src/ELF2UF2Build-stamp"
-  "D:/YQRepos/SupercarrierMonitoringSystem/pico-host/build/elf2uf2/src"
-  "D:/YQRepos/SupercarrierMonitoringSystem/pico-host/build/elf2uf2/src/ELF2UF2Build-stamp"
+  "D:/YQRepo/pico/pico-sdk/tools/elf2uf2"
+  "D:/YQRepo/supercarriermonitoringsystem/pico-hostII/build/elf2uf2"
+  "D:/YQRepo/supercarriermonitoringsystem/pico-hostII/build/elf2uf2"
+  "D:/YQRepo/supercarriermonitoringsystem/pico-hostII/build/elf2uf2/tmp"
+  "D:/YQRepo/supercarriermonitoringsystem/pico-hostII/build/elf2uf2/src/ELF2UF2Build-stamp"
+  "D:/YQRepo/supercarriermonitoringsystem/pico-hostII/build/elf2uf2/src"
+  "D:/YQRepo/supercarriermonitoringsystem/pico-hostII/build/elf2uf2/src/ELF2UF2Build-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "D:/YQRepos/SupercarrierMonitoringSystem/pico-host/build/elf2uf2/src/ELF2UF2Build-stamp/${subDir}")
+    file(MAKE_DIRECTORY "D:/YQRepo/supercarriermonitoringsystem/pico-hostII/build/elf2uf2/src/ELF2UF2Build-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "D:/YQRepos/SupercarrierMonitoringSystem/pico-host/build/elf2uf2/src/ELF2UF2Build-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "D:/YQRepo/supercarriermonitoringsystem/pico-hostII/build/elf2uf2/src/ELF2UF2Build-stamp${cfgdir}") # cfgdir has leading slash
 endif()
