@@ -2,19 +2,19 @@
 #include "hardware/uart.h"
 #include "hardware/irq.h"
 
-#include "tud_cdc_descript.h"
+#include "htu21df.h"
+#include "hardware/i2c.h"
+
 #include "ALL.h"
 #include "tusb.h"
 #include "bsp/board.h"
-
 #include "pico/stdlib.h"
 #include "pico/binary_info.h"
 #include "pico/unique_id.h"
-#include "hardware/gpio.h"
-#include "hardware/sync.h"
-#include "hardware/resets.h"
-#include "hardware/structs/ioqspi.h"
-#include "hardware/structs/sio.h"
+
+#include "include/command_handler.h"
+#include "include/commands.h"
+#include "tud_cdc_descript.h"
 
 //--------------------------------------------------------------------+
 // MACRO CONSTANT TYPEDEF PROTYPES
@@ -54,15 +54,22 @@ void board_led_write(bool state)
 #define UART_RX_PIN 1
 // 設置 Pin 26 和 Pin 27
 
-
-
-
 #ifdef PICO_DEFAULT_LED_PIN
 #define LED_PIN PICO_DEFAULT_LED_PIN
 #endif
 
 static int chars_rxed = 0;
 char tud_cdc_rx_buffer[256];
+
+uint8_t temp_len = 3;
+uint8_t rx_buf_index = 0;
+char rx_buf[64];
+char return_buf[16];
+bool return_request = false; // 存儲 tud_cdc_ReturnRequest() 的結果
+
+
+
+
 
 void on_uart_rx()
 {
@@ -78,58 +85,43 @@ void on_uart_rx()
     }
 }
 
-uint8_t temp_len = 3;
-uint8_t rx_buf_index = 0;
-char rx_buf[64];
-char return_buf[16];
-bool return_request = false; // 存儲 tud_cdc_ReturnRequest() 的結果
-
-int main()
-{
-
-    stdio_init_all();
-
-    tusb_init();
+void init_uart(){
     uart_init(UART_ID, BAUD_RATE);
     gpio_set_function(UART_TX_PIN, GPIO_FUNC_UART);
     gpio_set_function(UART_RX_PIN, GPIO_FUNC_UART);
-    int __unused actual = uart_set_baudrate(UART_ID, BAUD_RATE);
     uart_set_hw_flow(UART_ID, false, false);
     uart_set_format(UART_ID, DATA_BITS, STOP_BITS, PARITY);
     uart_set_fifo_enabled(UART_ID, false);
+    uart_set_irq_enables(UART_ID, true, false);
+    int __unused actual = uart_set_baudrate(UART_ID, BAUD_RATE);
+
     int UART_IRQ = UART_ID == uart0 ? UART0_IRQ : UART1_IRQ;
     irq_set_exclusive_handler(UART_IRQ, on_uart_rx);
     irq_set_enabled(UART_IRQ, true);
-    uart_set_irq_enables(UART_ID, true, false);
+}
+// void i2c_uart(){
+//     //i2c_init(i2c0, 100000); // 初始化 I2C0，100kHz 的速度
+//     i2c_init(i2c0, 400 * 1000);
+//     gpio_set_function(2, GPIO_FUNC_I2C); // 將 GP02 (SDA) 設置為 I2C 功能
+//     gpio_set_function(3, GPIO_FUNC_I2C); // 將 GP03 (SCL) 設置為 I2C 功能
+//     gpio_pull_up(PICO_DEFAULT_I2C_SDA_PIN);
+//     gpio_pull_up(PICO_DEFAULT_I2C_SCL_PIN);
+//     // 配置 I2C 通道
+//     i2c_set_slave_mode(i2c0, false, 0x01); // 設置為主機模式
+// }
 
-    //
-    // 設置 DATOUCH_PIN26 和 DATOUCH_PIN27 為輸入並啟用內部上拉電阻
-    // gpio_init(DATOUCH_PIN26);
-    // gpio_set_dir(DATOUCH_PIN26, GPIO_IN);
-    // gpio_pull_up(DATOUCH_PIN26); // 啟用內部上拉電阻
-    // gpio_set_irq_enabled_with_callback(DATOUCH_PIN26, GPIO_IRQ_EDGE_FALL, true, &gpio_callback);
-
-    // gpio_init(DATOUCH_PIN27);
-    // gpio_set_dir(DATOUCH_PIN27, GPIO_IN);
-    // gpio_pull_up(DATOUCH_PIN27); // 啟用內部上拉電阻
-    // gpio_set_irq_enabled_with_callback(DATOUCH_PIN27, GPIO_IRQ_EDGE_FALL, true, &gpio_callback);
-
-    // 設置 Pin 26 和 Pin 27 為輸出
-    gpio_init(DATOUCH_PIN26);
-    gpio_set_dir(DATOUCH_PIN26, GPIO_OUT);
-    gpio_put(DATOUCH_PIN26, 0);
-    gpio_init(DATOUCH_PIN27);
-    gpio_set_dir(DATOUCH_PIN27, GPIO_OUT);
-    gpio_put(DATOUCH_PIN27, 0);
-
-
-
-
-    UHC_type_CMD ptr;
+int main()
+{
+    stdio_init_all();
+    tusb_init();
+    init_uart();
+    
+    HTU21DF_init();
     uint32_t last_led_toggle_time = 0;
     // LED init
     gpio_init(LED_PIN);
     gpio_set_dir(LED_PIN, GPIO_OUT);
+
     while (!tud_mounted())
     {
         tud_task();
@@ -145,11 +137,22 @@ int main()
         {
             if (tud_cdc_available())
             {
+                UHC_CMD cmd;
                 uint32_t count = tud_cdc_read(tud_cdc_rx_buffer, sizeof(tud_cdc_rx_buffer));
                 if (count > 0)
                 {
-                    return_request = true; // 設置標誌為 true，表示需要返回訊息
-                    receive_data(tud_cdc_rx_buffer, count);
+                    cmd.UHC_Buffer =(uint8_t *)count;
+
+                    if (cmd.UHC_Buffer != NULL) 
+                    {
+                        cmd.UHC_Buffer = tud_cdc_rx_buffer;  // 將 UHC_Buffer 設置為 tud_cdc_rx_buffer 的指標
+                        memcpy(cmd.UHC_Buffer, tud_cdc_rx_buffer, count);  // 將接收到的數據複製到 UHC_Buffer 中
+                        cmd.Buffer_Len = count;
+                        cmd.Head_type = tud_cdc_rx_buffer[0];                        
+                        handle_command(&cmd);
+                        //free(cmd.UHC_Buffer); // 處理完畢後釋放內存
+                    }
+
                 }
                 count = 0;
             }
@@ -172,9 +175,7 @@ int main()
         {
             gpio_put(LED_PIN, !gpio_get(LED_PIN)); // 切換 LED 狀態
             last_led_toggle_time = current_time;
-        }
-
-         
+        }         
     }
 }
 

@@ -69,6 +69,10 @@
     "limits": "c",
     "xmemory": "c",
     "xutility": "c",
-    "stdlib.h": "c"
+    "stdlib.h": "c",
+    "command_handler.h": "c",
+    "stdint.h": "c",
+    "commands.h": "c",
+    "command_defs.h": "c"
   }
 }

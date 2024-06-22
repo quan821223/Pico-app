@@ -20,6 +20,7 @@
 extern "C" {
 #endif
 
+extern const uint8_t Write_ACK[];
 
 extern UHC_type_CMD tud_cdc_buffer;
 

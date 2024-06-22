@@ -12,12 +12,11 @@
 #ifndef ALL_H
 #define ALL_H
 
-#include "pico/stdlib.h"
 
+#include "pico/stdlib.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-
 
 #define DATOUCH_PIN26 20
 #define DATOUCH_PIN27 21
@@ -28,8 +27,6 @@ typedef struct {
     repeating_timer_t timer;
 } touch_data_t;
 
-
-
 // 流程狀態
 typedef enum {
     STATE_IDLE,
@@ -37,16 +34,7 @@ typedef enum {
     STATE_PROCESSING,
 } State;
 
-typedef enum {
-    Header_TYPE_FA = 0xFA,
-    Header_TYPE_DA = 0xDA,
-} HeaderType;
 
-// 指令屬性
-typedef enum {
-    MSG_TYPE_READ = 0x52,
-    MSG_TYPE_WRITE = 0x57,
-} MessageType;
 
 // 指定裝置
 typedef enum {
@@ -75,12 +63,8 @@ typedef struct
     char * UHC_Buffer;
 } UHC_type_CMD;
 
-typedef enum {
-    CMD_TYPE_READ = 0x01,
-    CMD_TYPE_WRITE = 0x02,
-    CMD_TYPE_RESET = 0x03, // 新指令
-    // 添加其他命令類型
-} command_type_t;
+
+
 
 void gpio_callback(uint gpio, uint32_t events) ;
 
