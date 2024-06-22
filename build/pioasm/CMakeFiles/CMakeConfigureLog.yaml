@@ -63,8 +63,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "D:/yqgithub/Pico-app/build/pioasm/CMakeFiles/CMakeScratch/TryCompile-di0ljg"
-      binary: "D:/yqgithub/Pico-app/build/pioasm/CMakeFiles/CMakeScratch/TryCompile-di0ljg"
+      source: "D:/yqgithub/Pico-app/build/pioasm/CMakeFiles/CMakeScratch/TryCompile-jnjgya"
+      binary: "D:/yqgithub/Pico-app/build/pioasm/CMakeFiles/CMakeScratch/TryCompile-jnjgya"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
       CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
@@ -72,31 +72,31 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: D:/yqgithub/Pico-app/build/pioasm/CMakeFiles/CMakeScratch/TryCompile-di0ljg
+        Change Dir: D:/yqgithub/Pico-app/build/pioasm/CMakeFiles/CMakeScratch/TryCompile-jnjgya
         
-        Run Build Command(s):C:/Program Files/CMake/bin/cmake.exe -E env VERBOSE=1 C:/PROGRA~1/MINGW-~1/mingw64/bin/mingw32-make.exe -f Makefile cmTC_daa0a/fast && C:/PROGRA~1/MINGW-~1/mingw64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_daa0a.dir\\build.make CMakeFiles/cmTC_daa0a.dir/build
-        mingw32-make.exe[1]: Entering directory 'D:/yqgithub/Pico-app/build/pioasm/CMakeFiles/CMakeScratch/TryCompile-di0ljg'
-        Building CXX object CMakeFiles/cmTC_daa0a.dir/CMakeCXXCompilerABI.cpp.obj
-        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_cl_compile_depends --dep-file=CMakeFiles\\cmTC_daa0a.dir\\CMakeCXXCompilerABI.cpp.obj.d --working-dir=D:\\yqgithub\\Pico-app\\build\\pioasm\\CMakeFiles\\CMakeScratch\\TryCompile-di0ljg --filter-prefix="瘜冽?: ?瑼?: " -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1436~1.325\\bin\\Hostx86\\x64\\cl.exe  /nologo /TP   /DWIN32 /D_WINDOWS /W3 /GR /EHsc  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_daa0a.dir\\CMakeCXXCompilerABI.cpp.obj /FdCMakeFiles\\cmTC_daa0a.dir/ /FS -c "C:\\Program Files\\CMake\\share\\cmake-3.26\\Modules\\CMakeCXXCompilerABI.cpp"
+        Run Build Command(s):C:/Program Files/CMake/bin/cmake.exe -E env VERBOSE=1 C:/PROGRA~1/MINGW-~1/mingw64/bin/mingw32-make.exe -f Makefile cmTC_953dd/fast && C:/PROGRA~1/MINGW-~1/mingw64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_953dd.dir\\build.make CMakeFiles/cmTC_953dd.dir/build
+        mingw32-make.exe[1]: Entering directory 'D:/yqgithub/Pico-app/build/pioasm/CMakeFiles/CMakeScratch/TryCompile-jnjgya'
+        Building CXX object CMakeFiles/cmTC_953dd.dir/CMakeCXXCompilerABI.cpp.obj
+        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_cl_compile_depends --dep-file=CMakeFiles\\cmTC_953dd.dir\\CMakeCXXCompilerABI.cpp.obj.d --working-dir=D:\\yqgithub\\Pico-app\\build\\pioasm\\CMakeFiles\\CMakeScratch\\TryCompile-jnjgya --filter-prefix="瘜冽?: ?瑼?: " -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1436~1.325\\bin\\Hostx86\\x64\\cl.exe  /nologo /TP   /DWIN32 /D_WINDOWS /W3 /GR /EHsc  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_953dd.dir\\CMakeCXXCompilerABI.cpp.obj /FdCMakeFiles\\cmTC_953dd.dir/ /FS -c "C:\\Program Files\\CMake\\share\\cmake-3.26\\Modules\\CMakeCXXCompilerABI.cpp"
         CMakeCXXCompilerABI.cpp
         ?`?? ?瑼?: C:\\Program Files\\CMake\\share\\cmake-3.26\\Modules\\CMakeCompilerABI.h
-        Linking CXX executable cmTC_daa0a.exe
-        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_daa0a.dir\\link.txt --verbose=1
-        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_daa0a.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\mt.exe --manifests -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1436~1.325\\bin\\Hostx86\\x64\\link.exe /nologo @CMakeFiles\\cmTC_daa0a.dir\\objects1.rsp  /out:cmTC_daa0a.exe /implib:cmTC_daa0a.lib /pdb:D:\\yqgithub\\Pico-app\\build\\pioasm\\CMakeFiles\\CMakeScratch\\TryCompile-di0ljg\\cmTC_daa0a.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib 
+        Linking CXX executable cmTC_953dd.exe
+        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_953dd.dir\\link.txt --verbose=1
+        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_953dd.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\mt.exe --manifests -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1436~1.325\\bin\\Hostx86\\x64\\link.exe /nologo @CMakeFiles\\cmTC_953dd.dir\\objects1.rsp  /out:cmTC_953dd.exe /implib:cmTC_953dd.lib /pdb:D:\\yqgithub\\Pico-app\\build\\pioasm\\CMakeFiles\\CMakeScratch\\TryCompile-jnjgya\\cmTC_953dd.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib 
         Visual Studio Incremental Link with embedded manifests
-        Create CMakeFiles\\cmTC_daa0a.dir/manifest.rc
-        Create empty: CMakeFiles\\cmTC_daa0a.dir/embed.manifest
+        Create CMakeFiles\\cmTC_953dd.dir/manifest.rc
+        Create empty: CMakeFiles\\cmTC_953dd.dir/embed.manifest
         RC Pass 1:
-        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\rc.exe /fo CMakeFiles\\cmTC_daa0a.dir/manifest.res CMakeFiles\\cmTC_daa0a.dir/manifest.rc
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\rc.exe /fo CMakeFiles\\cmTC_953dd.dir/manifest.res CMakeFiles\\cmTC_953dd.dir/manifest.rc
         LINK Pass 1:
-        C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1436~1.325\\bin\\Hostx86\\x64\\link.exe /nologo @CMakeFiles\\cmTC_daa0a.dir\\objects1.rsp /out:cmTC_daa0a.exe /implib:cmTC_daa0a.lib /pdb:D:\\yqgithub\\Pico-app\\build\\pioasm\\CMakeFiles\\CMakeScratch\\TryCompile-di0ljg\\cmTC_daa0a.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_daa0a.dir/intermediate.manifest CMakeFiles\\cmTC_daa0a.dir/manifest.res
+        C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1436~1.325\\bin\\Hostx86\\x64\\link.exe /nologo @CMakeFiles\\cmTC_953dd.dir\\objects1.rsp /out:cmTC_953dd.exe /implib:cmTC_953dd.lib /pdb:D:\\yqgithub\\Pico-app\\build\\pioasm\\CMakeFiles\\CMakeScratch\\TryCompile-jnjgya\\cmTC_953dd.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_953dd.dir/intermediate.manifest CMakeFiles\\cmTC_953dd.dir/manifest.res
         MT:
-        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\mt.exe /nologo /manifest CMakeFiles\\cmTC_daa0a.dir/intermediate.manifest /out:CMakeFiles\\cmTC_daa0a.dir/embed.manifest /notify_update
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\mt.exe /nologo /manifest CMakeFiles\\cmTC_953dd.dir/intermediate.manifest /out:CMakeFiles\\cmTC_953dd.dir/embed.manifest /notify_update
         RC Pass 2:
-        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\rc.exe /fo CMakeFiles\\cmTC_daa0a.dir/manifest.res CMakeFiles\\cmTC_daa0a.dir/manifest.rc
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\rc.exe /fo CMakeFiles\\cmTC_953dd.dir/manifest.res CMakeFiles\\cmTC_953dd.dir/manifest.rc
         FINAL LINK:
-        C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1436~1.325\\bin\\Hostx86\\x64\\link.exe /nologo @CMakeFiles\\cmTC_daa0a.dir\\objects1.rsp /out:cmTC_daa0a.exe /implib:cmTC_daa0a.lib /pdb:D:\\yqgithub\\Pico-app\\build\\pioasm\\CMakeFiles\\CMakeScratch\\TryCompile-di0ljg\\cmTC_daa0a.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_daa0a.dir/intermediate.manifest CMakeFiles\\cmTC_daa0a.dir/manifest.res
-        mingw32-make.exe[1]: Leaving directory 'D:/yqgithub/Pico-app/build/pioasm/CMakeFiles/CMakeScratch/TryCompile-di0ljg'
+        C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1436~1.325\\bin\\Hostx86\\x64\\link.exe /nologo @CMakeFiles\\cmTC_953dd.dir\\objects1.rsp /out:cmTC_953dd.exe /implib:cmTC_953dd.lib /pdb:D:\\yqgithub\\Pico-app\\build\\pioasm\\CMakeFiles\\CMakeScratch\\TryCompile-jnjgya\\cmTC_953dd.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_953dd.dir/intermediate.manifest CMakeFiles\\cmTC_953dd.dir/manifest.res
+        mingw32-make.exe[1]: Leaving directory 'D:/yqgithub/Pico-app/build/pioasm/CMakeFiles/CMakeScratch/TryCompile-jnjgya'
         
       exitCode: 0
 ...
