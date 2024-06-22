@@ -1,0 +1,13 @@
+# Target labels
+ PioasmBuild
+# Source files and their labels
+D:/YQRepos/SupercarrierMonitoringSystem/pico-host/build/pico-sdk/src/rp2_common/pico_cyw43_driver/CMakeFiles/PioasmBuild
+D:/YQRepos/SupercarrierMonitoringSystem/pico-host/build/pico-sdk/src/rp2_common/pico_cyw43_driver/CMakeFiles/PioasmBuild.rule
+D:/YQRepos/SupercarrierMonitoringSystem/pico-host/build/pico-sdk/src/rp2_common/pico_cyw43_driver/CMakeFiles/PioasmBuild-complete.rule
+D:/YQRepos/SupercarrierMonitoringSystem/pico-host/build/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-build.rule
+D:/YQRepos/SupercarrierMonitoringSystem/pico-host/build/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-configure.rule
+D:/YQRepos/SupercarrierMonitoringSystem/pico-host/build/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-download.rule
+D:/YQRepos/SupercarrierMonitoringSystem/pico-host/build/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-install.rule
+D:/YQRepos/SupercarrierMonitoringSystem/pico-host/build/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-mkdir.rule
+D:/YQRepos/SupercarrierMonitoringSystem/pico-host/build/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-patch.rule
+D:/YQRepos/SupercarrierMonitoringSystem/pico-host/build/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-update.rule

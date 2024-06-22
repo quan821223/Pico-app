@@ -1,0 +1,14 @@
+{
+    "files.associations": {
+        "uart_bridge.h": "c",
+        "stdio.h": "c",
+        "all.h": "c",
+        "string.h": "c",
+        "time.h": "c",
+        "stdlib.h": "c",
+        "algorithm": "c",
+        "memory": "c",
+        "limits": "c",
+        "utility": "c"
+    }
+}
