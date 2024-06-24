@@ -1483,7 +1483,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : " D:/YQRepo/pico/pico-sdk/src/rp2_common/cmsis D:/YQRepo/pico/pico-sdk/src/rp2040/hardware_regs D:/YQRepo/pico/pico-sdk/src/rp2_common/cmsis D:/YQRepo/pico/pico-sdk/src/rp2040/hardware_regs D:/YQRepo/pico/pico-sdk/src/rp2_common/cmsis D:/YQRepo/pico/pico-sdk/src/rp2040/hardware_regs D:/YQRepo/pico/pico-sdk/src/rp2_common/cmsis D:/YQRepo/pico/pico-sdk/src/rp2040/hardware_regs D:/YQRepo/pico/pico-sdk/src/rp2_common/cmsis D:/YQRepo/pico/pico-sdk/src/rp2040/hardware_regs"
+			"value" : " D:/YQRepo/pico/pico-sdk/src/rp2_common/cmsis D:/YQRepo/pico/pico-sdk/src/rp2040/hardware_regs D:/YQRepo/pico/pico-sdk/src/rp2_common/cmsis D:/YQRepo/pico/pico-sdk/src/rp2040/hardware_regs D:/YQRepo/pico/pico-sdk/src/rp2_common/cmsis D:/YQRepo/pico/pico-sdk/src/rp2040/hardware_regs D:/YQRepo/pico/pico-sdk/src/rp2_common/cmsis D:/YQRepo/pico/pico-sdk/src/rp2040/hardware_regs D:/YQRepo/pico/pico-sdk/src/rp2_common/cmsis D:/YQRepo/pico/pico-sdk/src/rp2040/hardware_regs D:/YQRepo/pico/pico-sdk/src/rp2_common/cmsis D:/YQRepo/pico/pico-sdk/src/rp2040/hardware_regs"
 		},
 		{
 			"name" : "PICO_DOXYGEN_PATHS",
