@@ -14,7 +14,7 @@
 
 #include "include/command_handler.h"
 #include "include/commands.h"
-#include "gpio.h"
+#include "include/gpio.h"
 
 #include "tud_cdc_descript.h"
 

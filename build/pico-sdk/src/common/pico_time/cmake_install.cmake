@@ -1,4 +1,4 @@
-# Install script for directory: D:/YQRepos/pico/pico-sdk/src/common/pico_time
+# Install script for directory: D:/YQRepo/pico/pico-sdk/src/common/pico_time
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

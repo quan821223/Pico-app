@@ -26,6 +26,7 @@ add_executable(${PROJECT_NAME}
     ${CMAKE_CURRENT_SOURCE_DIR}/tud_cdc_descript.c
     ${CMAKE_CURRENT_SOURCE_DIR}/src/command_handler.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/htu21df.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/gpio.c
 )
 
 # Create map/bin/hex/uf2 files
@@ -36,6 +37,7 @@ target_link_libraries(${PROJECT_NAME}
     pico_stdlib
 	hardware_uart
 	hardware_i2c
+	hardware_irq
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE

@@ -1,4 +1,4 @@
-# Install script for directory: D:/YQRepos/pico/pico-sdk/src/common/pico_bit_ops
+# Install script for directory: D:/YQRepo/pico/pico-sdk/src/common/pico_bit_ops
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

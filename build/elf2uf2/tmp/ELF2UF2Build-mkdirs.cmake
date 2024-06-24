@@ -4,19 +4,19 @@
 cmake_minimum_required(VERSION 3.5)
 
 file(MAKE_DIRECTORY
-  "D:/YQRepos/pico/pico-sdk/tools/elf2uf2"
-  "D:/yiquanRepo/Pico-app/Pico-app/build/elf2uf2"
-  "D:/yiquanRepo/Pico-app/Pico-app/build/elf2uf2"
-  "D:/yiquanRepo/Pico-app/Pico-app/build/elf2uf2/tmp"
-  "D:/yiquanRepo/Pico-app/Pico-app/build/elf2uf2/src/ELF2UF2Build-stamp"
-  "D:/yiquanRepo/Pico-app/Pico-app/build/elf2uf2/src"
-  "D:/yiquanRepo/Pico-app/Pico-app/build/elf2uf2/src/ELF2UF2Build-stamp"
+  "D:/YQRepo/pico/pico-sdk/tools/elf2uf2"
+  "D:/yqgithub/Pico-app/build/elf2uf2"
+  "D:/yqgithub/Pico-app/build/elf2uf2"
+  "D:/yqgithub/Pico-app/build/elf2uf2/tmp"
+  "D:/yqgithub/Pico-app/build/elf2uf2/src/ELF2UF2Build-stamp"
+  "D:/yqgithub/Pico-app/build/elf2uf2/src"
+  "D:/yqgithub/Pico-app/build/elf2uf2/src/ELF2UF2Build-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "D:/yiquanRepo/Pico-app/Pico-app/build/elf2uf2/src/ELF2UF2Build-stamp/${subDir}")
+    file(MAKE_DIRECTORY "D:/yqgithub/Pico-app/build/elf2uf2/src/ELF2UF2Build-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "D:/yiquanRepo/Pico-app/Pico-app/build/elf2uf2/src/ELF2UF2Build-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "D:/yqgithub/Pico-app/build/elf2uf2/src/ELF2UF2Build-stamp${cfgdir}") # cfgdir has leading slash
 endif()

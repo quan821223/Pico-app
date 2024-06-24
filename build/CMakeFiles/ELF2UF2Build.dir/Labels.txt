@@ -1,13 +1,13 @@
 # Target labels
  ELF2UF2Build
 # Source files and their labels
-D:/yiquanRepo/Pico-app/Pico-app/build/CMakeFiles/ELF2UF2Build
-D:/yiquanRepo/Pico-app/Pico-app/build/CMakeFiles/ELF2UF2Build.rule
-D:/yiquanRepo/Pico-app/Pico-app/build/CMakeFiles/ELF2UF2Build-complete.rule
-D:/yiquanRepo/Pico-app/Pico-app/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-build.rule
-D:/yiquanRepo/Pico-app/Pico-app/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-configure.rule
-D:/yiquanRepo/Pico-app/Pico-app/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-download.rule
-D:/yiquanRepo/Pico-app/Pico-app/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-install.rule
-D:/yiquanRepo/Pico-app/Pico-app/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-mkdir.rule
-D:/yiquanRepo/Pico-app/Pico-app/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-patch.rule
-D:/yiquanRepo/Pico-app/Pico-app/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-update.rule
+D:/yqgithub/Pico-app/build/CMakeFiles/ELF2UF2Build
+D:/yqgithub/Pico-app/build/CMakeFiles/ELF2UF2Build.rule
+D:/yqgithub/Pico-app/build/CMakeFiles/ELF2UF2Build-complete.rule
+D:/yqgithub/Pico-app/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-build.rule
+D:/yqgithub/Pico-app/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-configure.rule
+D:/yqgithub/Pico-app/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-download.rule
+D:/yqgithub/Pico-app/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-install.rule
+D:/yqgithub/Pico-app/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-mkdir.rule
+D:/yqgithub/Pico-app/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-patch.rule
+D:/yqgithub/Pico-app/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-update.rule

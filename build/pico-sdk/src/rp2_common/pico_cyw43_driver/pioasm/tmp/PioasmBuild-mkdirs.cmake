@@ -4,19 +4,19 @@
 cmake_minimum_required(VERSION 3.5)
 
 file(MAKE_DIRECTORY
-  "D:/YQRepos/pico/pico-sdk/tools/pioasm"
-  "D:/yiquanRepo/Pico-app/Pico-app/build/pioasm"
-  "D:/yiquanRepo/Pico-app/Pico-app/build/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm"
-  "D:/yiquanRepo/Pico-app/Pico-app/build/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/tmp"
-  "D:/yiquanRepo/Pico-app/Pico-app/build/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/src/PioasmBuild-stamp"
-  "D:/yiquanRepo/Pico-app/Pico-app/build/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/src"
-  "D:/yiquanRepo/Pico-app/Pico-app/build/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/src/PioasmBuild-stamp"
+  "D:/YQRepo/pico/pico-sdk/tools/pioasm"
+  "D:/yqgithub/Pico-app/build/pioasm"
+  "D:/yqgithub/Pico-app/build/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm"
+  "D:/yqgithub/Pico-app/build/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/tmp"
+  "D:/yqgithub/Pico-app/build/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/src/PioasmBuild-stamp"
+  "D:/yqgithub/Pico-app/build/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/src"
+  "D:/yqgithub/Pico-app/build/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/src/PioasmBuild-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "D:/yiquanRepo/Pico-app/Pico-app/build/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/src/PioasmBuild-stamp/${subDir}")
+    file(MAKE_DIRECTORY "D:/yqgithub/Pico-app/build/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/src/PioasmBuild-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "D:/yiquanRepo/Pico-app/Pico-app/build/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/src/PioasmBuild-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "D:/yqgithub/Pico-app/build/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/src/PioasmBuild-stamp${cfgdir}") # cfgdir has leading slash
 endif()

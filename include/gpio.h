@@ -1,9 +1,10 @@
 #ifndef _GPIO_H
 #define _GPIO_H
+
+#include "pico/stdlib.h" 
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-
 
 #define DATOUCH_PIN26 20
 #define DATOUCH_PIN27 21
@@ -15,8 +16,6 @@ typedef struct {
 } touch_data_t;
 
 void init_gpio(void);
-
-
-
+bool touch_callback(struct repeating_timer *t) ;
 
 #endif

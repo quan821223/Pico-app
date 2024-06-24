@@ -1,4 +1,4 @@
-# Install script for directory: D:/YQRepos/pico/pico-sdk
+# Install script for directory: D:/YQRepo/pico/pico-sdk
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,9 +39,9 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("D:/yiquanRepo/Pico-app/Pico-app/build/pico-sdk/tools/cmake_install.cmake")
-  include("D:/yiquanRepo/Pico-app/Pico-app/build/pico-sdk/src/cmake_install.cmake")
-  include("D:/yiquanRepo/Pico-app/Pico-app/build/pico-sdk/docs/cmake_install.cmake")
+  include("D:/yqgithub/Pico-app/build/pico-sdk/tools/cmake_install.cmake")
+  include("D:/yqgithub/Pico-app/build/pico-sdk/src/cmake_install.cmake")
+  include("D:/yqgithub/Pico-app/build/pico-sdk/docs/cmake_install.cmake")
 
 endif()
 

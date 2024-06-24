@@ -18,9 +18,6 @@ void init_gpio(void){
 
 }
 
-
-
-
 bool touch_callback(struct repeating_timer *t) {
     touch_data_t *data = (touch_data_t *)t->user_data;
     gpio_put(data->gpio_pin, 0); // 设置 Pin 为低电平
