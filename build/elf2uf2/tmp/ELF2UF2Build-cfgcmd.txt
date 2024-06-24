@@ -1,1 +1,1 @@
-cmd='C:/Program Files/CMake/bin/cmake.exe;-DCMAKE_MAKE_PROGRAM:FILEPATH=C:/PROGRA~1/MINGW-~1/mingw64/bin/mingw32-make.exe;-GMinGW Makefiles;-S;<SOURCE_DIR><SOURCE_SUBDIR>;-B;<BINARY_DIR>'
+cmd='C:/Program Files/CMake/bin/cmake.exe;-DCMAKE_MAKE_PROGRAM:FILEPATH=nmake;-GNMake Makefiles;-S;<SOURCE_DIR><SOURCE_SUBDIR>;-B;<BINARY_DIR>'

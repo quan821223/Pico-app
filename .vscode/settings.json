@@ -73,6 +73,7 @@
     "command_handler.h": "c",
     "stdint.h": "c",
     "commands.h": "c",
-    "command_defs.h": "c"
+    "command_defs.h": "c",
+    "gpio.h": "c"
   }
 }

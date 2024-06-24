@@ -18,14 +18,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#define DATOUCH_PIN26 20
-#define DATOUCH_PIN27 21
 
-typedef struct {
-    uint gpio_pin;
-    uint8_t steps;
-    repeating_timer_t timer;
-} touch_data_t;
 
 // 流程狀態
 typedef enum {

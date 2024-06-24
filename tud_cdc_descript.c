@@ -16,7 +16,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-
+#include "gpio.h"
 #include "command_defs.h"
 
 uint16_t last_rand = 0xACE1U;

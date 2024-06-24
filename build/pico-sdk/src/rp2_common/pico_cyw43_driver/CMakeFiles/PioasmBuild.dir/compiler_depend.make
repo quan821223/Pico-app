@@ -1,2 +1,2 @@
-# Empty custom commands generated dependencies file for PioasmBuild.
+﻿# Empty custom commands generated dependencies file for PioasmBuild.
 # This may be replaced when dependencies are built.

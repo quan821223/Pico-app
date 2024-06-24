@@ -8,10 +8,10 @@
 #define HTU21DF_READHUM (0xE5)
 
 /** Read temperature register. No Hold master*/
-#define HTU21DF_READTEMP (0xF3)
+#define HTU21DF_READTEMP_NoHold (0xF3)
 
 /** Read humidity register. No Hold master*/
-#define HTU21DF_READHUM (0xF5)
+#define HTU21DF_READHUM_NoHold (0xF5)
 
 /** Write register command. */
 #define HTU21DF_WRITEREG (0xE6)

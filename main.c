@@ -14,7 +14,10 @@
 
 #include "include/command_handler.h"
 #include "include/commands.h"
+#include "gpio.h"
+
 #include "tud_cdc_descript.h"
+
 
 //--------------------------------------------------------------------+
 // MACRO CONSTANT TYPEDEF PROTYPES
@@ -96,12 +99,13 @@ void init_uart(){
     irq_set_enabled(UART_IRQ, true);
 }
 
+
 int main()
 {
     stdio_init_all();
     tusb_init();
     init_uart();
-
+    init_gpio();
     HTU21DF_init();
     uint32_t last_led_toggle_time = 0;
     // LED init

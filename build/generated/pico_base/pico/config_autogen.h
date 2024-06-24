@@ -4,8 +4,8 @@
 
 // based on PICO_CONFIG_HEADER_FILES:
 
-#include "D:/YQRepo/pico/pico-sdk/src/boards/include/boards/pico.h"
+#include "D:/YQRepos/pico/pico-sdk/src/boards/include/boards/pico.h"
 
 // based on PICO_RP2040_CONFIG_HEADER_FILES:
 
-#include "D:/YQRepo/pico/pico-sdk/src/rp2_common/cmsis/include/cmsis/rename_exceptions.h"
+#include "D:/YQRepos/pico/pico-sdk/src/rp2_common/cmsis/include/cmsis/rename_exceptions.h"

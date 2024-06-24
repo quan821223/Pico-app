@@ -1,4 +1,4 @@
-// Padded and checksummed version of: D:/yqgithub/Pico-app/build/pico-sdk/src/rp2_common/boot_stage2/bs2_default.bin
+// Padded and checksummed version of: D:/yiquanRepo/Pico-app/Pico-app/build/pico-sdk/src/rp2_common/boot_stage2/bs2_default.bin
 
 .cpu cortex-m0plus
 .thumb

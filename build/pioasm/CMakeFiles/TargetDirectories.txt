@@ -1,3 +1,0 @@
-D:/yqgithub/Pico-app/build/pioasm/CMakeFiles/pioasm.dir
-D:/yqgithub/Pico-app/build/pioasm/CMakeFiles/edit_cache.dir
-D:/yqgithub/Pico-app/build/pioasm/CMakeFiles/rebuild_cache.dir

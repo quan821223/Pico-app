@@ -17,17 +17,17 @@ events:
       - "CMakeLists.txt:2 (project)"
     message: |
       Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
-      Compiler: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.36.32532/bin/Hostx86/x64/cl.exe 
+      Compiler: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx86/x64/cl.exe 
       Build flags: 
       Id flags:  
       
       The output was:
       0
-      Microsoft (R) C/C++ Optimizing Compiler Version 19.36.32532 for x64
+      Microsoft (R) C/C++ Optimizing Compiler Version 19.34.31937 for x64
       Copyright (C) Microsoft Corporation.  著作權所有，並保留一切權利。
       
       CMakeCCompilerId.c
-      Microsoft (R) Incremental Linker Version 14.36.32532.0
+      Microsoft (R) Incremental Linker Version 14.34.31937.0
       Copyright (C) Microsoft Corporation.  All rights reserved.
       
       /out:CMakeCCompilerId.exe 
@@ -39,7 +39,7 @@ events:
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.obj"
       
       The C compiler identification is MSVC, found in:
-        D:/yqgithub/Pico-app/build/elf2uf2/CMakeFiles/3.26.0-rc2/CompilerIdC/CMakeCCompilerId.exe
+        D:/yiquanRepo/Pico-app/Pico-app/build/elf2uf2/CMakeFiles/3.26.0-rc2/CompilerIdC/CMakeCCompilerId.exe
       
   -
     kind: "message-v1"
@@ -51,7 +51,7 @@ events:
     message: |
       Detecting C compiler /showIncludes prefix:
         main.c
-        注意: 包含檔案: D:\\yqgithub\\Pico-app\\build\\elf2uf2\\CMakeFiles\\ShowIncludes\\foo.h
+        注意: 包含檔案: D:\\yiquanRepo\\Pico-app\\Pico-app\\build\\elf2uf2\\CMakeFiles\\ShowIncludes\\foo.h
         
       Found prefix "注意: 包含檔案: "
   -
@@ -63,17 +63,17 @@ events:
       - "CMakeLists.txt:2 (project)"
     message: |
       Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
-      Compiler: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.36.32532/bin/Hostx86/x64/cl.exe 
+      Compiler: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx86/x64/cl.exe 
       Build flags: 
       Id flags:  
       
       The output was:
       0
-      Microsoft (R) C/C++ Optimizing Compiler Version 19.36.32532 for x64
+      Microsoft (R) C/C++ Optimizing Compiler Version 19.34.31937 for x64
       Copyright (C) Microsoft Corporation.  著作權所有，並保留一切權利。
       
       CMakeCXXCompilerId.cpp
-      Microsoft (R) Incremental Linker Version 14.36.32532.0
+      Microsoft (R) Incremental Linker Version 14.34.31937.0
       Copyright (C) Microsoft Corporation.  All rights reserved.
       
       /out:CMakeCXXCompilerId.exe 
@@ -85,7 +85,7 @@ events:
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.obj"
       
       The CXX compiler identification is MSVC, found in:
-        D:/yqgithub/Pico-app/build/elf2uf2/CMakeFiles/3.26.0-rc2/CompilerIdCXX/CMakeCXXCompilerId.exe
+        D:/yiquanRepo/Pico-app/Pico-app/build/elf2uf2/CMakeFiles/3.26.0-rc2/CompilerIdCXX/CMakeCXXCompilerId.exe
       
   -
     kind: "message-v1"
@@ -97,7 +97,7 @@ events:
     message: |
       Detecting CXX compiler /showIncludes prefix:
         main.c
-        注意: 包含檔案: D:\\yqgithub\\Pico-app\\build\\elf2uf2\\CMakeFiles\\ShowIncludes\\foo.h
+        注意: 包含檔案: D:\\yiquanRepo\\Pico-app\\Pico-app\\build\\elf2uf2\\CMakeFiles\\ShowIncludes\\foo.h
         
       Found prefix "注意: 包含檔案: "
   -
@@ -109,8 +109,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "D:/yqgithub/Pico-app/build/elf2uf2/CMakeFiles/CMakeScratch/TryCompile-gsipd6"
-      binary: "D:/yqgithub/Pico-app/build/elf2uf2/CMakeFiles/CMakeScratch/TryCompile-gsipd6"
+      source: "D:/yiquanRepo/Pico-app/Pico-app/build/elf2uf2/CMakeFiles/CMakeScratch/TryCompile-sbw7nq"
+      binary: "D:/yiquanRepo/Pico-app/Pico-app/build/elf2uf2/CMakeFiles/CMakeScratch/TryCompile-sbw7nq"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS /W3"
       CMAKE_C_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
@@ -119,31 +119,27 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: D:/yqgithub/Pico-app/build/elf2uf2/CMakeFiles/CMakeScratch/TryCompile-gsipd6
+        Change Dir: D:/yiquanRepo/Pico-app/Pico-app/build/elf2uf2/CMakeFiles/CMakeScratch/TryCompile-sbw7nq
         
-        Run Build Command(s):C:/Program Files/CMake/bin/cmake.exe -E env VERBOSE=1 C:/PROGRA~1/MINGW-~1/mingw64/bin/mingw32-make.exe -f Makefile cmTC_8c04b/fast && C:/PROGRA~1/MINGW-~1/mingw64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_8c04b.dir\\build.make CMakeFiles/cmTC_8c04b.dir/build
-        mingw32-make.exe[1]: Entering directory 'D:/yqgithub/Pico-app/build/elf2uf2/CMakeFiles/CMakeScratch/TryCompile-gsipd6'
-        Building C object CMakeFiles/cmTC_8c04b.dir/CMakeCCompilerABI.c.obj
-        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_cl_compile_depends --dep-file=CMakeFiles\\cmTC_8c04b.dir\\CMakeCCompilerABI.c.obj.d --working-dir=D:\\yqgithub\\Pico-app\\build\\elf2uf2\\CMakeFiles\\CMakeScratch\\TryCompile-gsipd6 --filter-prefix="瘜冽?: ?瑼?: " -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1436~1.325\\bin\\Hostx86\\x64\\cl.exe  /nologo   /DWIN32 /D_WINDOWS /W3  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_8c04b.dir\\CMakeCCompilerABI.c.obj /FdCMakeFiles\\cmTC_8c04b.dir/ /FS -c "C:\\Program Files\\CMake\\share\\cmake-3.26\\Modules\\CMakeCCompilerABI.c"
+        Run Build Command(s):C:/Program Files/CMake/bin/cmake.exe -E env VERBOSE=1 nmake -f Makefile /nologo cmTC_97017\\fast && 	"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.34.31933\\bin\\HostX86\\x64\\nmake.exe"  -f CMakeFiles\\cmTC_97017.dir\\build.make /nologo -L                  CMakeFiles\\cmTC_97017.dir\\build
+        Building C object CMakeFiles/cmTC_97017.dir/CMakeCCompilerABI.c.obj
+        	"C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_cl_compile_depends --dep-file=CMakeFiles\\cmTC_97017.dir\\CMakeCCompilerABI.c.obj.d --working-dir=D:\\yiquanRepo\\Pico-app\\Pico-app\\build\\elf2uf2\\CMakeFiles\\CMakeScratch\\TryCompile-sbw7nq --filter-prefix="\xaa`\xb7N: \xa5]\xa7t\xc0ɮ\xd7: " -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1434~1.319\\bin\\Hostx86\\x64\\cl.exe @C:\\Users\\YIQUAN~1\\AppData\\Local\\Temp\\nmF3E4.tmp
         CMakeCCompilerABI.c
-        ?`?? ?瑼?: C:\\Program Files\\CMake\\share\\cmake-3.26\\Modules\\CMakeCompilerABI.h
-        Linking C executable cmTC_8c04b.exe
-        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_8c04b.dir\\link.txt --verbose=1
-        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_8c04b.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\mt.exe --manifests -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1436~1.325\\bin\\Hostx86\\x64\\link.exe /nologo @CMakeFiles\\cmTC_8c04b.dir\\objects1.rsp  /out:cmTC_8c04b.exe /implib:cmTC_8c04b.lib /pdb:D:\\yqgithub\\Pico-app\\build\\elf2uf2\\CMakeFiles\\CMakeScratch\\TryCompile-gsipd6\\cmTC_8c04b.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib 
+        Linking C executable cmTC_97017.exe
+        	"C:\\Program Files\\CMake\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_97017.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\mt.exe --manifests -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1434~1.319\\bin\\Hostx86\\x64\\link.exe /nologo @CMakeFiles\\cmTC_97017.dir\\objects1.rsp @C:\\Users\\YIQUAN~1\\AppData\\Local\\Temp\\nmF702.tmp
         Visual Studio Incremental Link with embedded manifests
-        Create CMakeFiles\\cmTC_8c04b.dir/manifest.rc
-        Create empty: CMakeFiles\\cmTC_8c04b.dir/embed.manifest
+        Create CMakeFiles\\cmTC_97017.dir/manifest.rc
+        Create empty: CMakeFiles\\cmTC_97017.dir/embed.manifest
         RC Pass 1:
-        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\rc.exe /fo CMakeFiles\\cmTC_8c04b.dir/manifest.res CMakeFiles\\cmTC_8c04b.dir/manifest.rc
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\rc.exe /fo CMakeFiles\\cmTC_97017.dir/manifest.res CMakeFiles\\cmTC_97017.dir/manifest.rc
         LINK Pass 1:
-        C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1436~1.325\\bin\\Hostx86\\x64\\link.exe /nologo @CMakeFiles\\cmTC_8c04b.dir\\objects1.rsp /out:cmTC_8c04b.exe /implib:cmTC_8c04b.lib /pdb:D:\\yqgithub\\Pico-app\\build\\elf2uf2\\CMakeFiles\\CMakeScratch\\TryCompile-gsipd6\\cmTC_8c04b.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_8c04b.dir/intermediate.manifest CMakeFiles\\cmTC_8c04b.dir/manifest.res
+        C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1434~1.319\\bin\\Hostx86\\x64\\link.exe /nologo @CMakeFiles\\cmTC_97017.dir\\objects1.rsp /out:cmTC_97017.exe /implib:cmTC_97017.lib /pdb:D:\\yiquanRepo\\Pico-app\\Pico-app\\build\\elf2uf2\\CMakeFiles\\CMakeScratch\\TryCompile-sbw7nq\\cmTC_97017.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_97017.dir/intermediate.manifest CMakeFiles\\cmTC_97017.dir/manifest.res
         MT:
-        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\mt.exe /nologo /manifest CMakeFiles\\cmTC_8c04b.dir/intermediate.manifest /out:CMakeFiles\\cmTC_8c04b.dir/embed.manifest /notify_update
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\mt.exe /nologo /manifest CMakeFiles\\cmTC_97017.dir/intermediate.manifest /out:CMakeFiles\\cmTC_97017.dir/embed.manifest /notify_update
         RC Pass 2:
-        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\rc.exe /fo CMakeFiles\\cmTC_8c04b.dir/manifest.res CMakeFiles\\cmTC_8c04b.dir/manifest.rc
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\rc.exe /fo CMakeFiles\\cmTC_97017.dir/manifest.res CMakeFiles\\cmTC_97017.dir/manifest.rc
         FINAL LINK:
-        C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1436~1.325\\bin\\Hostx86\\x64\\link.exe /nologo @CMakeFiles\\cmTC_8c04b.dir\\objects1.rsp /out:cmTC_8c04b.exe /implib:cmTC_8c04b.lib /pdb:D:\\yqgithub\\Pico-app\\build\\elf2uf2\\CMakeFiles\\CMakeScratch\\TryCompile-gsipd6\\cmTC_8c04b.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_8c04b.dir/intermediate.manifest CMakeFiles\\cmTC_8c04b.dir/manifest.res
-        mingw32-make.exe[1]: Leaving directory 'D:/yqgithub/Pico-app/build/elf2uf2/CMakeFiles/CMakeScratch/TryCompile-gsipd6'
+        C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1434~1.319\\bin\\Hostx86\\x64\\link.exe /nologo @CMakeFiles\\cmTC_97017.dir\\objects1.rsp /out:cmTC_97017.exe /implib:cmTC_97017.lib /pdb:D:\\yiquanRepo\\Pico-app\\Pico-app\\build\\elf2uf2\\CMakeFiles\\CMakeScratch\\TryCompile-sbw7nq\\cmTC_97017.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_97017.dir/intermediate.manifest CMakeFiles\\cmTC_97017.dir/manifest.res
         
       exitCode: 0
   -
@@ -155,8 +151,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "D:/yqgithub/Pico-app/build/elf2uf2/CMakeFiles/CMakeScratch/TryCompile-binldz"
-      binary: "D:/yqgithub/Pico-app/build/elf2uf2/CMakeFiles/CMakeScratch/TryCompile-binldz"
+      source: "D:/yiquanRepo/Pico-app/Pico-app/build/elf2uf2/CMakeFiles/CMakeScratch/TryCompile-p2xb8s"
+      binary: "D:/yiquanRepo/Pico-app/Pico-app/build/elf2uf2/CMakeFiles/CMakeScratch/TryCompile-p2xb8s"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
       CMAKE_CXX_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
@@ -165,31 +161,27 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: D:/yqgithub/Pico-app/build/elf2uf2/CMakeFiles/CMakeScratch/TryCompile-binldz
+        Change Dir: D:/yiquanRepo/Pico-app/Pico-app/build/elf2uf2/CMakeFiles/CMakeScratch/TryCompile-p2xb8s
         
-        Run Build Command(s):C:/Program Files/CMake/bin/cmake.exe -E env VERBOSE=1 C:/PROGRA~1/MINGW-~1/mingw64/bin/mingw32-make.exe -f Makefile cmTC_086ea/fast && C:/PROGRA~1/MINGW-~1/mingw64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_086ea.dir\\build.make CMakeFiles/cmTC_086ea.dir/build
-        mingw32-make.exe[1]: Entering directory 'D:/yqgithub/Pico-app/build/elf2uf2/CMakeFiles/CMakeScratch/TryCompile-binldz'
-        Building CXX object CMakeFiles/cmTC_086ea.dir/CMakeCXXCompilerABI.cpp.obj
-        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_cl_compile_depends --dep-file=CMakeFiles\\cmTC_086ea.dir\\CMakeCXXCompilerABI.cpp.obj.d --working-dir=D:\\yqgithub\\Pico-app\\build\\elf2uf2\\CMakeFiles\\CMakeScratch\\TryCompile-binldz --filter-prefix="瘜冽?: ?瑼?: " -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1436~1.325\\bin\\Hostx86\\x64\\cl.exe  /nologo /TP   /DWIN32 /D_WINDOWS /W3 /GR /EHsc  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_086ea.dir\\CMakeCXXCompilerABI.cpp.obj /FdCMakeFiles\\cmTC_086ea.dir/ /FS -c "C:\\Program Files\\CMake\\share\\cmake-3.26\\Modules\\CMakeCXXCompilerABI.cpp"
+        Run Build Command(s):C:/Program Files/CMake/bin/cmake.exe -E env VERBOSE=1 nmake -f Makefile /nologo cmTC_ac284\\fast && 	"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.34.31933\\bin\\HostX86\\x64\\nmake.exe"  -f CMakeFiles\\cmTC_ac284.dir\\build.make /nologo -L                  CMakeFiles\\cmTC_ac284.dir\\build
+        Building CXX object CMakeFiles/cmTC_ac284.dir/CMakeCXXCompilerABI.cpp.obj
+        	"C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_cl_compile_depends --dep-file=CMakeFiles\\cmTC_ac284.dir\\CMakeCXXCompilerABI.cpp.obj.d --working-dir=D:\\yiquanRepo\\Pico-app\\Pico-app\\build\\elf2uf2\\CMakeFiles\\CMakeScratch\\TryCompile-p2xb8s --filter-prefix="\xaa`\xb7N: \xa5]\xa7t\xc0ɮ\xd7: " -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1434~1.319\\bin\\Hostx86\\x64\\cl.exe @C:\\Users\\YIQUAN~1\\AppData\\Local\\Temp\\nm52A.tmp
         CMakeCXXCompilerABI.cpp
-        ?`?? ?瑼?: C:\\Program Files\\CMake\\share\\cmake-3.26\\Modules\\CMakeCompilerABI.h
-        Linking CXX executable cmTC_086ea.exe
-        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_086ea.dir\\link.txt --verbose=1
-        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_086ea.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\mt.exe --manifests -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1436~1.325\\bin\\Hostx86\\x64\\link.exe /nologo @CMakeFiles\\cmTC_086ea.dir\\objects1.rsp  /out:cmTC_086ea.exe /implib:cmTC_086ea.lib /pdb:D:\\yqgithub\\Pico-app\\build\\elf2uf2\\CMakeFiles\\CMakeScratch\\TryCompile-binldz\\cmTC_086ea.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib 
+        Linking CXX executable cmTC_ac284.exe
+        	"C:\\Program Files\\CMake\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_ac284.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\mt.exe --manifests -- C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1434~1.319\\bin\\Hostx86\\x64\\link.exe /nologo @CMakeFiles\\cmTC_ac284.dir\\objects1.rsp @C:\\Users\\YIQUAN~1\\AppData\\Local\\Temp\\nm72F.tmp
         Visual Studio Incremental Link with embedded manifests
-        Create CMakeFiles\\cmTC_086ea.dir/manifest.rc
-        Create empty: CMakeFiles\\cmTC_086ea.dir/embed.manifest
+        Create CMakeFiles\\cmTC_ac284.dir/manifest.rc
+        Create empty: CMakeFiles\\cmTC_ac284.dir/embed.manifest
         RC Pass 1:
-        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\rc.exe /fo CMakeFiles\\cmTC_086ea.dir/manifest.res CMakeFiles\\cmTC_086ea.dir/manifest.rc
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\rc.exe /fo CMakeFiles\\cmTC_ac284.dir/manifest.res CMakeFiles\\cmTC_ac284.dir/manifest.rc
         LINK Pass 1:
-        C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1436~1.325\\bin\\Hostx86\\x64\\link.exe /nologo @CMakeFiles\\cmTC_086ea.dir\\objects1.rsp /out:cmTC_086ea.exe /implib:cmTC_086ea.lib /pdb:D:\\yqgithub\\Pico-app\\build\\elf2uf2\\CMakeFiles\\CMakeScratch\\TryCompile-binldz\\cmTC_086ea.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_086ea.dir/intermediate.manifest CMakeFiles\\cmTC_086ea.dir/manifest.res
+        C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1434~1.319\\bin\\Hostx86\\x64\\link.exe /nologo @CMakeFiles\\cmTC_ac284.dir\\objects1.rsp /out:cmTC_ac284.exe /implib:cmTC_ac284.lib /pdb:D:\\yiquanRepo\\Pico-app\\Pico-app\\build\\elf2uf2\\CMakeFiles\\CMakeScratch\\TryCompile-p2xb8s\\cmTC_ac284.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_ac284.dir/intermediate.manifest CMakeFiles\\cmTC_ac284.dir/manifest.res
         MT:
-        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\mt.exe /nologo /manifest CMakeFiles\\cmTC_086ea.dir/intermediate.manifest /out:CMakeFiles\\cmTC_086ea.dir/embed.manifest /notify_update
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\mt.exe /nologo /manifest CMakeFiles\\cmTC_ac284.dir/intermediate.manifest /out:CMakeFiles\\cmTC_ac284.dir/embed.manifest /notify_update
         RC Pass 2:
-        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\rc.exe /fo CMakeFiles\\cmTC_086ea.dir/manifest.res CMakeFiles\\cmTC_086ea.dir/manifest.rc
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100220~1.0\\x86\\rc.exe /fo CMakeFiles\\cmTC_ac284.dir/manifest.res CMakeFiles\\cmTC_ac284.dir/manifest.rc
         FINAL LINK:
-        C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1436~1.325\\bin\\Hostx86\\x64\\link.exe /nologo @CMakeFiles\\cmTC_086ea.dir\\objects1.rsp /out:cmTC_086ea.exe /implib:cmTC_086ea.lib /pdb:D:\\yqgithub\\Pico-app\\build\\elf2uf2\\CMakeFiles\\CMakeScratch\\TryCompile-binldz\\cmTC_086ea.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_086ea.dir/intermediate.manifest CMakeFiles\\cmTC_086ea.dir/manifest.res
-        mingw32-make.exe[1]: Leaving directory 'D:/yqgithub/Pico-app/build/elf2uf2/CMakeFiles/CMakeScratch/TryCompile-binldz'
+        C:\\PROGRA~1\\MIB055~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1434~1.319\\bin\\Hostx86\\x64\\link.exe /nologo @CMakeFiles\\cmTC_ac284.dir\\objects1.rsp /out:cmTC_ac284.exe /implib:cmTC_ac284.lib /pdb:D:\\yiquanRepo\\Pico-app\\Pico-app\\build\\elf2uf2\\CMakeFiles\\CMakeScratch\\TryCompile-p2xb8s\\cmTC_ac284.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_ac284.dir/intermediate.manifest CMakeFiles\\cmTC_ac284.dir/manifest.res
         
       exitCode: 0
 ...
