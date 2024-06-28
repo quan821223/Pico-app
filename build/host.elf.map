@@ -1290,9 +1290,9 @@ Discarded input sections
                 0x00000000       0x48 CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
  .data.i2c1_inst
                 0x00000000        0x8 CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
- .text          0x00000000        0x0 C:\Users\User\AppData\Local\Temp\ccA172cP.o
- .data          0x00000000        0x0 C:\Users\User\AppData\Local\Temp\ccA172cP.o
- .bss           0x00000000        0x0 C:\Users\User\AppData\Local\Temp\ccA172cP.o
+ .text          0x00000000        0x0 C:\Users\User\AppData\Local\Temp\cceiF9Ib.o
+ .data          0x00000000        0x0 C:\Users\User\AppData\Local\Temp\cceiF9Ib.o
+ .bss           0x00000000        0x0 C:\Users\User\AppData\Local\Temp\cceiF9Ib.o
  .data          0x00000000        0x0 c:/progra~2/gnuarm~1/102021~1.10/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp\libgcc.a(_dvmd_tls.o)
  .bss           0x00000000        0x0 c:/progra~2/gnuarm~1/102021~1.10/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp\libgcc.a(_dvmd_tls.o)
  .text          0x00000000        0x0 c:/progra~2/gnuarm~1/102021~1.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libc.a(lib_a-calloc.o)
@@ -1508,7 +1508,7 @@ LOAD c:/progra~2/gnuarm~1/102021~1.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../
 .boot2          0x10000000      0x100
                 0x10000000                __boot2_start__ = .
  *(.boot2)
- .boot2         0x10000000      0x100 C:\Users\User\AppData\Local\Temp\ccA172cP.o
+ .boot2         0x10000000      0x100 C:\Users\User\AppData\Local\Temp\cceiF9Ib.o
                 0x10000100                __boot2_end__ = .
                 0x00000001                ASSERT (((__boot2_end__ - __boot2_start__) == 0x100), ERROR: Pico second stage bootloader must be 256 bytes in size)
 
@@ -2658,7 +2658,7 @@ LOAD CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/lib/tinyusb/src/tusb.c.obj
 LOAD CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
 LOAD CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.obj
 LOAD CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
-LOAD C:\Users\User\AppData\Local\Temp\ccA172cP.o
+LOAD C:\Users\User\AppData\Local\Temp\cceiF9Ib.o
 LOAD c:/progra~2/gnuarm~1/102021~1.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a
 LOAD c:/progra~2/gnuarm~1/102021~1.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libm.a
 START GROUP
@@ -2784,7 +2784,7 @@ LOAD linker stubs
  .ARM.attributes
                 0x0000087e       0x2c CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
  .ARM.attributes
-                0x000008aa       0x22 C:\Users\User\AppData\Local\Temp\ccA172cP.o
+                0x000008aa       0x22 C:\Users\User\AppData\Local\Temp\cceiF9Ib.o
  .ARM.attributes
                 0x000008cc       0x1e c:/progra~2/gnuarm~1/102021~1.10/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp\libgcc.a(_dvmd_tls.o)
  .ARM.attributes
