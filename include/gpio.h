@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "bsp/board.h"
+
 #define DATOUCH_PIN26 20
 #define DATOUCH_PIN27 21
 
