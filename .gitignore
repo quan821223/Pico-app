@@ -10,7 +10,9 @@
 logs/
 
 ## ignored build file
-build/
+pico-host/build/
+
+
 
 # Node artifact files
 node_modules/
