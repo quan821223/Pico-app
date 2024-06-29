@@ -1093,6 +1093,20 @@ CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.s:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.s"
 	C:\PROGRA~2\GNUARM~1\102021~1.10\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\YQRepo\pico\pico-sdk\src\rp2_common\hardware_i2c\i2c.c -o CMakeFiles\host.dir\D_\YQRepo\pico\pico-sdk\src\rp2_common\hardware_i2c\i2c.c.s
 
+CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj: CMakeFiles/host.dir/flags.make
+CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj: D:/YQRepo/pico/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c
+CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj: CMakeFiles/host.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\yqgithub\Pico-app\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_75) "Building C object CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj"
+	C:\PROGRA~2\GNUARM~1\102021~1.10\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj -MF CMakeFiles\host.dir\D_\YQRepo\pico\pico-sdk\lib\tinyusb\hw\bsp\rp2040\family.c.obj.d -o CMakeFiles\host.dir\D_\YQRepo\pico\pico-sdk\lib\tinyusb\hw\bsp\rp2040\family.c.obj -c D:\YQRepo\pico\pico-sdk\lib\tinyusb\hw\bsp\rp2040\family.c
+
+CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.i"
+	C:\PROGRA~2\GNUARM~1\102021~1.10\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\YQRepo\pico\pico-sdk\lib\tinyusb\hw\bsp\rp2040\family.c > CMakeFiles\host.dir\D_\YQRepo\pico\pico-sdk\lib\tinyusb\hw\bsp\rp2040\family.c.i
+
+CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.s"
+	C:\PROGRA~2\GNUARM~1\102021~1.10\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\YQRepo\pico\pico-sdk\lib\tinyusb\hw\bsp\rp2040\family.c -o CMakeFiles\host.dir\D_\YQRepo\pico\pico-sdk\lib\tinyusb\hw\bsp\rp2040\family.c.s
+
 # Object files for target host
 host_OBJECTS = \
 "CMakeFiles/host.dir/main.c.obj" \
@@ -1168,7 +1182,8 @@ host_OBJECTS = \
 "CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/lib/tinyusb/src/tusb.c.obj" \
 "CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj" \
 "CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.obj" \
-"CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj"
+"CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj" \
+"CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj"
 
 # External object files for target host
 host_EXTERNAL_OBJECTS =
@@ -1247,11 +1262,12 @@ host.elf: CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/lib/tinyusb/src/tusb.c.obj
 host.elf: CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
 host.elf: CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.obj
 host.elf: CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
+host.elf: CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj
 host.elf: CMakeFiles/host.dir/build.make
 host.elf: pico-sdk/src/rp2_common/boot_stage2/bs2_default_padded_checksummed.S
 host.elf: CMakeFiles/host.dir/objects1.rsp
 host.elf: CMakeFiles/host.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=D:\yqgithub\Pico-app\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_75) "Linking CXX executable host.elf"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=D:\yqgithub\Pico-app\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_76) "Linking CXX executable host.elf"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\host.dir\link.txt --verbose=$(VERBOSE)
 	"C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-objcopy.exe" -Oihex D:/yqgithub/Pico-app/build/host.elf host.hex
 	"C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-objcopy.exe" -Obinary D:/yqgithub/Pico-app/build/host.elf host.bin

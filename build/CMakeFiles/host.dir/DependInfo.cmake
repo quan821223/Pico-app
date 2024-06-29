@@ -55,6 +55,7 @@ set(CMAKE_TARGET_DEFINITIONS_ASM
   "LIB_PICO_TIME=1"
   "LIB_PICO_UNIQUE_ID=1"
   "LIB_PICO_UTIL=1"
+  "LIB_TINYUSB_BOARD=1"
   "PICO_BOARD=\"pico\""
   "PICO_BUILD=1"
   "PICO_CMAKE_BUILD_TYPE=\"Release\""
@@ -72,6 +73,7 @@ set(CMAKE_TARGET_DEFINITIONS_ASM
 set(CMAKE_ASM_TARGET_INCLUDE_PATH
   "D:/yqgithub/Pico-app/include"
   "D:/YQRepo/pico/pico-sdk/include"
+  "D:/YQRepo/pico/pico-sdk/lib/tinyusb/src"
   "D:/YQRepo/pico/pico-sdk/src/common/pico_stdlib/include"
   "D:/YQRepo/pico/pico-sdk/src/rp2_common/hardware_gpio/include"
   "D:/YQRepo/pico/pico-sdk/src/common/pico_base/include"
@@ -113,7 +115,6 @@ set(CMAKE_ASM_TARGET_INCLUDE_PATH
   "D:/YQRepo/pico/pico-sdk/src/rp2_common/pico_int64_ops/include"
   "D:/YQRepo/pico/pico-sdk/src/rp2_common/pico_mem_ops/include"
   "D:/YQRepo/pico/pico-sdk/src/rp2_common/boot_stage2/include"
-  "D:/YQRepo/pico/pico-sdk/lib/tinyusb/src"
   "D:/YQRepo/pico/pico-sdk/lib/tinyusb/src/common"
   "D:/YQRepo/pico/pico-sdk/lib/tinyusb/hw"
   "D:/YQRepo/pico/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/include"
@@ -122,6 +123,7 @@ set(CMAKE_ASM_TARGET_INCLUDE_PATH
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "D:/YQRepo/pico/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c" "CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj" "gcc" "CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj.d"
   "D:/YQRepo/pico/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c" "CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c.obj" "gcc" "CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c.obj.d"
   "D:/YQRepo/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c" "CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj" "gcc" "CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj.d"
   "D:/YQRepo/pico/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.c" "CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.c.obj" "gcc" "CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.c.obj.d"

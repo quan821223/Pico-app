@@ -6,9 +6,6 @@
 #include <stdint.h>
 #include "tusb.h"
 
-
-
-
 typedef enum {
     Header_TYPE_FA = 0xFA,
     Header_TYPE_DA = 0xDA,

@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj"
+  "CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj.d"
   "CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c.obj"
   "CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c.obj.d"
   "CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj"

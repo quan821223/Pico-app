@@ -38,13 +38,16 @@ target_link_libraries(${PROJECT_NAME}
 	hardware_uart
 	hardware_i2c
 	hardware_irq
+    tinyusb_board
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
     ${CMAKE_CURRENT_LIST_DIR}/include
     $ENV{PICO_SDK_PATH}/include
+	${PICO_SDK_PATH}/lib/tinyusb/src
 )
 
 # Enable usb output, disable uart output
 pico_enable_stdio_usb(${PROJECT_NAME} 1)
 pico_enable_stdio_uart(${PROJECT_NAME} 0)
+

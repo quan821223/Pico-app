@@ -76,4 +76,33 @@ CMakeFiles/host.dir/src/gpio.c.obj: D:\yqgithub\Pico-app\src\gpio.c \
  c:\progra~2\gnuarm~1\102021~1.10\arm-none-eabi\include\string.h \
  c:\progra~2\gnuarm~1\102021~1.10\arm-none-eabi\include\sys\_locale.h \
  c:\progra~2\gnuarm~1\102021~1.10\arm-none-eabi\include\strings.h \
- c:\progra~2\gnuarm~1\102021~1.10\arm-none-eabi\include\sys\string.h
+ c:\progra~2\gnuarm~1\102021~1.10\arm-none-eabi\include\sys\string.h \
+ D:\YQRepo\pico\pico-sdk\lib\tinyusb\hw/bsp/board.h \
+ D:\YQRepo\pico\pico-sdk\lib\tinyusb\hw/bsp/ansi_escape.h \
+ D:\YQRepo\pico\pico-sdk\lib\tinyusb\src/tusb.h \
+ D:\YQRepo\pico\pico-sdk\lib\tinyusb\src/common/tusb_common.h \
+ D:\YQRepo\pico\pico-sdk\lib\tinyusb\src/tusb_option.h \
+ D:\YQRepo\pico\pico-sdk\lib\tinyusb\src/common/tusb_compiler.h \
+ D:\YQRepo\pico\pico-sdk\src\rp2_common\pico_stdio_usb\include/tusb_config.h \
+ D:\YQRepo\pico\pico-sdk\src\rp2_common\pico_stdio_usb\include/pico/stdio_usb.h \
+ D:\YQRepo\pico\pico-sdk\lib\tinyusb\src/common/tusb_mcu.h \
+ D:\YQRepo\pico\pico-sdk\lib\tinyusb\src/common/tusb_compiler.h \
+ D:\YQRepo\pico\pico-sdk\lib\tinyusb\src/common/tusb_verify.h \
+ D:\YQRepo\pico\pico-sdk\lib\tinyusb\src/common/tusb_types.h \
+ D:\YQRepo\pico\pico-sdk\lib\tinyusb\src/common/tusb_debug.h \
+ D:\YQRepo\pico\pico-sdk\lib\tinyusb\src/common/tusb_timeout.h \
+ D:\YQRepo\pico\pico-sdk\lib\tinyusb\src/osal/osal.h \
+ D:\YQRepo\pico\pico-sdk\lib\tinyusb\src/common/tusb_common.h \
+ D:\YQRepo\pico\pico-sdk\lib\tinyusb\src/osal/osal_pico.h \
+ D:\YQRepo\pico\pico-sdk\src\common\pico_sync\include/pico/sem.h \
+ D:\YQRepo\pico\pico-sdk\src\common\pico_sync\include/pico/lock_core.h \
+ D:\YQRepo\pico\pico-sdk\src\rp2_common\hardware_sync\include/hardware/sync.h \
+ D:\YQRepo\pico\pico-sdk\src\common\pico_sync\include/pico/mutex.h \
+ D:\YQRepo\pico\pico-sdk\src\common\pico_sync\include/pico/critical_section.h \
+ D:\YQRepo\pico\pico-sdk\lib\tinyusb\src/common/tusb_fifo.h \
+ D:\YQRepo\pico\pico-sdk\lib\tinyusb\src/osal/osal.h \
+ D:\YQRepo\pico\pico-sdk\lib\tinyusb\src/common/tusb_fifo.h \
+ D:\YQRepo\pico\pico-sdk\lib\tinyusb\src/class/hid/hid.h \
+ D:\YQRepo\pico\pico-sdk\lib\tinyusb\src/device/usbd.h \
+ D:\YQRepo\pico\pico-sdk\lib\tinyusb\src/class/cdc/cdc_device.h \
+ D:\YQRepo\pico\pico-sdk\lib\tinyusb\src/class/cdc/cdc.h

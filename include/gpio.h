@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-
+#include "bsp/board.h"
 #define DATOUCH_PIN26 20
 #define DATOUCH_PIN27 21
 
@@ -18,4 +18,5 @@ typedef struct {
 void init_gpio(void);
 bool touch_callback(struct repeating_timer *t) ;
 
+void led_blinking_task(void);
 #endif

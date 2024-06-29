@@ -1,23 +1,18 @@
 #include "pico/stdlib.h"
 #include "hardware/uart.h"
 #include "hardware/irq.h"
-
 #include "htu21df.h"
 #include "hardware/i2c.h"
-
 #include "ALL.h"
 #include "tusb.h"
-#include "bsp/board.h"
+
 #include "pico/stdlib.h"
 #include "pico/binary_info.h"
 #include "pico/unique_id.h"
-
 #include "include/command_handler.h"
 #include "include/commands.h"
-#include "include/gpio.h"
-
+#include "gpio.h"
 #include "tud_cdc_descript.h"
-
 
 //--------------------------------------------------------------------+
 // MACRO CONSTANT TYPEDEF PROTYPES
@@ -34,32 +29,14 @@ enum
     BLINK_SUSPENDED = 2500,
 };
 
-static uint32_t blink_interval_ms = BLINK_NOT_MOUNTED;
-
-void led_blinking_task(void);
-void board_led_write(bool state);
-
-void board_led_write(bool state)
-{
-    (void)state;
-
-#ifdef LED_PIN
-    gpio_put(LED_PIN, state ? LED_STATE_ON : (1 - LED_STATE_ON));
-#endif
-}
-
 #define UART_ID uart0
 #define BAUD_RATE 115200
 #define DATA_BITS 8
 #define STOP_BITS 1
 #define PARITY UART_PARITY_NONE
+
 #define UART_TX_PIN 0
 #define UART_RX_PIN 1
-// 設置 Pin 26 和 Pin 27
-
-#ifdef PICO_DEFAULT_LED_PIN
-#define LED_PIN PICO_DEFAULT_LED_PIN
-#endif
 
 static int chars_rxed = 0;
 
@@ -103,25 +80,28 @@ void init_uart(){
 int main()
 {
     stdio_init_all();
+    gpio_init(LED_PIN);
     tusb_init();
     init_uart();
     init_gpio();
     HTU21DF_init();
     uint32_t last_led_toggle_time = 0;
     // LED init
-    gpio_init(LED_PIN);
+    
     gpio_set_dir(LED_PIN, GPIO_OUT);
 
+    // 等待 USB 裝置被掛載
     while (!tud_mounted())
     {
         tud_task();
         sleep_ms(10);
     }
       
+    // USB 裝置已掛載，繼續執行其他任務
     while (1)
     {
         tud_task();
-        tight_loop_contents(); // 簡單等待，讓中斷處理程序來處理按鈕事件
+        tight_loop_contents(); // 簡單等待，讓中斷處理程序來處理按鈕事件,也可以使debugger 可以使它暫停
 
         if (tud_cdc_n_connected(2))
         {
@@ -149,6 +129,7 @@ int main()
         }
 
         led_blinking_task();
+
         // 如果需要返回訊息，則執行相應的操作
         if (return_request)
         {
@@ -156,8 +137,6 @@ int main()
             tud_cdc_turnoff();
             return_request = false; // 重置標誌為 false，以便下一次迭代
         }
-        // 加入延遲，避免主程式死機
-        sleep_ms(1);
 
         // 控制 LED 閃爍
         uint32_t current_time = to_ms_since_boot(get_absolute_time());
@@ -165,25 +144,10 @@ int main()
         {
             gpio_put(LED_PIN, !gpio_get(LED_PIN)); // 切換 LED 狀態
             last_led_toggle_time = current_time;
-        }         
+        }  
+
+        // 加入延遲，避免主程式死機
+        sleep_ms(1);       
     }
 }
 
-//--------------------------------------------------------------------+
-// Blinking Task
-//--------------------------------------------------------------------+
-void led_blinking_task(void)
-{
-    const uint32_t interval_ms = 1000;
-    static uint32_t start_ms = 0;
-
-    static bool led_state = false;
-
-    // Blink every interval ms
-    if (board_millis() - start_ms < interval_ms)
-        return; // not enough time
-    start_ms += interval_ms;
-
-    board_led_write(led_state);
-    led_state = 1 - led_state; // toggle
-}

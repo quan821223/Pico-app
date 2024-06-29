@@ -206,6 +206,30 @@ cyw43_driver_picow_cyw43_bus_pio_spi_pio_h/fast:
 	$(MAKE) $(MAKESILENT) -f pico-sdk\src\rp2_common\pico_cyw43_driver\CMakeFiles\cyw43_driver_picow_cyw43_bus_pio_spi_pio_h.dir\build.make pico-sdk/src/rp2_common/pico_cyw43_driver/CMakeFiles/cyw43_driver_picow_cyw43_bus_pio_spi_pio_h.dir/build
 .PHONY : cyw43_driver_picow_cyw43_bus_pio_spi_pio_h/fast
 
+D_/YQRepo/pico/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.obj: D_/YQRepo/pico/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj
+.PHONY : D_/YQRepo/pico/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.obj
+
+# target to build an object file
+D_/YQRepo/pico/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\host.dir\build.make CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj
+.PHONY : D_/YQRepo/pico/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.obj
+
+D_/YQRepo/pico/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.i: D_/YQRepo/pico/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.i
+.PHONY : D_/YQRepo/pico/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.i
+
+# target to preprocess a source file
+D_/YQRepo/pico/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\host.dir\build.make CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.i
+.PHONY : D_/YQRepo/pico/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.i
+
+D_/YQRepo/pico/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.s: D_/YQRepo/pico/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.s
+.PHONY : D_/YQRepo/pico/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.s
+
+# target to generate assembly for a file
+D_/YQRepo/pico/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\host.dir\build.make CMakeFiles/host.dir/D_/YQRepo/pico/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.s
+.PHONY : D_/YQRepo/pico/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.c.s
+
 D_/YQRepo/pico/pico-sdk/lib/tinyusb/src/class/audio/audio_device.obj: D_/YQRepo/pico/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c.obj
 .PHONY : D_/YQRepo/pico/pico-sdk/lib/tinyusb/src/class/audio/audio_device.obj
 
@@ -1821,6 +1845,9 @@ help:
 	@echo ... cyw43_driver_picow_cyw43_bus_pio_spi_pio_h
 	@echo ... bs2_default
 	@echo ... host
+	@echo ... D_/YQRepo/pico/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.obj
+	@echo ... D_/YQRepo/pico/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.i
+	@echo ... D_/YQRepo/pico/pico-sdk/lib/tinyusb/hw/bsp/rp2040/family.s
 	@echo ... D_/YQRepo/pico/pico-sdk/lib/tinyusb/src/class/audio/audio_device.obj
 	@echo ... D_/YQRepo/pico/pico-sdk/lib/tinyusb/src/class/audio/audio_device.i
 	@echo ... D_/YQRepo/pico/pico-sdk/lib/tinyusb/src/class/audio/audio_device.s

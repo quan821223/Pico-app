@@ -17,8 +17,19 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include "gpio.h"
 
+#ifdef PICO_BOARD
+#define LED_PIN 25
+#endif
 
+#ifdef PICO_W_BOARD
+#define LED_PIN 0
+#endif
+
+#ifdef PICO_ZERO_BOARD
+#define LED_PIN 15
+#endif
 
 // 流程狀態
 typedef enum {

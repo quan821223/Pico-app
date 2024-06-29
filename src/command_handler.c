@@ -18,9 +18,14 @@ float temp_value;
 float humi_value;
 
 void handle_command(const UHC_CMD *cmd) {
-    response_t resp;
-    resp.status = 0x00; // 默認狀態
 
+    response_t resp;
+
+    resp.status = 0x00; // 默認狀態
+    /**
+     * @brief 判斷 head 的種類
+     * 
+     */
     switch (cmd->Head_type) {
         case CMD_HEAD_TYPE_FA:
             switch (cmd->UHC_Buffer[1]) { // 使用第三個字節來區分功能ID
@@ -44,6 +49,7 @@ void handle_command(const UHC_CMD *cmd) {
         case CMD_HEAD_TYPE_DA:
             switch (cmd->UHC_Buffer[1]) { // 使用第三個字節來區分功能ID
                 case FUNC_WRITE:
+                    // 回傳 ACK
                     memcpy(resp.data, RESP_ACK, sizeof(RESP_ACK)); 
                     tud_cdc_write((const uint8_t*)&resp.data, 3u);
                     tud_cdc_write_flush();
@@ -51,15 +57,9 @@ void handle_command(const UHC_CMD *cmd) {
                 case FUNC_READ:
                     switch (cmd->UHC_Buffer[3]) { // 使用第三個字節來區分功能ID
                         case DA_TEMP:   
-                            if(true)
-                            {
-                                // Update DA_RESP_TEMP
-                                int16_t  temp_value = HTU21DF_readTemperature();
-
-                                // 提取整数部分
-                                uint8_t temp_integer = (uint8_t)temp_value;
-
-                                // 更新 DA_RESP_TEMP
+                            if(true) {
+                                
+                                uint8_t temp_integer = (uint8_t)HTU21DF_readTemperature();
                                 DA_RESP_TEMP[3] = temp_integer;
                                 memcpy(resp.data, DA_RESP_TEMP, sizeof(DA_RESP_TEMP));
                                 tud_cdc_write((const uint8_t*)&resp.data, sizeof(DA_RESP_TEMP));
@@ -69,12 +69,8 @@ void handle_command(const UHC_CMD *cmd) {
                             break;
                         case DA_HUMI:
                             if(true){
-                                int16_t  temp_value = HTU21DF_readHumidity();
 
-                                // 提取整数部分
-                                uint8_t temp_integer = (uint8_t)temp_value;
-
-                                // 更新 DA_RESP_TEMP
+                                uint8_t temp_integer = HTU21DF_readHumidity();
                                 DA_RESP_HUMIDITY[3] = temp_integer;
                                 memcpy(resp.data, DA_RESP_HUMIDITY, sizeof(DA_RESP_HUMIDITY));
                                 tud_cdc_write((const uint8_t*)&resp.data, sizeof(DA_RESP_HUMIDITY));

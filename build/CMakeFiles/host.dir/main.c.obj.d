@@ -81,6 +81,9 @@ CMakeFiles/host.dir/main.c.obj: D:\yqgithub\Pico-app\main.c \
  c:\progra~2\gnuarm~1\102021~1.10\arm-none-eabi\include\sys\_locale.h \
  c:\progra~2\gnuarm~1\102021~1.10\arm-none-eabi\include\strings.h \
  c:\progra~2\gnuarm~1\102021~1.10\arm-none-eabi\include\sys\string.h \
+ D:\yqgithub\Pico-app\include/gpio.h \
+ D:\YQRepo\pico\pico-sdk\lib\tinyusb\hw/bsp/board.h \
+ D:\YQRepo\pico\pico-sdk\lib\tinyusb\hw/bsp/ansi_escape.h \
  D:\YQRepo\pico\pico-sdk\lib\tinyusb\src/tusb.h \
  D:\YQRepo\pico\pico-sdk\lib\tinyusb\src/common/tusb_common.h \
  D:\YQRepo\pico\pico-sdk\lib\tinyusb\src/tusb_option.h \
@@ -108,8 +111,6 @@ CMakeFiles/host.dir/main.c.obj: D:\yqgithub\Pico-app\main.c \
  D:\YQRepo\pico\pico-sdk\lib\tinyusb\src/device/usbd.h \
  D:\YQRepo\pico\pico-sdk\lib\tinyusb\src/class/cdc/cdc_device.h \
  D:\YQRepo\pico\pico-sdk\lib\tinyusb\src/class/cdc/cdc.h \
- D:\YQRepo\pico\pico-sdk\lib\tinyusb\hw/bsp/board.h \
- D:\YQRepo\pico\pico-sdk\lib\tinyusb\hw/bsp/ansi_escape.h \
  D:\YQRepo\pico\pico-sdk\src\common\pico_binary_info\include/pico/binary_info.h \
  D:\YQRepo\pico\pico-sdk\src\common\pico_binary_info\include/pico/binary_info/defs.h \
  D:\YQRepo\pico\pico-sdk\src\common\pico_binary_info\include/pico/binary_info/structure.h \
@@ -118,5 +119,4 @@ CMakeFiles/host.dir/main.c.obj: D:\yqgithub\Pico-app\main.c \
  D:\yqgithub\Pico-app\include/command_handler.h \
  D:\yqgithub\Pico-app\include/commands.h \
  D:\yqgithub\Pico-app\include/commands.h \
- D:\yqgithub\Pico-app\include/gpio.h \
  D:\yqgithub\Pico-app\tud_cdc_descript.h

@@ -79,6 +79,9 @@ CMakeFiles/host.dir/tud_cdc_descript.c.obj: \
  c:\progra~2\gnuarm~1\102021~1.10\arm-none-eabi\include\sys\_locale.h \
  c:\progra~2\gnuarm~1\102021~1.10\arm-none-eabi\include\strings.h \
  c:\progra~2\gnuarm~1\102021~1.10\arm-none-eabi\include\sys\string.h \
+ D:\yqgithub\Pico-app\include/gpio.h \
+ D:\YQRepo\pico\pico-sdk\lib\tinyusb\hw/bsp/board.h \
+ D:\YQRepo\pico\pico-sdk\lib\tinyusb\hw/bsp/ansi_escape.h \
  D:\YQRepo\pico\pico-sdk\lib\tinyusb\src/tusb.h \
  D:\YQRepo\pico\pico-sdk\lib\tinyusb\src/common/tusb_common.h \
  D:\YQRepo\pico\pico-sdk\lib\tinyusb\src/tusb_option.h \
@@ -109,5 +112,4 @@ CMakeFiles/host.dir/tud_cdc_descript.c.obj: \
  D:\yqgithub\Pico-app\include/commands.h \
  D:\yqgithub\Pico-app\include/command_handler.h \
  D:\yqgithub\Pico-app\include/commands.h \
- D:\yqgithub\Pico-app\include/gpio.h \
  D:\yqgithub\Pico-app\include/command_defs.h
