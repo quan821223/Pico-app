@@ -29,6 +29,10 @@ enum
     BLINK_SUSPENDED = 2500,
 };
 
+#define LED_PIN 25
+
+
+
 #define UART_ID uart0
 #define BAUD_RATE 115200
 #define DATA_BITS 8
@@ -86,7 +90,7 @@ int main()
     init_gpio();
     HTU21DF_init();
     uint32_t last_led_toggle_time = 0;
-    // LED init
+     bool return_request = false;
     
     gpio_set_dir(LED_PIN, GPIO_OUT);
 
@@ -130,24 +134,22 @@ int main()
 
         led_blinking_task();
 
-        // 如果需要返回訊息，則執行相應的操作
-        if (return_request)
-        {
-            tud_cdc_read_flush();
-            tud_cdc_turnoff();
-            return_request = false; // 重置標誌為 false，以便下一次迭代
+        // 控制 LED 防止过于频繁切换
+        uint32_t current_time = to_ms_since_boot(get_absolute_time());
+        if (current_time - last_led_toggle_time >= 500) {
+            gpio_put(LED_PIN, !gpio_get(LED_PIN));
+            last_led_toggle_time = current_time;
         }
 
-        // 控制 LED 閃爍
-        uint32_t current_time = to_ms_since_boot(get_absolute_time());
-        if (current_time - last_led_toggle_time >= 500)
-        {
-            gpio_put(LED_PIN, !gpio_get(LED_PIN)); // 切換 LED 狀態
-            last_led_toggle_time = current_time;
-        }  
+        // 等待一小段时间，避免主循环过于忙碌
+        sleep_ms(1);
 
-        // 加入延遲，避免主程式死機
-        sleep_ms(1);       
+        // 如果需要返回信息，则执行相应操作
+        if (return_request) {
+            tud_cdc_read_flush();
+            tud_cdc_turnoff();
+            return_request = false;
+        }    
     }
 }
 
