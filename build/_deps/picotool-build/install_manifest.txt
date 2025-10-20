@@ -1,0 +1,7 @@
+D:/YQRepo/picohost/pico-hostII/build/_deps/picotool/picotool.exe
+D:/YQRepo/picohost/pico-hostII/build/_deps/picotool/picotoolTargets.cmake
+D:/YQRepo/picohost/pico-hostII/build/_deps/picotool/picotoolTargets-debug.cmake
+D:/YQRepo/picohost/pico-hostII/build/_deps/picotool/picotoolConfig.cmake
+D:/YQRepo/picohost/pico-hostII/build/_deps/picotool/picotoolConfigVersion.cmake
+D:/YQRepo/picohost/pico-hostII/build/_deps/picotool/enc_bootloader.elf
+D:/YQRepo/picohost/pico-hostII/build/_deps/picotool/enc_bootloader_mbedtls.elf

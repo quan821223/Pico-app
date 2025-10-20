@@ -1,0 +1,558 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineSystem.cmake:204 (message)"
+      - "CMakeLists.txt:122 (project)"
+    message: |
+      The system is: Windows - 10.0.26200 - AMD64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:122 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.43.34808/bin/Hostx86/x86/cl.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      Microsoft (R) C/C++ Optimizing Compiler Version 19.43.34810 for x86
+      Copyright (C) Microsoft Corporation.  著作權所有，並保留一切權利。
+      
+      CMakeCCompilerId.c
+      Microsoft (R) Incremental Linker Version 14.43.34810.0
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+      
+      /out:CMakeCCompilerId.exe 
+      CMakeCCompilerId.obj 
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.exe"
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.obj"
+      
+      The C compiler identification is MSVC, found in:
+        D:/YQRepo/picohost/pico-hostII/build/_deps/picotool-build/enc_bootloader/CMakeFiles/3.26.0-rc2/CompilerIdC/CMakeCCompilerId.exe
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:1153 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:221 (CMAKE_DETERMINE_MSVC_SHOWINCLUDES_PREFIX)"
+      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:122 (project)"
+    message: |
+      Detecting C compiler /showIncludes prefix:
+        main.c
+        注意: 包含檔案: D:\\YQRepo\\picohost\\pico-hostII\\build\\_deps\\picotool-build\\enc_bootloader\\CMakeFiles\\ShowIncludes\\foo.h
+        
+      Found prefix "注意: 包含檔案: "
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:122 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.43.34808/bin/Hostx86/x86/cl.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      Microsoft (R) C/C++ Optimizing Compiler Version 19.43.34810 for x86
+      Copyright (C) Microsoft Corporation.  著作權所有，並保留一切權利。
+      
+      CMakeCXXCompilerId.cpp
+      Microsoft (R) Incremental Linker Version 14.43.34810.0
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+      
+      /out:CMakeCXXCompilerId.exe 
+      CMakeCXXCompilerId.obj 
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.exe"
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.obj"
+      
+      The CXX compiler identification is MSVC, found in:
+        D:/YQRepo/picohost/pico-hostII/build/_deps/picotool-build/enc_bootloader/CMakeFiles/3.26.0-rc2/CompilerIdCXX/CMakeCXXCompilerId.exe
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:1153 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:221 (CMAKE_DETERMINE_MSVC_SHOWINCLUDES_PREFIX)"
+      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:122 (project)"
+    message: |
+      Detecting CXX compiler /showIncludes prefix:
+        main.c
+        注意: 包含檔案: D:\\YQRepo\\picohost\\pico-hostII\\build\\_deps\\picotool-build\\enc_bootloader\\CMakeFiles\\ShowIncludes\\foo.h
+        
+      Found prefix "注意: 包含檔案: "
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:1115 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineASMCompiler.cmake:127 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "CMakeLists.txt:122 (project)"
+    message: |
+      Checking whether the ASM compiler is GNU using "--version" did not match "(GNU assembler)|(GCC)|(Free Software Foundation)":
+      Microsoft (R) C/C++ Optimizing Compiler Version 19.43.34810 for x86
+      Copyright (C) Microsoft Corporation.  著作權所有，並保留一切權利。
+      
+      cl : 命令列 warning D9002 : 忽略未知的選項 '--version'
+      cl : 命令列 error D8003 : 遺漏原始程式檔檔名
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:1115 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineASMCompiler.cmake:127 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "CMakeLists.txt:122 (project)"
+    message: |
+      Checking whether the ASM compiler is Clang using "--version" did not match "(clang version)":
+      Microsoft (R) C/C++ Optimizing Compiler Version 19.43.34810 for x86
+      Copyright (C) Microsoft Corporation.  著作權所有，並保留一切權利。
+      
+      cl : 命令列 warning D9002 : 忽略未知的選項 '--version'
+      cl : 命令列 error D8003 : 遺漏原始程式檔檔名
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:1115 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineASMCompiler.cmake:127 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "CMakeLists.txt:122 (project)"
+    message: |
+      Checking whether the ASM compiler is AppleClang using "--version" did not match "(Apple LLVM version)":
+      Microsoft (R) C/C++ Optimizing Compiler Version 19.43.34810 for x86
+      Copyright (C) Microsoft Corporation.  著作權所有，並保留一切權利。
+      
+      cl : 命令列 warning D9002 : 忽略未知的選項 '--version'
+      cl : 命令列 error D8003 : 遺漏原始程式檔檔名
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:1115 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineASMCompiler.cmake:127 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "CMakeLists.txt:122 (project)"
+    message: |
+      Checking whether the ASM compiler is ARMClang using "--version" did not match "armclang":
+      Microsoft (R) C/C++ Optimizing Compiler Version 19.43.34810 for x86
+      Copyright (C) Microsoft Corporation.  著作權所有，並保留一切權利。
+      
+      cl : 命令列 warning D9002 : 忽略未知的選項 '--version'
+      cl : 命令列 error D8003 : 遺漏原始程式檔檔名
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:1115 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineASMCompiler.cmake:127 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "CMakeLists.txt:122 (project)"
+    message: |
+      Checking whether the ASM compiler is HP using "-V" did not match "HP C":
+      Microsoft (R) C/C++ Optimizing Compiler Version 19.43.34810 for x86
+      Copyright (C) Microsoft Corporation.  著作權所有，並保留一切權利。
+      
+      cl : 命令列 error D8004 : '/V' 需要引數
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:1115 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineASMCompiler.cmake:127 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "CMakeLists.txt:122 (project)"
+    message: |
+      Checking whether the ASM compiler is Intel using "--version" did not match "(ICC)":
+      Microsoft (R) C/C++ Optimizing Compiler Version 19.43.34810 for x86
+      Copyright (C) Microsoft Corporation.  著作權所有，並保留一切權利。
+      
+      cl : 命令列 warning D9002 : 忽略未知的選項 '--version'
+      cl : 命令列 error D8003 : 遺漏原始程式檔檔名
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:1115 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineASMCompiler.cmake:127 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "CMakeLists.txt:122 (project)"
+    message: |
+      Checking whether the ASM compiler is IntelLLVM using "--version" did not match "(Intel[^
+      ]+oneAPI)":
+      Microsoft (R) C/C++ Optimizing Compiler Version 19.43.34810 for x86
+      Copyright (C) Microsoft Corporation.  著作權所有，並保留一切權利。
+      
+      cl : 命令列 warning D9002 : 忽略未知的選項 '--version'
+      cl : 命令列 error D8003 : 遺漏原始程式檔檔名
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:1115 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineASMCompiler.cmake:127 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "CMakeLists.txt:122 (project)"
+    message: |
+      Checking whether the ASM compiler is SunPro using "-V" did not match "Sun C":
+      Microsoft (R) C/C++ Optimizing Compiler Version 19.43.34810 for x86
+      Copyright (C) Microsoft Corporation.  著作權所有，並保留一切權利。
+      
+      cl : 命令列 error D8004 : '/V' 需要引數
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:1115 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineASMCompiler.cmake:127 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "CMakeLists.txt:122 (project)"
+    message: |
+      Checking whether the ASM compiler is XL using "-qversion" did not match "XL C":
+      Microsoft (R) C/C++ Optimizing Compiler Version 19.43.34810 for x86
+      Copyright (C) Microsoft Corporation.  著作權所有，並保留一切權利。
+      
+      cl : 命令列 warning D9002 : 忽略未知的選項 '-qversion'
+      cl : 命令列 error D8003 : 遺漏原始程式檔檔名
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:1102 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineASMCompiler.cmake:127 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "CMakeLists.txt:122 (project)"
+    message: |
+      Checking whether the ASM compiler is MSVC using "-?" matched "Microsoft":
+      Microsoft (R) C/C++ Optimizing Compiler Version 19.43.34810 for x86
+      Copyright (C) Microsoft Corporation.  著作權所有，並保留一切權利。
+      
+                               C/C++ 編譯器選項
+      
+      
+                                    -最佳化-
+      
+      /O1 最佳化上限 (偏好空間)               /O2 最佳化上限 (偏好速度)
+      /Ob<n> 內嵌展開 (預設 n=0)              /Od 停用最佳化 (預設)
+      /Og 啟用全域最佳化                      /Oi[-] 啟用內建函式
+      /Os 偏好程式碼空間                      /Ot 偏好程式碼速度
+      /Ox 最佳化 (偏好速度)                   /Oy[-] 啟用框架指標省略 
+      /favor:<blend|ATOM> 從下列選取一種要最佳化的處理器:
+         blend - 針對數種 x86 處理器最佳化的組合
+         ATOM - Intel(R) Atom(TM) 處理器
+      
+                                   -程式碼產生-
+      
+      /Gu[-] 可確保相異函式有不同的位址       /Gw[-] 分開連結器的全域變數
+      /GF 啟用唯讀字串共用                    /Gy[-] 分開連結器的函式
+      /GS[-] 啟用安全性檢查                   /GR[-] 啟用 C++ RTTI
+      /guard:cf[-] 啟用 CFG (控制流程防護)    
+      /guard:ehcont[-] 啟用 EH 接續中繼資料 (CET)
+      /EHs 啟用 C++ EH (無 SEH 例外狀況)      /EHa 啟用 C++ EH (含 SEH 例外狀況)
+      /EHc extern "C" 預設為 nothrow          
+      /EHr 一律會產生 noexcept 執行階段終止檢查
+      /fp:<contract|except[-]|fast|precise|strict> 選擇浮點模型:
+         contract - 產生程式碼時考慮浮點收縮
+         except[-] - 產生程式碼時，考慮浮點例外狀況
+         fast - "fast" 浮點模型，其結果較難預測
+         precise - "precise" 浮點模型，其結果可以預測
+         strict - "strict" 浮點模型 (暗示 /fp:except)
+      /Qfast_transcendentals 即使與 /fp:except 一起使用仍會產生內嵌 FP 內建
+      /Qspectre[-] 啟用 CVE 2017-5753 的風險降低
+      /Qpar[-] 啟用平行程式碼產生             
+      /Qpar-report:1 auto-parallelizer diagnostic; 表示平行化的迴圈
+      /Qpar-report:2 auto-parallelizer diagnostic; 表示迴圈未平行化
+      /Qvec-report:1 auto-vectorizer diagnostic; 表示向量化的迴圈
+      /Qvec-report:2 auto-vectorizer diagnostic; 表示迴圈未向量化
+      /GL[-] 啟用連結時產生程式碼             
+      /volatile:<iso|ms> 選擇揮發性模型:
+         iso - 揮發性存取時不保證 Acquire/release 語意
+         ms  - 揮發性存取時保證 Acquire/release 語意
+      /GA Windows 應用程式最佳化              /Ge 強制所有函式的堆疊檢查
+      /Gs[數值] 控制堆疊檢查呼叫              /Gh 啟用 _penter 函式呼叫
+      /GH 啟用 _pexit 函式呼叫                /GT 產生 Fiber-Safe TLS 存取
+      /RTC1 啟用快速檢查 (/RTCsu)             /RTCc 轉換成較小類型檢查
+      /RTCs 堆疊框架執行階段檢查              /RTCu 未初始化的區域使用方式檢查
+      /clr[:option] compile for common language runtime, where option is:
+          pure : produce IL-only output file (no native executable code)
+          safe : produce IL-only verifiable output file
+          netcore : produce assemblies targeting .NET Core runtime
+          noAssembly : do not produce an assembly
+          nostdlib : ignore the system .NET framework directory when searching for assemblies
+          nostdimport : do not import any required assemblies implicitly
+          initialAppDomain : enable initial AppDomain behavior of Visual C++ 2002
+          implicitKeepAlive- : turn off implicit emission of System::GC::KeepAlive(this)
+          char_t- : turn off metadata support for char8_t, char16_t and char32_t
+          ECMAParamArray : use rules specified in ECMA-372/14.6 for overloads with parameter arrays (implied by /clr)
+          ECMAParamArray- : use new rules for overloads with parameter arrays (implied by /clr:netcore)
+      /fsanitize=address 啟用位址清理程式 codegen
+      /Gd __cdecl 呼叫慣例                    /Gr __fastcall 呼叫慣例
+      /Gz __stdcall 呼叫慣例                  /GZ 啟用堆疊檢查 (/RTCs)
+      /Gv __vectorcall 呼叫慣例               
+      /hotpatch 針對可線上修補的影像確保函式填補
+      /arch:<IA32|SSE|SSE2|AVX|AVX2|AVX512|AVX10.x> minimum CPU architecture requirements, one of:
+         IA32 - use no enhanced instructions and use x87 for floating point
+         SSE - enable use of instructions available with SSE-enabled CPUs
+         SSE2 - (default) enable use of instructions available with SSE2-enabled CPUs
+         AVX - enable use of instructions available with AVX-enabled CPUs
+         AVX2 - enable use of instructions available with AVX2-enabled CPUs
+         AVX512 - enable use of instructions available with AVX-512-enabled CPUs
+         AVX10.x - enable use of instructions available with AVX10.x-enabled CPUs. Valid values of x are 1
+      /Qimprecise_fwaits 只會在 "try" 的邊界產生 FWAIT，不會在 "try" 的內部產生
+      /Qsafe_fp_loads 產生安全的 FP 載入      
+      /QIntel-jcc-erratum 可緩解 Intel JCC erratum
+      /Qspectre-load 為所有載入記憶體的指令啟用 Spectre 風險降低
+      /Qspectre-load-cf 為所有載入記憶體的控制流程指令啟用 Spectre 風險降低
+      /fpcvt:<IA|BC> FP 到不帶正負號的整數轉換相容性
+        IA - 與 VCVTTSD2USI 指令相容的結果
+        BC - 與 VS2017 及更舊版本之編譯器相容的結果
+      /vlen=<256|512> Choose vector length of either 256 or 512 for automatic code-generation
+      /vlen Choose default vector length based on /arch setting
+      
+                                    -輸出檔-
+      
+      /Fa[檔案] 指定組件清單檔                /FA[scu] 設定組件清單
+      /Fd[檔案] 指定 .PDB 檔                  /Fe<檔案> 指定可執行檔
+      /Fm[檔案] 指定對應檔                    /Fo<檔案> 指定目的檔
+      /Fp<檔案> 指定先行編譯標頭檔            /Fr[檔案] 指定來源瀏覽器檔
+      /FR[檔案] 指定擴充的 .SBR 檔            /Fi[檔案] 命名前置處理過的檔案
+      /Fd: <檔案> 指定 .PDB 檔                /Fe: <檔案> 指定可執行檔
+      /Fm: <檔案> 指定對應檔                  /Fo: <檔案> 指定目的檔
+      /Fp: <檔案> 指定 .PCH 檔                /FR: <檔案> 指定擴充的 .SBR 檔
+      /Fi: <檔案> 指定前置處理過的檔案        為 #import 產生的標頭檔 /Ft<dir> 位置
+      /doc[檔案] 處理 XML 文件註解並選擇性指定 .xdc 檔案
+      
+                                    -前置處理器-
+      
+      /AI<目錄> 加入組件搜尋路徑              /FU<file> 匯入 .NET 組件/模組
+      /FU:asFriend<file> 匯入 .NET .NET 組件/模組做為 friend
+      /C 不要刪除註解                         /D<name>{=|#}<text> 定義巨集
+      /E 前置處理至 stdout                    /EP 前置處理至 stdout，沒有 #line
+      /P 前置處理至檔案                       /Fx 將加入的程式碼合併到檔案
+      /FI<file> 指定強制的 Include 檔         /U<name> 移除預先定義的巨集
+      /u 移除所有預先定義的巨集               /I<dir> 加入包含搜尋路徑
+      /X 忽略 "標準位置"                      /PH 會在前置處理時產生 #pragma file_hash
+      /PD 列印所有巨集定義                    
+      
+                                      -語言-
+      
+      /std:<c++14|c++17|c++20|c++latest> C++ 標準版本
+          c++14 - ISO/IEC 14882:2014 (預設)
+          c++17 - ISO/IEC 14882:2017
+          c++20 - ISO/IEC 14882:2020
+          c++latest - 最新草稿標準 (功能集可能隨時變更)
+      /std:<c11|c17|clatest> C 標準版本
+         c11 - ISO/IEC 9899:2011
+         c17 - ISO/IEC 9899:2018
+         clatest - 最新的草稿標準 (功能集可能會變更)
+      /permissive[-] 啟用一些不符合規範的程式碼進行編譯
+                    (功能集可能會變更) (在 C++20 及更高版本中預設為關閉)
+      /Za 停用擴充 (不建議用於 C++)           /ZW 啟用 WinRT 語言延伸模組
+      /Zs 僅限語法檢查                        
+      /await 啟用可繼續函式擴充功能
+      /await:strict 使用舊版語言版本啟用標準 C++20 協同程式支援
+      /constexpr:depth<N>     constexper 評估的遞迴深度限制 (預設: 512)
+      /constexpr:backtrace<N> 在診斷中顯示 N 個 constexpr 評估 (預設: 10)
+      /constexpr:steps<N>     在 N 個步驟之後終止 constexpr 評估 (預設: 1048576)
+      /Zi 啟用偵錯資訊                        /Z7 啟用舊樣式偵錯資訊
+      /Zo[-] 為最佳化程式碼產生較豐富的偵錯資訊 (預設為開啟)
+      在偵錯資訊中用於計算檔案總和檢查碼的 /ZH:[MD5|SHA1|SHA_256] 雜湊演算法 (預設: SHA_256)
+      /Zp[n] 在 n-byte 界限上封裝結構         /Zl 省略 .OBJ 中的預設程式庫名稱
+      /vd{0|1|2} 停用/啟用 vtordisp           /vm<x> 成員指標類型
+      /Zc:arg1[,arg2] 語言一致性，其中引數可以是:
+       forScope[-]           對範圍規則強制使用 Standard C++
+       wchar_t[-]            wchar_t 是原生類型，不是 typedef
+       auto[-]               對 auto 強制使用新的 Standard C++ 意義
+       trigraphs[-]          啟用三併詞 (預設為關閉)
+       rvalueCast[-]         強制使用 Standard C++ 明確類型轉換規則
+                             (在 C++20 或更高版本中預設為開啟，隱含於 /permissive-)
+       strictStrings[-]      停用將字串常值轉換成 [char|wchar_t]*
+                             轉換 (在 C++20 或更高版本中預設為開啟，隱含於 /permissive-)
+       implicitNoexcept[-]   對必要函式啟用隱含 noexcept
+       threadSafeInit[-]     啟用安全執行緒本機靜態初始設定
+       inline[-]             移除未參照的函式或資料
+                             COMDAT 或僅具有內部連結 (預設為關閉)
+       sizedDealloc[-]       啟用 C++14 調整大小後的全域解除配置
+                             函式 (預設為開啟)
+       throwingNew[-]        假設失敗時會傳回運算子 new (預設為關閉)
+       referenceBinding[-]   臨時的項目不得與非常數項目繫結
+                             lvalue 參考 (在 C++20 或更高版本中預設為開啟，隱含於 /permissive-)
+       twoPhase-             停用兩階段名稱查閱
+       ternary[-]            強制為條件運算子執行 C++11 規則
+                             (在 C++20 或更高版本中預設為開啟，隱含於 /permissive-)
+       noexceptTypes[-]      強制執行 C++17 noexcept 規則 (在 C++17 或更新版本中，預設為開啟)
+       alignedNew[-]         啟用 C++17 動態配置的物件之對齊功能 (預設為開啟)
+       hhiddenFriend[-]       強制執行標準 C++ 隱藏的 friend 規則
+                             (在 C++20 或更高版本中預設為開啟，隱含於 /permissive-)
+       externC[-]            對 'extern "C"' 函式強制執行標準 C++ 規則
+                             (在 C++20 或更高版本中預設為開啟，隱含於 /permissive-)
+       lambda[-]             使用更新的 lambda 處理器來享有更好的 lambda 支援
+                             (在 C++20 或更高版本中預設為開啟，隱含於 /permissive-)
+       tlsGuards[-]          產生 TLS 變數初始化的執行階段檢查 (預設為開啟)
+       zeroSizeArrayNew[-]   為大小為 0 的物件陣列呼叫成員新增/刪除 (預設為開啟)
+       static_assert[-]      嚴格處理 'static_assert' (在 C++20 或更高版本中預設為啟用，
+                             隱含於 /permissive-）
+       gotoScope[-]          無法跳過變數初始化 (隱含於 /permissive-)
+       templateScope[-] 強制執行標準 C++ 樣板參數陰影處理規則
+       enumTypes[-]          啟用標準 C++ 基準列舉類型 (預設為關閉)
+       checkGwOdr[-]         強制執行標準 C++ 單一定義規則違規
+                             當啟用 /Gw 時 (預設為關閉)
+       nrvo[-]               啟用選擇性複製和移動 elision (在 C++20 或更高版本中預設為啟用，
+                             隱含於 /permissive- 或 /O2）
+       __STDC__              定義 __STDC__ 為 1 (在 C 中)
+       __cplusplus[-]        __cplusplus 巨集會報告支援的 C++ 標準 (預設為關閉)
+       char8_t[-]            將 C++20 原生 `u8` 常值支援啟用為 `const char8_t`
+                             (在 C++20 或更高版本中預設為開啟)
+       externConstexpr[-]    為 C++ 中的 constexpr 變數啟用外部連結
+                             (在 C++20 或更高版本中預設為開啟，隱含於 /permissive-)
+       preprocessor[-]       在 C/C++ 中啟用符合標準的前置處理器
+                             (在 C11 或更高版本中預設為開啟)
+      /ZI 啟用編輯後繼續偵錯資訊              /openmp 啟用 OpenMP 2.0 語言擴充功能
+      /openmp:experimental 啟用 OpenMP 2.0 語言延伸模組，並選取 OpenMP 3.0+ 語言延伸模組
+      使用 LLVM 執行階段的 /openmp:llvm OpenMP 語言延伸模組
+      
+                                    -其他-
+      
+      @<file> 選項回應檔                      /?, /help 顯示這個說明訊息
+      /bigobj 產生擴充的目的檔格式            /c 只有編譯，沒有連結
+      /FC 在診斷中使用完整路徑名稱            /H<num> 最大外部名稱長度
+      /J 預設 char 類型是 unsigned            /MP[n] 使用最多 'n' 個處理序進行編譯
+      /nologo 隱藏著作權訊息                  /showIncludes 顯示 Include 檔名稱
+      /Tc<來源檔案> 將檔案編譯成 .c           /Tp<來源檔案> 將檔案編譯成 .cpp
+      /TC 將所有檔案編譯成 .c                 /TP 將所有檔案編譯成 .cpp
+      /V<string> 設定版本字串                 /Yc[檔案] 建立 .PCH 檔案
+      /Yd 將偵錯資訊放置到每個 .OBJ           /Yl[sym] 插入 .PCH 參考供偵錯程式庫使用
+      /Yu[檔案] 使用 .PCH 檔案                /Y- 停用所有 PCH 選項
+      /Zm<n> 最大記憶體配置 (預設的 %)        /FS 強制使用 MSPDBSRV.EXE
+      /source-charset:<IANA 名稱>|.nnnn 設定來源字元集
+      /execution-charset:<IANA 名稱>|.nnnn 設定執行字元集
+      /utf-8 將來源和執行字元集設定為 UTF-8   
+      /validate-charset[-] 僅驗證 UTF-8 檔案中是否為合法字元
+      /fastfail[-] 啟用 fast-fail 模式        /JMC[-] 啟用原生 just my code
+      /presetPadding[-] 零會為堆疊型的類別類型將填補初始化
+      /volatileMetadata[-] 會在揮發性記憶體存取權上產生中繼資料
+      /sourcelink [file] 包含來源連結資訊的檔案
+      
+                                      -連結-
+      
+      /LD 建立 .DLL                           /LDd 建立 .DLL 偵錯程式庫
+      /LN 建立 .netmodule                     /F<數值> 設定堆疊大小
+      /link [連結器選項和程式庫]              /MD 和 MSVCRT.LIB 連結
+      /MT 和 LIBCMT.LIB 連結                  /MDd 和 MSVCRTD.LIB 偵錯程式庫連結
+      /MTd 和 LIBCMTD.LIB 偵錯程式庫連結      
+      
+                                    -CODE ANALYSIS-
+      
+      /analyze[-] 啟用原生分析                /analyze:quiet[-] 不在主控台顯示警告
+      /analyze:log<名稱> 將警告傳送至檔案     /analyze:autolog 記錄到 *.pftlog
+      /analyze:autolog:ext<ext> 記錄到 *.<ext>/analyze:autolog- 沒有記錄檔
+      /analyze:WX- 非嚴重警告                 /analyze:stacksize<數值> 最大堆疊框架
+      /analyze:max_paths<數值> 最大路徑       /analyze:only 分析，不產生程式碼
+      
+                                    -診斷-
+      
+      /diagnostics:<args,...> 控制診斷訊息的格式:
+                   classic   - 保留原有格式
+                   column[-] - 列印資料行資訊
+                   caret[-]  - 列印資料行及來源的指示行
+      /Wall 啟用所有警告                      /w   停用所有警告
+      /W<n> 設定警告層級 (預設 n=1)           
+      /Wv:xx[.yy[.zzzzz]] 停用 xx.yy.zzzzz 版之後引入的警告
+      /WX 將警告視為錯誤                      /WL 啟用一行診斷
+      /wd<n> 停用警告 n                       /we<n> 將警告 n 視為錯誤
+      /wo<n> 只發出一次警告 n                 /w<l><n> 針對 n 設定警告層級 1-4
+      /external:I <路徑>      - 外部標頭的位置
+      /external:env:<var>     - 具有外部標頭位置的環境變數
+      /external:anglebrackets - 所有以 <> 包含的標頭都視為外部
+      /external:W<n>          - 外部標頭的警告層級
+      /external:templates[-]  - 跨範本具現化鏈結來評估警告層級
+      /sdl 啟用其他安全性功能和警告           
+      /options: strict 無法辨識的編譯器選項錯誤
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:122 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "D:/YQRepo/picohost/pico-hostII/build/_deps/picotool-build/enc_bootloader/CMakeFiles/CMakeScratch/TryCompile-mrxa4t"
+      binary: "D:/YQRepo/picohost/pico-hostII/build/_deps/picotool-build/enc_bootloader/CMakeFiles/CMakeScratch/TryCompile-mrxa4t"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS /W3"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:X86"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: D:/YQRepo/picohost/pico-hostII/build/_deps/picotool-build/enc_bootloader/CMakeFiles/CMakeScratch/TryCompile-mrxa4t
+        
+        Run Build Command(s):C:/Program Files/CMake/bin/cmake.exe -E env VERBOSE=1 nmake -f Makefile /nologo cmTC_69473\\fast && 	"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX86\\x86\\nmake.exe"  -f CMakeFiles\\cmTC_69473.dir\\build.make /nologo -L                  CMakeFiles\\cmTC_69473.dir\\build
+        Building C object CMakeFiles/cmTC_69473.dir/CMakeCCompilerABI.c.obj
+        	"C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_cl_compile_depends --dep-file=CMakeFiles\\cmTC_69473.dir\\CMakeCCompilerABI.c.obj.d --working-dir=D:\\YQRepo\\picohost\\pico-hostII\\build\\_deps\\picotool-build\\enc_bootloader\\CMakeFiles\\CMakeScratch\\TryCompile-mrxa4t --filter-prefix="注意: 包含檔案: " -- C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1443~1.348\\bin\\Hostx86\\x86\\cl.exe @C:\\Users\\User\\AppData\\Local\\Temp\\nm828F.tmp
+        CMakeCCompilerABI.c
+        ?`?? ?瑼?: C:\\Program Files\\CMake\\share\\cmake-3.26\\Modules\\CMakeCompilerABI.h
+        Linking C executable cmTC_69473.exe
+        	"C:\\Program Files\\CMake\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_69473.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x86\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x86\\mt.exe --manifests -- C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1443~1.348\\bin\\Hostx86\\x86\\link.exe /nologo @CMakeFiles\\cmTC_69473.dir\\objects1.rsp @C:\\Users\\User\\AppData\\Local\\Temp\\nm82FD.tmp
+        Visual Studio Incremental Link with embedded manifests
+        Create CMakeFiles\\cmTC_69473.dir/manifest.rc
+        Create empty: CMakeFiles\\cmTC_69473.dir/embed.manifest
+        RC Pass 1:
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x86\\rc.exe /fo CMakeFiles\\cmTC_69473.dir/manifest.res CMakeFiles\\cmTC_69473.dir/manifest.rc
+        LINK Pass 1:
+        C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1443~1.348\\bin\\Hostx86\\x86\\link.exe /nologo @CMakeFiles\\cmTC_69473.dir\\objects1.rsp /out:cmTC_69473.exe /implib:cmTC_69473.lib /pdb:D:\\YQRepo\\picohost\\pico-hostII\\build\\_deps\\picotool-build\\enc_bootloader\\CMakeFiles\\CMakeScratch\\TryCompile-mrxa4t\\cmTC_69473.pdb /version:0.0 /machine:X86 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_69473.dir/intermediate.manifest CMakeFiles\\cmTC_69473.dir/manifest.res
+        MT:
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x86\\mt.exe /nologo /manifest CMakeFiles\\cmTC_69473.dir/intermediate.manifest /out:CMakeFiles\\cmTC_69473.dir/embed.manifest /notify_update
+        RC Pass 2:
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x86\\rc.exe /fo CMakeFiles\\cmTC_69473.dir/manifest.res CMakeFiles\\cmTC_69473.dir/manifest.rc
+        FINAL LINK:
+        C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1443~1.348\\bin\\Hostx86\\x86\\link.exe /nologo @CMakeFiles\\cmTC_69473.dir\\objects1.rsp /out:cmTC_69473.exe /implib:cmTC_69473.lib /pdb:D:\\YQRepo\\picohost\\pico-hostII\\build\\_deps\\picotool-build\\enc_bootloader\\CMakeFiles\\CMakeScratch\\TryCompile-mrxa4t\\cmTC_69473.pdb /version:0.0 /machine:X86 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_69473.dir/intermediate.manifest CMakeFiles\\cmTC_69473.dir/manifest.res
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:122 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "D:/YQRepo/picohost/pico-hostII/build/_deps/picotool-build/enc_bootloader/CMakeFiles/CMakeScratch/TryCompile-a1qdht"
+      binary: "D:/YQRepo/picohost/pico-hostII/build/_deps/picotool-build/enc_bootloader/CMakeFiles/CMakeScratch/TryCompile-a1qdht"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
+      CMAKE_CXX_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:X86"
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: D:/YQRepo/picohost/pico-hostII/build/_deps/picotool-build/enc_bootloader/CMakeFiles/CMakeScratch/TryCompile-a1qdht
+        
+        Run Build Command(s):C:/Program Files/CMake/bin/cmake.exe -E env VERBOSE=1 nmake -f Makefile /nologo cmTC_1e66c\\fast && 	"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX86\\x86\\nmake.exe"  -f CMakeFiles\\cmTC_1e66c.dir\\build.make /nologo -L                  CMakeFiles\\cmTC_1e66c.dir\\build
+        Building CXX object CMakeFiles/cmTC_1e66c.dir/CMakeCXXCompilerABI.cpp.obj
+        	"C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_cl_compile_depends --dep-file=CMakeFiles\\cmTC_1e66c.dir\\CMakeCXXCompilerABI.cpp.obj.d --working-dir=D:\\YQRepo\\picohost\\pico-hostII\\build\\_deps\\picotool-build\\enc_bootloader\\CMakeFiles\\CMakeScratch\\TryCompile-a1qdht --filter-prefix="注意: 包含檔案: " -- C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1443~1.348\\bin\\Hostx86\\x86\\cl.exe @C:\\Users\\User\\AppData\\Local\\Temp\\nm852F.tmp
+        CMakeCXXCompilerABI.cpp
+        ?`?? ?瑼?: C:\\Program Files\\CMake\\share\\cmake-3.26\\Modules\\CMakeCompilerABI.h
+        Linking CXX executable cmTC_1e66c.exe
+        	"C:\\Program Files\\CMake\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_1e66c.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x86\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x86\\mt.exe --manifests -- C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1443~1.348\\bin\\Hostx86\\x86\\link.exe /nologo @CMakeFiles\\cmTC_1e66c.dir\\objects1.rsp @C:\\Users\\User\\AppData\\Local\\Temp\\nm859D.tmp
+        Visual Studio Incremental Link with embedded manifests
+        Create CMakeFiles\\cmTC_1e66c.dir/manifest.rc
+        Create empty: CMakeFiles\\cmTC_1e66c.dir/embed.manifest
+        RC Pass 1:
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x86\\rc.exe /fo CMakeFiles\\cmTC_1e66c.dir/manifest.res CMakeFiles\\cmTC_1e66c.dir/manifest.rc
+        LINK Pass 1:
+        C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1443~1.348\\bin\\Hostx86\\x86\\link.exe /nologo @CMakeFiles\\cmTC_1e66c.dir\\objects1.rsp /out:cmTC_1e66c.exe /implib:cmTC_1e66c.lib /pdb:D:\\YQRepo\\picohost\\pico-hostII\\build\\_deps\\picotool-build\\enc_bootloader\\CMakeFiles\\CMakeScratch\\TryCompile-a1qdht\\cmTC_1e66c.pdb /version:0.0 /machine:X86 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_1e66c.dir/intermediate.manifest CMakeFiles\\cmTC_1e66c.dir/manifest.res
+        MT:
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x86\\mt.exe /nologo /manifest CMakeFiles\\cmTC_1e66c.dir/intermediate.manifest /out:CMakeFiles\\cmTC_1e66c.dir/embed.manifest /notify_update
+        RC Pass 2:
+        C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x86\\rc.exe /fo CMakeFiles\\cmTC_1e66c.dir/manifest.res CMakeFiles\\cmTC_1e66c.dir/manifest.rc
+        FINAL LINK:
+        C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1443~1.348\\bin\\Hostx86\\x86\\link.exe /nologo @CMakeFiles\\cmTC_1e66c.dir\\objects1.rsp /out:cmTC_1e66c.exe /implib:cmTC_1e66c.lib /pdb:D:\\YQRepo\\picohost\\pico-hostII\\build\\_deps\\picotool-build\\enc_bootloader\\CMakeFiles\\CMakeScratch\\TryCompile-a1qdht\\cmTC_1e66c.pdb /version:0.0 /machine:X86 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_1e66c.dir/intermediate.manifest CMakeFiles\\cmTC_1e66c.dir/manifest.res
+        
+      exitCode: 0
+...
