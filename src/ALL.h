@@ -78,7 +78,6 @@ typedef enum {
 typedef enum {
     MSGaddress_TYPE_1A = 0x1A,   // Information
     MSGaddress_TYPE_1B = 0x1B,   // Information
-
     MSGaddress_TYPE_0 = 0x00,   // Information
     MSGaddress_TYPE_1 = 0x01,   // Brightness
     MSGaddress_TYPE_2 = 0x02,   // Power Mode
@@ -89,10 +88,10 @@ typedef enum {
     MSGaddress_TYPE_7 = 0x07,   // Touch by copper or finger
     MSGaddress_TYPE_8 = 0x08,   // Touch by copper or finger
     MSGaddress_TYPE_9 = 0x09,   // Touch by copper or finger
-    MSGaddress_TYPE_10 = 0x1,   // Touch by copper or finger
-    
+    MSGaddress_TYPE_10 = 0x1,   // Touch by copper or finger    
     MSGaddress_TYPE_0C = 0xC,   // Current.
     MSGaddress_TYPE_0D = 0x0D,   // Current.
+    MSGaddress_TYPE_20 = 0x20,   // Current.
 } MSGaddress;
 
 typedef struct

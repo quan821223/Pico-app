@@ -17,7 +17,15 @@
 #include <string.h>
 
 #define RX_BUFFER_SIZE 64
-#define SuperDeviceType 0x2
+/**
+ * @brief 訊息類型定義
+ * 0x01 : SuperCarrier ID 1
+ * 0x02 : SuperCarrier ID 2
+ * 0x03 : SuperCarrier ID 3
+ * 0x10 : SuperCarrier ID 10
+ */
+#define SuperDeviceType 0x10
+
 #define Latencytime 50
 
 
@@ -136,6 +144,7 @@ uint8_t DAx02deviceStatus[8] = {0xDA, 0x02, 0x05, 0x01, 0x01, 0x01, 0x0D, 0x0A};
 uint8_t DAx0CCurrent[9] = {0xDA, 0x06, 0x06, 0x01, 0x01, 0x01, 0x01, 0x0D, 0x0A};
 uint8_t DAx0D01Voltage[7] = {0xDA, 0x05, 0x04, 0x01, 0x01, 0x0D, 0x0A};
 uint8_t DAx0D02Voltage[7] = {0xDA, 0x07, 0x04, 0x01, 0x01, 0x0D, 0x0A};
+uint8_t DAx20ChamberStatus[6] = {0xDA, 0x20, 0x03, 0x01, 0x0D, 0x0A};
 // void gpio_callback(uint gpio, uint32_t events) {
 //     // 根據觸發中斷的 GPIO Pin 處理相應的操作
 //     if (gpio == DATOUCH_PIN26) {
@@ -311,6 +320,8 @@ void process_message(uint8_t *message, uint8_t length) {
         }
         else if (Header == Header_TYPE_DA)
         {
+            static uint8_t chamber_bit = 0x00;
+            static uint8_t chamber_counter = 0;
             switch (device_type)
             {
                 case MSGaddress_TYPE_2:
@@ -391,6 +402,24 @@ void process_message(uint8_t *message, uint8_t length) {
                     }
 
                     break;
+              case MSGaddress_TYPE_20: {
+                  // 檢查並「先」更新狀態
+                    if (chamber_counter < 254) {
+                        chamber_counter++;
+                    } else {
+                        chamber_counter = 0x00;           // 「累積到頂」後重置
+                        chamber_bit = chamber_bit ? 0x00 : 0x01; // 先更新 chamber_bit
+                    }
+
+                    // 然後才根據「新」狀態準備回傳封包
+                    return_buf = (uint8_t *)malloc(6);
+                    memcpy(return_buf, DAx20ChamberStatus, sizeof(DAx20ChamberStatus));
+                    return_buf[3] = chamber_bit; // <-- 這裡就會抓到最新的 chamber_bit 值
+
+                    ResponseCMD(return_buf, 6);
+                    break;
+                }
+
                 default:
                     return_buf = (uint8_t*)malloc(3); 
                     memcpy(return_buf, Write_ACK, sizeof(Write_ACK));                
