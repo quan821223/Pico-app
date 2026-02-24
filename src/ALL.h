@@ -76,8 +76,7 @@ typedef enum {
 
 // MSG 種類
 typedef enum {
-    MSGaddress_TYPE_1A = 0x1A,   // Information
-    MSGaddress_TYPE_1B = 0x1B,   // Information
+
     MSGaddress_TYPE_0 = 0x00,   // Information
     MSGaddress_TYPE_1 = 0x01,   // Brightness
     MSGaddress_TYPE_2 = 0x02,   // Power Mode
@@ -91,6 +90,9 @@ typedef enum {
     MSGaddress_TYPE_10 = 0x1,   // Touch by copper or finger    
     MSGaddress_TYPE_0C = 0xC,   // Current.
     MSGaddress_TYPE_0D = 0x0D,   // Current.
+    MSGaddress_TYPE_1A = 0x1A,   // Information
+    MSGaddress_TYPE_1B = 0x1B,   // Information
+    MSGaddress_TYPE_1C = 0x1C,   // knob position.
     MSGaddress_TYPE_20 = 0x20,   // Current.
 } MSGaddress;
 

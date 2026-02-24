@@ -24,7 +24,7 @@
  * 0x03 : SuperCarrier ID 3
  * 0x10 : SuperCarrier ID 10
  */
-#define SuperDeviceType 0x10
+#define SuperDeviceType 0x01
 
 #define Latencytime 50
 
@@ -110,7 +110,7 @@ int prob_based_rand(int current_value, int change_value, int probability) {
     }
 }
 uint8_t IdentifyDeviceType[4] = {0xFA, 0x00, 0x0D, 0x0A};
-uint8_t SCContentFunc[11] = {0xFA, 0x00, 0x08, 0x01, 0x02, 0x01, 0x02, 0x00, 0x02, 0x0D, 0x0A};
+uint8_t SCContentFunc[11] = {0xFA, 0x00, 0x08, 0x01, 0x02, 0x00, 0x02, 0x01, 0x02, 0x0D, 0x0A};
 uint8_t version_buf[8] = {0xFA, 0x01, 0x05, 0x00, 0x00, 0x00, 0x0D, 0x0A};
 uint8_t current_buf[7] = {0xFA, 0x01, 0x04, 0x01, 0x23, 0x0D, 0x0A};
 uint8_t brightnessbacklight_buf[6] = {0xFA, 0x01, 0x03, 0x64, 0x0D, 0x0A};
@@ -145,6 +145,8 @@ uint8_t DAx0CCurrent[9] = {0xDA, 0x06, 0x06, 0x01, 0x01, 0x01, 0x01, 0x0D, 0x0A}
 uint8_t DAx0D01Voltage[7] = {0xDA, 0x05, 0x04, 0x01, 0x01, 0x0D, 0x0A};
 uint8_t DAx0D02Voltage[7] = {0xDA, 0x07, 0x04, 0x01, 0x01, 0x0D, 0x0A};
 uint8_t DAx20ChamberStatus[6] = {0xDA, 0x20, 0x03, 0x01, 0x0D, 0x0A};
+uint8_t knob_buf[6] = {0xFA, 0x01, 0x03, 0x05, 0x0D, 0x0A};
+
 // void gpio_callback(uint gpio, uint32_t events) {
 //     // 根據觸發中斷的 GPIO Pin 處理相應的操作
 //     if (gpio == DATOUCH_PIN26) {
@@ -234,6 +236,13 @@ void process_message(uint8_t *message, uint8_t length) {
                     memcpy(return_buf, SCContentFunc, sizeof(SCContentFunc));
                     return_buf[1] = 0x00;                  
                     ResponseCMD(return_buf, 11);  
+
+                    break;
+                case MSGaddress_TYPE_1C:
+                    return_buf = (uint8_t*)malloc(6); 
+                    memcpy(return_buf, knob_buf, sizeof(knob_buf));
+                    return_buf[1] = device_type;                  
+                    ResponseCMD(return_buf, 6);  
 
                     break;
                 case MSGaddress_TYPE_0:             
