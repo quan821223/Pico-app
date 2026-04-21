@@ -22,7 +22,7 @@
  * 0x01 : SuperCarrier ID 1
  * 0x02 : SuperCarrier ID 2
  * 0x03 : SuperCarrier ID 3
- * 0x10 : SuperCarrier ID 10
+ * 0x10 : SuperCarrier ID 16
  */
 #define SuperDeviceType 0x10
 

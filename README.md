@@ -23,10 +23,10 @@ Expected result:
 For this machine, the known Pico SDK path is:
 
 ```powershell
-$env:PICO_SDK_PATH="<PICO_SDK_ROOT>"
+$env:PICO_SDK_PATH="D:\YQRepo\pico\pico-sdk"
 ```
 
-Example: `<PICO_SDK_ROOT>` should point to the directory that contains `external\pico_sdk_import.cmake`.
+The SDK path must point to the directory that contains `external\pico_sdk_import.cmake`.
 
 If `arm-none-eabi-gcc` is not found, add the ARM toolchain `bin` folder to the current terminal:
 
@@ -38,7 +38,7 @@ arm-none-eabi-gcc --version
 If Git blocks the Pico SDK with a `dubious ownership` error, run:
 
 ```powershell
-git config --global --add safe.directory <PICO_SDK_ROOT>
+git config --global --add safe.directory D:\YQRepo\pico\pico-sdk
 ```
 
 ## Build with Ninja
@@ -56,7 +56,7 @@ Configure and build:
 ```powershell
 cd <PROJECT_ROOT>
 
-$env:PICO_SDK_PATH="<PICO_SDK_ROOT>"
+$env:PICO_SDK_PATH="D:\YQRepo\pico\pico-sdk"
 $env:Path = "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\bin;" + $env:Path
 
 Remove-Item build -Recurse -Force -ErrorAction SilentlyContinue
@@ -64,6 +64,8 @@ Remove-Item build -Recurse -Force -ErrorAction SilentlyContinue
 cmake -S . -B build -G Ninja -DPICO_COMPILER=pico_arm_cortex_m0plus_gcc
 cmake --build build
 ```
+
+Important: `cmake --build build` only compiles an already configured build directory. If `build\build.ninja` does not exist, run the `cmake -S . -B build -G Ninja ...` command first.
 
 Equivalent commands when already inside the `build` directory:
 
@@ -91,7 +93,7 @@ Configure and build:
 ```powershell
 cd <PROJECT_ROOT>
 
-$env:PICO_SDK_PATH="<PICO_SDK_ROOT>"
+$env:PICO_SDK_PATH="D:\YQRepo\pico\pico-sdk"
 $env:Path = "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\bin;" + $env:Path
 
 Remove-Item build -Recurse -Force -ErrorAction SilentlyContinue
@@ -122,7 +124,7 @@ Cause: `PICO_SDK_PATH` is empty or wrong.
 Fix:
 
 ```powershell
-$env:PICO_SDK_PATH="<PICO_SDK_ROOT>"
+$env:PICO_SDK_PATH="D:\YQRepo\pico\pico-sdk"
 Test-Path "$env:PICO_SDK_PATH\external\pico_sdk_import.cmake"
 ```
 
