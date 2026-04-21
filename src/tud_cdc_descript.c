@@ -36,6 +36,8 @@ UHC_type_CMD tud_cdc_buffer;
 State current_state = STATE_IDLE;
 uint8_t rx_buffer_index = 0;
 bool tud_cdc_SendRequest;
+static bool chamber_status_backdoor_enabled = false;
+static uint8_t chamber_status_backdoor_value = 0;
 
 bool tud_cdc_ReturnRequest()
 {
@@ -45,6 +47,27 @@ void reset_usb_parser_state()
 {
     tud_cdc_SendRequest = false;
     current_state = STATE_IDLE;
+}
+
+void chamber_status_backdoor_set_enabled(bool enabled)
+{
+    chamber_status_backdoor_enabled = enabled;
+}
+
+void chamber_status_backdoor_set_value(uint8_t value)
+{
+    if (value <= 0x03) {
+        chamber_status_backdoor_value = value;
+    }
+}
+
+static uint8_t chamber_status_get_value(void)
+{
+    if (chamber_status_backdoor_enabled) {
+        return chamber_status_backdoor_value;
+    }
+
+    return (gpio_get(CHAMBER_ADDR_PIN1) << 1) | gpio_get(CHAMBER_ADDR_PIN0);
 }
 
 void receive_data(uint8_t *data, uint8_t length) {
@@ -413,7 +436,7 @@ void process_message(uint8_t *message, uint8_t length) {
               case MSGaddress_TYPE_20: {
                     return_buf = (uint8_t *)malloc(6);
                     memcpy(return_buf, DAx20ChamberStatus, sizeof(DAx20ChamberStatus));
-                    return_buf[3] = (gpio_get(CHAMBER_ADDR_PIN1) << 1) | gpio_get(CHAMBER_ADDR_PIN0);
+                    return_buf[3] = chamber_status_get_value();
 
                     ResponseCMD(return_buf, 6);
                     break;

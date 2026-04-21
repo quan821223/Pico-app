@@ -11,11 +11,60 @@ DelayedResponse DelayResponse = {0};
 #define UART_TX_PIN 16
 #define UART_RX_PIN 17  // 若只做輸出可省略
 #define BAUD_RATE 115200
+#define BACKDOOR_PACKET_LEN 5
 
 
 
 // 固定回應
 const uint8_t RESPONSE[] = {0xC3, 0x0D, 0x0A};
+static const uint8_t UART_ACK[] = {0xC3, 0x0D, 0x0A};
+static uint8_t uart_backdoor_buffer[BACKDOOR_PACKET_LEN];
+static uint8_t uart_backdoor_index = 0;
+
+static void uart_send_ack(void) {
+    for (size_t i = 0; i < sizeof(UART_ACK); ++i) {
+        uart_putc(UART_ID, UART_ACK[i]);
+    }
+}
+
+static bool process_uart_backdoor_packet(const uint8_t *packet) {
+    if (packet[0] != Header_TYPE_DA || packet[1] != MSG_TYPE_WRITE || packet[2] != DEVICE_TYPE_3) {
+        return false;
+    }
+
+    if (packet[3] == 0xFF) {
+        chamber_status_backdoor_set_enabled(packet[4] == 0x01);
+        return true;
+    } else if (packet[3] == 0x0A) {
+        chamber_status_backdoor_set_value(packet[4]);
+        return packet[4] <= 0x03;
+    }
+
+    return false;
+}
+
+static void poll_uart_backdoor(void) {
+    while (uart_is_readable(UART_ID)) {
+        uint8_t byte = uart_getc(UART_ID);
+
+        if (uart_backdoor_index == 0 && byte != Header_TYPE_DA) {
+            continue;
+        }
+
+        if (byte == Header_TYPE_DA) {
+            uart_backdoor_index = 0;
+        }
+
+        uart_backdoor_buffer[uart_backdoor_index++] = byte;
+
+        if (uart_backdoor_index == BACKDOOR_PACKET_LEN) {
+            if (process_uart_backdoor_packet(uart_backdoor_buffer)) {
+                uart_send_ack();
+            }
+            uart_backdoor_index = 0;
+        }
+    }
+}
 
 // USB 發送函數
 void usb_send(const uint8_t* data, size_t len) {
@@ -99,6 +148,7 @@ int main() {
     
     while (1) {
         tud_task();  // USB 任務處理
+        poll_uart_backdoor();
         
         // LED 閃爍
         uint32_t now = to_ms_since_boot(get_absolute_time());

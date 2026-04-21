@@ -34,6 +34,10 @@ extern void process_message(uint8_t * message, uint8_t length);
 
 extern void reset_usb_parser_state();
 
+extern void chamber_status_backdoor_set_enabled(bool enabled);
+
+extern void chamber_status_backdoor_set_value(uint8_t value);
+
 #ifdef __cplusplus
 }
 #endif
