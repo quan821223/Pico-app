@@ -59,14 +59,22 @@ void tud_cdc_rx_cb(uint8_t itf) {
     }
 }
 void chamber_init(void) {
-    // 這些程式碼從 main.c 搬過來
     gpio_init(GPIO_PIN2);
     gpio_set_dir(GPIO_PIN2, GPIO_OUT);
-    gpio_put(GPIO_PIN2, 1); // 假設預設狀態是 ON
+    gpio_put(GPIO_PIN2, 1);
 
     gpio_init(GPIO_PIN3);
     gpio_set_dir(GPIO_PIN3, GPIO_OUT);
-    gpio_put(GPIO_PIN3, 1); // 假設預設狀態是 ON
+    gpio_put(GPIO_PIN3, 1);
+
+    // Two-bit hardware address input (default high, short to GND => low)
+    gpio_init(CHAMBER_ADDR_PIN0);
+    gpio_set_dir(CHAMBER_ADDR_PIN0, GPIO_IN);
+    gpio_pull_up(CHAMBER_ADDR_PIN0);
+
+    gpio_init(CHAMBER_ADDR_PIN1);
+    gpio_set_dir(CHAMBER_ADDR_PIN1, GPIO_IN);
+    gpio_pull_up(CHAMBER_ADDR_PIN1);
 }
 
 int main() {
@@ -83,12 +91,6 @@ int main() {
     
     chamber_init();
 
-    gpio_init(GPIO_PIN2);
-    gpio_set_dir(GPIO_PIN2, GPIO_OUT);
-    gpio_put(GPIO_PIN2, 1);
-    gpio_init(GPIO_PIN3);
-    gpio_set_dir(GPIO_PIN3, GPIO_OUT);
-    gpio_put(GPIO_PIN3, 1);
     // 初始化 USB
     tusb_init();
     

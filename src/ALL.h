@@ -24,6 +24,8 @@
 
 #define GPIO_PIN2 2    // GP2
 #define GPIO_PIN3 3    // GP2
+#define CHAMBER_ADDR_PIN0 18    // GP18, bit0
+#define CHAMBER_ADDR_PIN1 19    // GP19, bit1
 
 // 1. 定義「邏輯狀態」，而不是「協定數值」
 typedef enum {

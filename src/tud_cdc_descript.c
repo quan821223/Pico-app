@@ -24,7 +24,7 @@
  * 0x03 : SuperCarrier ID 3
  * 0x10 : SuperCarrier ID 10
  */
-#define SuperDeviceType 0x01
+#define SuperDeviceType 0x10
 
 #define Latencytime 50
 
@@ -140,6 +140,7 @@ uint8_t TOUCHVER[13] = {0xFA, 0x01, 0x0A, 0x54, 0x4F, 0x55, 0x43, 0x48, 0x58, 0x
 uint8_t LCMVER[13] = {0xFA, 0x01, 0x0A, 0x4C, 0x43, 0x4D, 0x58, 0x58, 0x58, 0x23, 0x31, 0x0D, 0x0A}; 
 uint8_t FIDMBL[13] = {0xFA, 0x01, 0x0A, 0x46, 0x49, 0x44, 0x4D, 0x42, 0x4C, 0x23, 0x31, 0x0D, 0x0A};
 uint8_t DAdeviceStatus[11] = {0xDA, 0x00, 0x08, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x0D, 0x0A};
+uint8_t DAx03deviceStatus[11] = {0xDA, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x0D, 0x0A};
 uint8_t DAx02deviceStatus[8] = {0xDA, 0x02, 0x05, 0x01, 0x01, 0x01, 0x0D, 0x0A};
 uint8_t DAx0CCurrent[9] = {0xDA, 0x06, 0x06, 0x01, 0x01, 0x01, 0x01, 0x0D, 0x0A};
 uint8_t DAx0D01Voltage[7] = {0xDA, 0x05, 0x04, 0x01, 0x01, 0x0D, 0x0A};
@@ -329,8 +330,6 @@ void process_message(uint8_t *message, uint8_t length) {
         }
         else if (Header == Header_TYPE_DA)
         {
-            static uint8_t chamber_bit = 0x00;
-            static uint8_t chamber_counter = 0;
             switch (device_type)
             {
                 case MSGaddress_TYPE_2:
@@ -341,7 +340,7 @@ void process_message(uint8_t *message, uint8_t length) {
                     break;
                 case MSGaddress_TYPE_3:
                     return_buf = (uint8_t*)malloc(11); 
-                    memcpy(return_buf, DAdeviceStatus, sizeof(DAdeviceStatus));  
+                    memcpy(return_buf, DAx03deviceStatus, sizeof(DAx03deviceStatus));  
                     return_buf[1] = device_type; 
                     ResponseCMD(return_buf, 11); 
                     break;
@@ -412,18 +411,9 @@ void process_message(uint8_t *message, uint8_t length) {
 
                     break;
               case MSGaddress_TYPE_20: {
-                  // 檢查並「先」更新狀態
-                    if (chamber_counter < 254) {
-                        chamber_counter++;
-                    } else {
-                        chamber_counter = 0x00;           // 「累積到頂」後重置
-                        chamber_bit = chamber_bit ? 0x00 : 0x01; // 先更新 chamber_bit
-                    }
-
-                    // 然後才根據「新」狀態準備回傳封包
                     return_buf = (uint8_t *)malloc(6);
                     memcpy(return_buf, DAx20ChamberStatus, sizeof(DAx20ChamberStatus));
-                    return_buf[3] = chamber_bit; // <-- 這裡就會抓到最新的 chamber_bit 值
+                    return_buf[3] = (gpio_get(CHAMBER_ADDR_PIN1) << 1) | gpio_get(CHAMBER_ADDR_PIN0);
 
                     ResponseCMD(return_buf, 6);
                     break;
