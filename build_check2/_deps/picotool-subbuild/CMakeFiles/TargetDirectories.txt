@@ -1,0 +1,3 @@
+D:/YQHubRepo/Pico-app/build_check2/_deps/picotool-subbuild/CMakeFiles/picotool-populate.dir
+D:/YQHubRepo/Pico-app/build_check2/_deps/picotool-subbuild/CMakeFiles/edit_cache.dir
+D:/YQHubRepo/Pico-app/build_check2/_deps/picotool-subbuild/CMakeFiles/rebuild_cache.dir
