@@ -52,6 +52,7 @@ void reset_usb_parser_state()
 void chamber_status_backdoor_set_enabled(bool enabled)
 {
     chamber_status_backdoor_enabled = enabled;
+    chamber_status_backdoor_value = 0x03; // 預設為 level3 狀態
 }
 
 void chamber_status_backdoor_set_value(uint8_t value)

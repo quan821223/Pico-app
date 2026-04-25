@@ -17,6 +17,23 @@ echo   Raspberry Pi Pico Auto Build Tool
 echo ========================================
 echo.
 
+set "PICOTOOL_DIR_ARG="
+if exist "D:\YQRepo\pico\pico-examples\build\_deps\picotool\picotoolConfig.cmake" (
+    set "PICOTOOL_DIR_ARG=-Dpicotool_DIR=D:/YQRepo/pico/pico-examples/build/_deps/picotool"
+    echo Using installed picotool config from pico-examples build.
+    echo.
+)
+
+:: Check if Ninja is available
+where ninja > nul 2>&1
+if errorlevel 1 (
+    color 0C
+    echo [ERROR] ninja not found
+    echo Please install Ninja and make sure it is available in PATH
+    pause
+    exit /b 1
+)
+
 :: Check if CMakeLists.txt exists
 if not exist "CMakeLists.txt" (
     color 0C
@@ -57,12 +74,10 @@ echo.
 
 :: Step 3: Run CMake configuration
 echo [Step 3/4] Running CMake configuration...
-cd build
-cmake -G "NMake Makefiles" ..
+cmake -S . -B build -G Ninja -DPICO_COMPILER=pico_arm_cortex_m0plus_gcc %PICOTOOL_DIR_ARG%
 if errorlevel 1 (
     color 0C
     echo [ERROR] CMake configuration failed
-    cd ..
     pause
     exit /b 1
 )
@@ -71,18 +86,14 @@ echo.
 
 :: Step 4: Build project
 echo [Step 4/4] Building project...
-nmake
+cmake --build build
 if errorlevel 1 (
     color 0C
     echo [ERROR] Build failed
-    cd ..
     pause
     exit /b 1
 )
 echo.
-
-:: Return to project root
-cd ..
 
 :: Build successful
 color 0A
