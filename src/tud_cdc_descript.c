@@ -24,7 +24,7 @@
  * 0x03 : SuperCarrier ID 3
  * 0x10 : SuperCarrier ID 16
  */
-#define SuperDeviceType 0x10
+#define SuperDeviceType 0x1
 
 #define Latencytime 50
 
@@ -171,6 +171,8 @@ uint8_t DAx0D01Voltage[7] = {0xDA, 0x05, 0x04, 0x01, 0x01, 0x0D, 0x0A};
 uint8_t DAx0D02Voltage[7] = {0xDA, 0x07, 0x04, 0x01, 0x01, 0x0D, 0x0A};
 uint8_t DAx20ChamberStatus[6] = {0xDA, 0x20, 0x03, 0x01, 0x0D, 0x0A};
 uint8_t knob_buf[6] = {0xFA, 0x01, 0x03, 0x05, 0x0D, 0x0A};
+uint8_t LightSensor_x0A_ALS_buf[7] = {0xFA, 0x01, 0x04, 0x01, 0x05, 0x0D, 0x0A};
+uint8_t LightSensor_x0A_CCT_buf[11] = {0xFA, 0x01, 0x08, 0x01, 0x02, 0x00, 0x02, 0x01, 0x02, 0x0D, 0x0A};
 
 // void gpio_callback(uint gpio, uint32_t events) {
 //     // 根據觸發中斷的 GPIO Pin 處理相應的操作
@@ -344,9 +346,26 @@ void process_message(uint8_t *message, uint8_t length) {
                     memcpy(return_buf, Touchx06, sizeof(Touchx06)); 
                     return_buf[1] = device_type;  
                     ResponseCMD(return_buf, 66); 
+                    break;                    
+                case MSGaddress_TYPE_0A:
+                    if(MSGparam == 0x00)
+                    {
+                        return_buf = (uint8_t*)malloc(7); 
+                        memcpy(return_buf, LightSensor_x0A_ALS_buf, sizeof(LightSensor_x0A_ALS_buf));  
+                        ResponseCMD(return_buf, 7); 
+                    }
+                    else if(MSGparam == 0x01)                    {
+                        return_buf = (uint8_t*)malloc(11); 
+                        memcpy(return_buf, LightSensor_x0A_CCT_buf, sizeof(LightSensor_x0A_CCT_buf));  
+                        ResponseCMD(return_buf, 11); 
+                    }
+                    else 
+                    {
+                        return_buf = (uint8_t*)malloc(3); 
+                        memcpy(return_buf, Write_ACK, sizeof(Write_ACK));                
+                        ResponseCMD(return_buf, 3); 
+                    }
                     break;
-                case 0x0A:
-                    break;  
                 default:
                     break;
             }
@@ -405,6 +424,7 @@ void process_message(uint8_t *message, uint8_t length) {
                     ResponseCMD(return_buf, 11); 
                     break;
                 case MSGaddress_TYPE_0C:
+
                     return_buf = (uint8_t*)malloc(9); 
                     memcpy(return_buf, DAx0CCurrent, sizeof(DAx0CCurrent));  
                     return_buf[3] = MSGparam; 
@@ -477,7 +497,12 @@ void process_message(uint8_t *message, uint8_t length) {
                     break; 
             }
         }
-
+        else
+        {
+            return_buf = (uint8_t*)malloc(3); 
+            memcpy(return_buf, Write_ACK, sizeof(Write_ACK));                
+            ResponseCMD(return_buf, 3); 
+        }
    
       
     }
