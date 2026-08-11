@@ -1,164 +1,211 @@
+#include "app_protocol.h"
+#include "board_profile.h"
+#include "pico_app_io.h"
+#include "pico_status_indicator.h"
+#include "protocol_service.h"
+
+#include "hardware/gpio.h"
+#include "hardware/uart.h"
 #include "pico/stdlib.h"
 #include "tusb.h"
-#include "tud_cdc_descript.h"
-#include "ALL.h"
-DelayedResponse DelayResponse = {0};
-#include "hardware/uart.h"
-#include "hardware/gpio.h"
-#define LED_PIN 25
-#define LED_FLASH_INTERVAL_MS 500
-#define UART_ID uart0
-#define UART_TX_PIN 16
-#define UART_RX_PIN 17  // 若只做輸出可省略
-#define BAUD_RATE 115200
-#define BACKDOOR_PACKET_LEN 5
 
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <string.h>
 
+enum {
+    LED_FLASH_INTERVAL_MS = 500u,
+    DEBUG_UART_BAUD_RATE = 115200u,
+    BACKDOOR_PACKET_SIZE = 5u,
+};
 
-// 固定回應
-const uint8_t RESPONSE[] = {0xC3, 0x0D, 0x0A};
+typedef struct {
+    absolute_time_t trigger_time;
+    uint8_t data[APP_PROTOCOL_MAX_RESPONSE_SIZE];
+    size_t length;
+    bool pending;
+} delayed_response_t;
+
 static const uint8_t UART_ACK[] = {0xC3, 0x0D, 0x0A};
-static uint8_t uart_backdoor_buffer[BACKDOOR_PACKET_LEN];
-static uint8_t uart_backdoor_index = 0;
+static const board_profile_t *active_board;
+static uart_inst_t *debug_uart;
+static protocol_service_t protocol_service;
+static delayed_response_t delayed_response;
+static uint8_t uart_backdoor_buffer[BACKDOOR_PACKET_SIZE];
+static size_t uart_backdoor_length;
 
-static void uart_send_ack(void) {
-    for (size_t i = 0; i < sizeof(UART_ACK); ++i) {
-        uart_putc(UART_ID, UART_ACK[i]);
+static void debug_uart_write(const uint8_t *data, size_t length)
+{
+    for (size_t index = 0; index < length; ++index) {
+        uart_putc(debug_uart, data[index]);
     }
 }
+static void usb_send(const uint8_t *data, size_t length)
+{
+    while (length > 0u) {
+        const uint32_t available = tud_cdc_write_available();
 
-static bool process_uart_backdoor_packet(const uint8_t *packet) {
-    if (packet[0] != Header_TYPE_DA || packet[1] != MSG_TYPE_WRITE || packet[2] != DEVICE_TYPE_3) {
-        return false;
-    }
+        if (available > 0u) {
+            const size_t chunk = length < available ? length : available;
+            const size_t written = tud_cdc_write(data, chunk);
 
-    if (packet[3] == 0xFF) {
-        chamber_status_backdoor_set_enabled(packet[4] == 0x01);
-        return true;
-    } else if (packet[3] == 0x0A) {
-        chamber_status_backdoor_set_value(packet[4]);
-        return packet[4] <= 0x03;
-    }
-
-    return false;
-}
-
-static void poll_uart_backdoor(void) {
-    while (uart_is_readable(UART_ID)) {
-        uint8_t byte = uart_getc(UART_ID);
-
-        if (uart_backdoor_index == 0 && byte != Header_TYPE_DA) {
-            continue;
-        }
-
-        if (byte == Header_TYPE_DA) {
-            uart_backdoor_index = 0;
-        }
-
-        uart_backdoor_buffer[uart_backdoor_index++] = byte;
-
-        if (uart_backdoor_index == BACKDOOR_PACKET_LEN) {
-            if (process_uart_backdoor_packet(uart_backdoor_buffer)) {
-                uart_send_ack();
-            }
-            uart_backdoor_index = 0;
-        }
-    }
-}
-
-// USB 發送函數
-void usb_send(const uint8_t* data, size_t len) {
-    while (len > 0) {
-        uint32_t available = tud_cdc_write_available();
-        if (available) {
-            size_t to_write = (len < available) ? len : available;
-            size_t written = tud_cdc_write(data, to_write);
-
-            // mirror to UART1
-            for (size_t i = 0; i < written; ++i) {
-                uart_putc(UART_ID, data[i]);
-            }
-
+            debug_uart_write(data, written);
             data += written;
-            len -= written;
+            length -= written;
         }
         tud_task();
     }
     tud_cdc_write_flush();
 }
 
-// USB CDC 接收回調
-void tud_cdc_rx_cb(uint8_t itf) {
-    uint8_t buf[64];
-    uint32_t count = tud_cdc_read(buf, sizeof(buf));
-    
-    if (count > 0) {
-        // 收到數據時 LED 亮起
-        gpio_put(LED_PIN, 1);
-        
-        // UART mirror output
-        for (uint32_t i = 0; i < count; ++i) {
-            uart_putc(UART_ID, buf[i]);
+static uint8_t read_chamber_status(void *context)
+{
+    (void)context;
+    return pico_app_io_read_chamber_status();
+}
+
+static void apply_effect(const app_effect_t *effect, void *context)
+{
+    (void)context;
+    pico_app_io_apply_effect(effect);
+}
+
+static void schedule_response(
+    const uint8_t *data,
+    size_t length,
+    uint32_t delay_ms,
+    void *context)
+{
+    (void)context;
+
+    if (data == NULL || length > sizeof(delayed_response.data)) {
+        return;
+    }
+
+    memcpy(delayed_response.data, data, length);
+    delayed_response.length = length;
+    delayed_response.trigger_time = make_timeout_time_ms(delay_ms);
+    delayed_response.pending = true;
+}
+
+static bool process_uart_backdoor_packet(const uint8_t *packet)
+{
+    if (packet[0] != APP_PROTOCOL_HEADER_DA ||
+        packet[1] != APP_PROTOCOL_OPERATION_WRITE ||
+        packet[2] != 0x03u) {
+        return false;
+    }
+
+    if (packet[3] == 0xFFu) {
+        pico_app_io_set_chamber_backdoor_enabled(packet[4] == 0x01u);
+        return true;
+    }
+
+    if (packet[3] == 0x0Au) {
+        return pico_app_io_set_chamber_backdoor_value(packet[4]);
+    }
+
+    return false;
+}
+
+static void poll_uart_backdoor(void)
+{
+    while (uart_is_readable(debug_uart)) {
+        const uint8_t byte = uart_getc(debug_uart);
+
+        if (byte == APP_PROTOCOL_HEADER_DA) {
+            uart_backdoor_length = 0u;
+        } else if (uart_backdoor_length == 0u) {
+            continue;
         }
 
-
-        receive_data(buf, count);
-        // LED 熄滅
-        gpio_put(LED_PIN, 0);
+        uart_backdoor_buffer[uart_backdoor_length++] = byte;
+        if (uart_backdoor_length == sizeof(uart_backdoor_buffer)) {
+            if (process_uart_backdoor_packet(uart_backdoor_buffer)) {
+                debug_uart_write(UART_ACK, sizeof(UART_ACK));
+            }
+            uart_backdoor_length = 0u;
+        }
     }
 }
-void chamber_init(void) {
-    gpio_init(GPIO_PIN2);
-    gpio_set_dir(GPIO_PIN2, GPIO_OUT);
-    gpio_put(GPIO_PIN2, 1);
 
-    gpio_init(GPIO_PIN3);
-    gpio_set_dir(GPIO_PIN3, GPIO_OUT);
-    gpio_put(GPIO_PIN3, 1);
+static bool initialize_debug_uart(const board_profile_t *profile)
+{
+    if (!board_profile_is_valid(profile)) {
+        return false;
+    }
 
-    // Two-bit hardware address input (default high, short to GND => low)
-    gpio_init(CHAMBER_ADDR_PIN0);
-    gpio_set_dir(CHAMBER_ADDR_PIN0, GPIO_IN);
-    gpio_pull_up(CHAMBER_ADDR_PIN0);
-
-    gpio_init(CHAMBER_ADDR_PIN1);
-    gpio_set_dir(CHAMBER_ADDR_PIN1, GPIO_IN);
-    gpio_pull_up(CHAMBER_ADDR_PIN1);
+    debug_uart = profile->debug_uart_index == 0u ? uart0 : uart1;
+    uart_init(debug_uart, DEBUG_UART_BAUD_RATE);
+    gpio_set_function(profile->debug_uart_tx_pin, GPIO_FUNC_UART);
+    gpio_set_function(profile->debug_uart_rx_pin, GPIO_FUNC_UART);
+    return true;
 }
 
-int main() {
-    // 初始化系統
-    stdio_init_all();
-    
-    // 初始化 LED
-    gpio_init(LED_PIN);
-    gpio_set_dir(LED_PIN, GPIO_OUT);
-    // 初始化 UART1
-    uart_init(UART_ID, BAUD_RATE);
-    gpio_set_function(UART_TX_PIN, GPIO_FUNC_UART);
-    gpio_set_function(UART_RX_PIN, GPIO_FUNC_UART); // 可省略若只 TX
-    
-    chamber_init();
+static void initialize_protocol(void)
+{
+    const protocol_service_ports_t ports = {
+        .read_chamber_status = read_chamber_status,
+        .apply_effect = apply_effect,
+        .response_ready = schedule_response,
+        .context = NULL,
+    };
 
-    // 初始化 USB
+    protocol_service_init(&protocol_service, &ports);
+}
+
+void tud_cdc_rx_cb(uint8_t interface_number)
+{
+    uint8_t buffer[64];
+    const uint32_t count = tud_cdc_n_read(
+        interface_number, buffer, sizeof(buffer));
+
+    if (count == 0u) {
+        return;
+    }
+
+    pico_status_indicator_set(true);
+    debug_uart_write(buffer, count);
+    protocol_service_feed(
+        &protocol_service,
+        buffer,
+        count,
+        to_ms_since_boot(get_absolute_time()));
+    pico_status_indicator_set(false);
+}
+
+int main(void)
+{
+    uint32_t last_led_toggle = 0u;
+
+    stdio_init_all();
+    active_board = board_profile_active();
+    if (!board_profile_is_valid(active_board) ||
+        !initialize_debug_uart(active_board) ||
+        !pico_app_io_init(active_board)) {
+        return 1;
+    }
+    pico_status_indicator_init(active_board);
+    initialize_protocol();
     tusb_init();
-    
-    // 上次 LED 翻轉的時間
-    uint32_t last_led_toggle = 0;
-    
-    while (1) {
-        tud_task();  // USB 任務處理
+
+    while (true) {
+        const uint32_t now_ms = to_ms_since_boot(get_absolute_time());
+
+        tud_task();
         poll_uart_backdoor();
-        
-        // LED 閃爍
-        uint32_t now = to_ms_since_boot(get_absolute_time());
-        if (now - last_led_toggle >= LED_FLASH_INTERVAL_MS) {
-            gpio_put(LED_PIN, !gpio_get(LED_PIN));
-            last_led_toggle = now;
+
+        if ((uint32_t)(now_ms - last_led_toggle) >= LED_FLASH_INTERVAL_MS) {
+            pico_status_indicator_toggle();
+            last_led_toggle = now_ms;
         }
-        if (DelayResponse.valid && absolute_time_diff_us(get_absolute_time(), DelayResponse.trigger_time) <= 0) {
-                usb_send(DelayResponse.buffer, DelayResponse.length);
-                DelayResponse.valid = false;
-            }
+
+        if (delayed_response.pending &&
+            absolute_time_diff_us(
+                get_absolute_time(), delayed_response.trigger_time) <= 0) {
+            usb_send(delayed_response.data, delayed_response.length);
+            delayed_response.pending = false;
+        }
     }
 }

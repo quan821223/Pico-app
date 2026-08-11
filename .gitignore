@@ -3,3 +3,9 @@
 
 # Ignore 
 build/
+build-host-tests/
+build-phase2/
+
+# Host-side test artifacts
+__pycache__/
+*.py[cod]
