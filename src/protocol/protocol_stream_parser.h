@@ -12,6 +12,8 @@ extern "C" {
 #define PROTOCOL_FRAME_SIZE 5u
 #define PROTOCOL_HEADER_FA 0xFAu
 #define PROTOCOL_HEADER_DA 0xDAu
+#define PROTOCOL_HEADER_CONFIG 0xCFu
+#define PROTOCOL_HEADER_BOOT_CONTROL 0xBCu
 
 typedef struct {
     uint8_t frame[PROTOCOL_FRAME_SIZE];
@@ -47,4 +49,3 @@ size_t protocol_stream_parser_pending_length(
 #endif
 
 #endif
-

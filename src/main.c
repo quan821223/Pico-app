@@ -1,6 +1,8 @@
 #include "app_protocol.h"
 #include "board_profile.h"
+#include "configuration_service.h"
 #include "pico_app_io.h"
+#include "pico_config_storage.h"
 #include "pico_status_indicator.h"
 #include "protocol_service.h"
 
@@ -28,9 +30,13 @@ typedef struct {
 } delayed_response_t;
 
 static const uint8_t UART_ACK[] = {0xC3, 0x0D, 0x0A};
+static const uint8_t INVALID_FRAME_RESPONSE[] = {
+    0xEC, 0x00, 0x00, 0x00, 0x00, 0x0D, 0x0A,
+};
 static const board_profile_t *active_board;
 static uart_inst_t *debug_uart;
 static protocol_service_t protocol_service;
+static configuration_service_t configuration_service;
 static delayed_response_t delayed_response;
 static uint8_t uart_backdoor_buffer[BACKDOOR_PACKET_SIZE];
 static size_t uart_backdoor_length;
@@ -69,6 +75,26 @@ static void apply_effect(const app_effect_t *effect, void *context)
 {
     (void)context;
     pico_app_io_apply_effect(effect);
+}
+
+static uint16_t read_response_delay_ms(void *context)
+{
+    const runtime_config_t *config;
+    (void)context;
+
+    config = configuration_service_current(&configuration_service);
+    return config == NULL
+        ? RUNTIME_CONFIG_DEFAULT_RESPONSE_DELAY_MS
+        : config->response_delay_ms;
+}
+
+static void handle_control(
+    const uint8_t request[APP_PROTOCOL_REQUEST_SIZE],
+    app_response_t *response,
+    void *context)
+{
+    (void)context;
+    configuration_service_handle(&configuration_service, request, response);
 }
 
 static void schedule_response(
@@ -149,6 +175,8 @@ static void initialize_protocol(void)
         .read_chamber_status = read_chamber_status,
         .apply_effect = apply_effect,
         .response_ready = schedule_response,
+        .read_response_delay_ms = read_response_delay_ms,
+        .handle_control = handle_control,
         .context = NULL,
     };
 
@@ -178,9 +206,35 @@ void tud_cdc_rx_cb(uint8_t interface_number)
 int main(void)
 {
     uint32_t last_led_toggle = 0u;
+    runtime_config_t defaults;
+    config_journal_storage_t config_storage;
+    uint32_t allowed_board_mask;
+    const runtime_config_t *config;
 
     stdio_init_all();
     active_board = board_profile_active();
+    if (!board_profile_is_valid(active_board)) {
+        return 1;
+    }
+
+    defaults = runtime_config_defaults(active_board->id);
+    allowed_board_mask = active_board->mcu_family == BOARD_MCU_RP2040
+        ? (UINT32_C(1) << BOARD_ID_PICO) |
+            (UINT32_C(1) << BOARD_ID_PICO_W) |
+            (UINT32_C(1) << BOARD_ID_WAVESHARE_RP2040_ZERO)
+        : (UINT32_C(1) << BOARD_ID_PICO2);
+    config_storage = pico_config_storage();
+    configuration_service_init(
+        &configuration_service,
+        &defaults,
+        allowed_board_mask,
+        &config_storage);
+    configuration_service_load(&configuration_service);
+    config = configuration_service_current(&configuration_service);
+    active_board = config == NULL
+        ? board_profile_active()
+        : board_profile_get(config->board_id);
+
     if (!board_profile_is_valid(active_board) ||
         !initialize_debug_uart(active_board) ||
         !pico_app_io_init(active_board)) {
@@ -195,6 +249,16 @@ int main(void)
 
         tud_task();
         poll_uart_backdoor();
+
+        config = configuration_service_current(&configuration_service);
+        if (config != NULL && protocol_service_expire(
+                &protocol_service, now_ms, config->frame_timeout_ms)) {
+            schedule_response(
+                INVALID_FRAME_RESPONSE,
+                sizeof(INVALID_FRAME_RESPONSE),
+                0u,
+                NULL);
+        }
 
         if ((uint32_t)(now_ms - last_led_toggle) >= LED_FLASH_INTERVAL_MS) {
             pico_status_indicator_toggle();

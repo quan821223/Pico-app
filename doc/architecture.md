@@ -25,18 +25,20 @@ Core protocol and state-machine modules may depend on interfaces and plain data
 types, but never on Pico SDK headers. Pico SDK code implements those interfaces
 at the outer edge.
 
-## Planned modules
+## Module status
 
-- `protocol`: byte-stream framing, timeout, validation, command and response DTOs.
-- `application`: FA/DA behavior and IO-independent command rules.
-- `transport`: USB CDC and optional UART mirror adapters.
-- `board`: selected profile and logical-signal-to-pin mapping.
-- `config`: versioned, CRC-protected persistent records with two-copy recovery.
-- `boot_control`: request validation and reboot handoff metadata.
-- `bootloader`: receiver, CRC, version policy, slot manager, and launcher.
-- `platform`: Pico SDK clock, Flash, watchdog, unique ID, GPIO, and USB adapters.
+- `protocol`: framing, resynchronization, and timeout are implemented; complete
+  noise-batch error accounting remains open.
+- `application`: FA/DA rules and ports-based orchestration are implemented.
+- `transport`: USB CDC and UART concerns remain in `main.c`; a separate transport
+  module is not implemented.
+- `board`: profiles, pin mapping, capabilities, and build selection are implemented.
+- `config`: runtime timing/profile values and two-slot CRC persistence are implemented.
+- `boot_control` and `bootloader`: planned, not implemented.
+- `platform`: Pico GPIO/status and configuration Flash adapters are implemented;
+  watchdog and unique-ID adapters remain planned.
 
-## Implemented through stage 3
+## Implemented through stage 5
 
 - `src/protocol`: pure C stream parser.
 - `src/application/app_protocol`: pure C decoder, response encoder, and typed effects.
@@ -47,21 +49,25 @@ at the outer edge.
 - `src/main.c`: composition root and remaining USB/UART transport concerns.
 - `src/board/board_profile`: pure C board identities, pins, capabilities, MCU,
   and Flash size; selected by a validated CMake mapping.
+- `src/config`: runtime values, `0xCF` configuration service, CRC32, and a
+  two-slot journal with newest-valid-record recovery.
+- `src/platform/pico/pico_config_storage`: final-two-sector RP2040/RP2350 Flash
+  adapter used by the configuration journal.
+- `src/main.c`: loads saved configuration, applies runtime timing, routes control
+  frames, and emits the immediate incomplete-frame timeout response.
 
 The former `tud_cdc_descript.*` and `ALL.h` mixed-responsibility files were
 removed after their responsibilities moved to these modules.
 
 ## Configuration precedence
 
-The implementation must retain an override buffer for later field needs:
+Current precedence is:
 
-1. Explicit build-time locked profile, when supplied for diagnostics.
-2. Valid saved Flash profile.
-3. Build-time default profile.
-4. Safe Raspberry Pi Pico fallback.
+1. A valid saved Flash profile compatible with the compiled MCU family.
+2. The profile selected by the build.
 
-Exact flags and factory-reset semantics remain subject to implementation review.
-No application source edit should be required to select a board.
+An explicit locked diagnostic override and factory-reset semantics remain open.
+No application source edit is required to select a build profile.
 
 ## Compatibility gate
 

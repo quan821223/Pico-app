@@ -26,7 +26,9 @@ TinyUSB callback
 
 ## Timeout 邊界
 
-`protocol_stream_parser_expire()` 已實作並測試，但尚未由 production main loop 呼叫。這是刻意的階段邊界：現有 firmware 對 incomplete/noise 靜默忽略，而新版需求會回 `EC 00 00 00 00 0D 0A`。等 transport/error response 分層後，再一次加入 timeout polling 與即時錯誤回覆，並以 change-control tests 驗證。
+Stage 2 當時只完成 `protocol_stream_parser_expire()` API；Stage 5 已由
+production main loop 呼叫此 API，並在 partial frame 逾時後立即回覆
+`EC 00 00 00 00 0D 0A`。純雜訊 batch 的單次錯誤回覆仍未實作。
 
 ## 測試方式
 
@@ -53,4 +55,3 @@ cmake --build build-phase2
 ## 下一個安全切點
 
 下一階段應抽離 command decoder/dispatcher 與 response encoder，使 characterization JSON 的 request/response vectors 能直接執行 production logic；GPIO 行為以 mock interface 驗證，不由 unit tests 操作真實硬體。
-

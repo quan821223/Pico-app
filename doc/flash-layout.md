@@ -37,6 +37,20 @@ erasable copies allow the newest valid record to survive power loss while the
 other is updated. Runtime changes remain in RAM until an explicit Save
 Configuration command.
 
+### Implemented application configuration area
+
+Stage 5 reserves the final two 4 KiB Flash sectors for application
+configuration. Each sector is an independent journal slot; only one sector is
+erased per save. A 24-byte record is programmed in one 256-byte Flash page and
+contains magic, schema, length, sequence, board ID, response delay, frame
+timeout, and CRC32. On boot, the newest valid sequence is selected. If a write
+is interrupted or corrupt, the preceding slot remains usable.
+
+This reservation is an application-stage allocation, not the final A/B linker
+layout. The bootloader linker scripts must exclude both sectors and migrate the
+record deliberately if the final metadata region moves. Firmware images must
+never program these sectors as part of a normal update.
+
 ## Why external Flash is deferred
 
 External Flash is a hardware change: every deployed board would need a chip or
@@ -49,4 +63,3 @@ Current size evidence does not justify it.
 Pico 2 has a different MCU and larger official board Flash configuration. It
 gets a separate linker layout and binary. RP2350 native partition facilities
 will be evaluated without forcing RP2040 into an incompatible implementation.
-

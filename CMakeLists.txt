@@ -39,7 +39,12 @@ add_executable(${PROJECT_NAME}
     ${CMAKE_CURRENT_SOURCE_DIR}/src/application/app_protocol.c
     ${CMAKE_CURRENT_SOURCE_DIR}/src/application/protocol_service.c
     ${CMAKE_CURRENT_SOURCE_DIR}/src/board/board_profile.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/config/config_journal.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/config/configuration_service.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/config/crc32.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/config/runtime_config.c
     ${CMAKE_CURRENT_SOURCE_DIR}/src/platform/pico/pico_app_io.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/platform/pico/pico_config_storage.c
     ${CMAKE_CURRENT_SOURCE_DIR}/src/platform/pico/pico_status_indicator.c
     ${CMAKE_CURRENT_SOURCE_DIR}/src/protocol/protocol_stream_parser.c
 )
@@ -47,6 +52,7 @@ add_executable(${PROJECT_NAME}
 target_include_directories(${PROJECT_NAME} PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src/application
     ${CMAKE_CURRENT_SOURCE_DIR}/src/board
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/config
     ${CMAKE_CURRENT_SOURCE_DIR}/src/platform/pico
     ${CMAKE_CURRENT_SOURCE_DIR}/src/protocol
 )
@@ -59,8 +65,10 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE
 pico_add_extra_outputs(${PROJECT_NAME})
 
 # Link to pico_stdlib (gpio, time, etc. functions)
-target_link_libraries(${PROJECT_NAME} 
+target_link_libraries(${PROJECT_NAME}
     pico_stdlib
+    hardware_flash
+    hardware_sync
 )
 
 # Enable usb output, disable uart output

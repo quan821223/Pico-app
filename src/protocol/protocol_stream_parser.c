@@ -4,7 +4,8 @@
 
 static bool is_header(uint8_t byte)
 {
-    return byte == PROTOCOL_HEADER_FA || byte == PROTOCOL_HEADER_DA;
+    return byte == PROTOCOL_HEADER_FA || byte == PROTOCOL_HEADER_DA ||
+        byte == PROTOCOL_HEADER_CONFIG || byte == PROTOCOL_HEADER_BOOT_CONTROL;
 }
 
 void protocol_stream_parser_init(protocol_stream_parser_t *parser)
@@ -80,4 +81,3 @@ size_t protocol_stream_parser_pending_length(
 {
     return parser == NULL ? 0u : parser->length;
 }
-

@@ -59,6 +59,31 @@ else()
     )
 endif()
 
+add_library(runtime_configuration STATIC
+    ../../src/config/config_journal.c
+    ../../src/config/configuration_service.c
+    ../../src/config/crc32.c
+    ../../src/config/runtime_config.c
+)
+target_include_directories(runtime_configuration PUBLIC
+    ../../src/application
+    ../../src/board
+    ../../src/config
+)
+target_compile_features(runtime_configuration PUBLIC c_std_11)
+target_link_libraries(runtime_configuration PUBLIC
+    application_protocol
+    board_profile
+)
+
+if(MSVC)
+    target_compile_options(runtime_configuration PRIVATE /W4 /WX)
+else()
+    target_compile_options(runtime_configuration PRIVATE
+        -Wall -Wextra -Wpedantic -Werror
+    )
+endif()
+
 add_executable(test_protocol_stream_parser
     test_protocol_stream_parser.c
 )
@@ -95,11 +120,15 @@ target_link_libraries(protocol_contract_runner PRIVATE application_protocol)
 add_executable(test_board_profile test_board_profile.c)
 target_link_libraries(test_board_profile PRIVATE board_profile)
 
+add_executable(test_runtime_configuration test_runtime_configuration.c)
+target_link_libraries(test_runtime_configuration PRIVATE runtime_configuration)
+
 if(MSVC)
     target_compile_options(test_application_protocol PRIVATE /W4 /WX)
     target_compile_options(test_protocol_service PRIVATE /W4 /WX)
     target_compile_options(protocol_contract_runner PRIVATE /W4 /WX)
     target_compile_options(test_board_profile PRIVATE /W4 /WX)
+    target_compile_options(test_runtime_configuration PRIVATE /W4 /WX)
 else()
     target_compile_options(test_application_protocol PRIVATE
         -Wall -Wextra -Wpedantic -Werror
@@ -113,11 +142,15 @@ else()
     target_compile_options(test_board_profile PRIVATE
         -Wall -Wextra -Wpedantic -Werror
     )
+    target_compile_options(test_runtime_configuration PRIVATE
+        -Wall -Wextra -Wpedantic -Werror
+    )
 endif()
 
 add_test(NAME application_protocol COMMAND test_application_protocol)
 add_test(NAME protocol_service COMMAND test_protocol_service)
 add_test(NAME board_profile COMMAND test_board_profile)
+add_test(NAME runtime_configuration COMMAND test_runtime_configuration)
 add_test(
     NAME protocol_characterization_contract
     COMMAND ${CMAKE_COMMAND} -E env

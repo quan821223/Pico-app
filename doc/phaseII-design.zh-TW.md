@@ -98,14 +98,17 @@ Chamber backdoor 維持舊行為：開機停用，只在當次通電有效，不
 - SWD：研究 Raspberry Pi GPIO 與 Pico Debug Probe 兩種方式。RP2040-Zero 沒有標準 SWD 引腳時，以 USB/UART 黑箱驗收。
 - GitHub Actions：跑 PC tests 與各 profile 編譯；實體硬體測試使用本機或 self-hosted runner。
 
-Characterization tests 鎖定現況契約。第二階段已抽出純 C stream parser，native C tests 會直接編譯 production parser；FA／DA command dispatch 仍依賴 Pico SDK/GPIO，會在後續階段抽離並接上同一批 byte-exact vectors。
+Characterization tests 鎖定現況契約。第二階段抽出純 C stream parser；
+第三階段已把 FA／DA command dispatch 抽成不依賴 Pico SDK/GPIO 的
+production core，native runner 直接以同一批 byte-exact vectors 驗證。
 
 ## 9. 第二階段實作狀態
 
 - 已新增 `src/protocol/protocol_stream_parser.c/.h`，不依賴 Pico SDK。
 - USB CDC 的 `receive_data()` 已改用新 parser，完整 frame 仍交給原本 `process_message()`，因此本階段沒有搬動既有回應邏輯。
 - 已測試雜訊忽略、單一封包、跨批次組包、新 header 重新同步、單批兩封包、100 ms timeout、32-bit 計時 wraparound 與 reset。
-- 100 ms timeout 能力已存在於 parser API，但 production 尚未回覆新的 `EC` 錯誤；錯誤輸出會等 command/response transport 分層後再接入，避免在本階段混入協定行為變更。
+- Stage 5 已把 timeout API 接到 production main loop，partial frame 逾時會
+  立即回覆 `EC 00 00 00 00 0D 0A`；純雜訊 batch 的錯誤回覆仍未完成。
 - 已以 ARM GCC/Pico SDK 2.1.1 成功產生 RP2040 `host.elf`。因離線驗證停用 picotool，該次驗證不產生 UF2。
 
 ## 10. 第三階段實作狀態
@@ -124,7 +127,18 @@ Characterization tests 鎖定現況契約。第二階段已抽出純 C stream pa
 - Zero UART 使用 GP0/GP1，GP16 保留給 WS2812；Pico W/Zero 非一般 GPIO LED 目前安全停用。
 - `Builder.bat <board>` 使用每板獨立 cache，Pico SDK 非 2.1.1 會直接拒絕建置。
 - 四個 profiles 均已成功產生 ARM ELF；Pico 2 仍待購買後實機測試。
-- Flash runtime profile、Save Configuration 與自動偵測仍屬 persistent configuration 階段。
+- Flash runtime profile 與 Save Configuration 已於 Stage 5 完成；自動偵測
+  與 factory reset 仍未完成。
+
+## 12. 第五階段實作狀態
+
+- 已新增 `runtime_config`、`configuration_service`、CRC32 與雙槽 journal。
+- `0xCF` namespace 可讀寫板型、FA／DA 回應延遲及 incomplete-frame timeout；
+  明確 Save 後才寫入 Flash。
+- Flash adapter 使用最後兩個 4 KiB sectors；最新紀錄損毀時可回復上一筆。
+- RP2040 與 RP2350 的 saved profile 受到 MCU family 限制。
+- 2026-08-16 主機測試 6/6 通過，四個 profiles 均通過 ELF-only 建置。
+- Flash 斷電、USB/GPIO/UART HIL 與 linker sector reservation 尚未完成。
 
 ## 8. 尚未實現或仍待確認
 

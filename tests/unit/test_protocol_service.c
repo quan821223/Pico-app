@@ -12,6 +12,8 @@ typedef struct {
     uint32_t delay_ms;
     size_t effect_count;
     size_t response_count;
+    size_t control_count;
+    uint16_t configured_delay_ms;
 } fixture_t;
 
 static void fail(const char *expression, int line)
@@ -55,12 +57,34 @@ static void response_ready(
     ++fixture->response_count;
 }
 
+static uint16_t read_response_delay(void *context)
+{
+    return ((fixture_t *)context)->configured_delay_ms;
+}
+
+static void handle_control(
+    const uint8_t request[APP_PROTOCOL_REQUEST_SIZE],
+    app_response_t *response,
+    void *context)
+{
+    fixture_t *fixture = context;
+    const uint8_t control_response[] = {
+        request[0], 0x00u, request[2], request[3], request[4], 0x0Du, 0x0Au,
+    };
+
+    memcpy(response->data, control_response, sizeof(control_response));
+    response->length = sizeof(control_response);
+    ++fixture->control_count;
+}
+
 static protocol_service_t create_service(fixture_t *fixture)
 {
     const protocol_service_ports_t ports = {
         .read_chamber_status = read_chamber,
         .apply_effect = apply_effect,
         .response_ready = response_ready,
+        .read_response_delay_ms = read_response_delay,
+        .handle_control = handle_control,
         .context = fixture,
     };
     protocol_service_t service;
@@ -71,7 +95,10 @@ static protocol_service_t create_service(fixture_t *fixture)
 
 static void test_service_reads_input_and_delivers_delayed_response(void)
 {
-    fixture_t fixture = {.chamber_status = 2u};
+    fixture_t fixture = {
+        .chamber_status = 2u,
+        .configured_delay_ms = APP_PROTOCOL_DEFAULT_RESPONSE_DELAY_MS,
+    };
     protocol_service_t service = create_service(&fixture);
     const uint8_t request[] = {0xDA, 0x52, 0x20, 0x00, 0x00};
     const uint8_t expected[] = {0xDA, 0x20, 0x03, 0x02, 0x0D, 0x0A};
@@ -83,6 +110,34 @@ static void test_service_reads_input_and_delivers_delayed_response(void)
     CHECK(memcmp(fixture.response, expected, sizeof(expected)) == 0);
     CHECK(fixture.delay_ms == APP_PROTOCOL_DEFAULT_RESPONSE_DELAY_MS);
     CHECK(fixture.effect_count == 0u);
+}
+
+static void test_service_uses_runtime_delay_for_application_response(void)
+{
+    fixture_t fixture = {.configured_delay_ms = 125u};
+    protocol_service_t service = create_service(&fixture);
+    const uint8_t request[] = {0xFA, 0x52, 0x01, 0x1A, 0x00};
+
+    protocol_service_feed(&service, request, sizeof(request), 150u);
+
+    CHECK(fixture.response_count == 1u);
+    CHECK(fixture.delay_ms == 125u);
+}
+
+static void test_service_routes_control_without_application_delay(void)
+{
+    fixture_t fixture = {.configured_delay_ms = 125u};
+    protocol_service_t service = create_service(&fixture);
+    const uint8_t request[] = {0xCF, 0x52, 0x02, 0x00, 0x00};
+    const uint8_t expected[] = {0xCF, 0x00, 0x02, 0x00, 0x00, 0x0D, 0x0A};
+
+    protocol_service_feed(&service, request, sizeof(request), 175u);
+
+    CHECK(fixture.control_count == 1u);
+    CHECK(fixture.response_count == 1u);
+    CHECK(fixture.delay_ms == 0u);
+    CHECK(fixture.response_length == sizeof(expected));
+    CHECK(memcmp(fixture.response, expected, sizeof(expected)) == 0);
 }
 
 static void test_service_applies_effect_before_delivering_response(void)
@@ -115,10 +170,11 @@ static void test_service_keeps_partial_frame_until_completed(void)
 int main(void)
 {
     test_service_reads_input_and_delivers_delayed_response();
+    test_service_uses_runtime_delay_for_application_response();
+    test_service_routes_control_without_application_delay();
     test_service_applies_effect_before_delivering_response();
     test_service_keeps_partial_frame_until_completed();
 
     puts("protocol_service: all tests passed");
     return EXIT_SUCCESS;
 }
-

@@ -38,6 +38,12 @@
 - One batch of noise produces one error response.
 - New control/configuration commands must not use FA or DA and must be documented.
 
+Current Stage 5 status: runtime changes and explicit Flash persistence are
+implemented for board profile, response delay, and incomplete-frame timeout.
+The timing defaults are compile-time macros, but user-facing CMake/build options
+for overriding delay and timeout are not implemented yet. Pure-noise and
+valid-frame-plus-noise batch error behavior also remains unimplemented.
+
 ## Planned bootloader
 
 - Application boot-entry request uses the reserved `0xBC` control header.
@@ -82,4 +88,3 @@
   sizing ever fails.
 - Which persistent fields should be resettable individually and the factory
   reset behavior.
-

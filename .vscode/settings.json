@@ -1,4 +1,9 @@
 {
+
+  "_comment": "可直接預覽md檔案方案 - 修改 VS Code 預設編輯器",
+  "workbench.editorAssociations": {
+  "*.md": "vscode.markdown.preview.editor"
+  },
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",
   "C_Cpp_Runner.debuggerPath": "gdb",

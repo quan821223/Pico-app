@@ -2,6 +2,17 @@
 
 This is a private repo project for Raspberry Pi Pico application.
 
+## Project status
+
+Phase II stages 2 through 5 are present in the current working tree. The latest
+stage adds runtime board/timing configuration, a separate `0xCF` configuration
+protocol, incomplete-frame timeout handling, and two-slot CRC-protected Flash
+persistence. See [doc/README.md](doc/README.md) for the design and stage records,
+and [HANDOFF.md](HANDOFF.md) for the verified state and remaining work.
+
+The bootloader, final A/B Flash layout, factory reset, hardware-in-the-loop
+validation, and sinusoidal temperature simulation are not complete.
+
 ## Build prerequisites
 
 Before building, confirm these tools and environment variables are available in the current terminal.
@@ -40,6 +51,94 @@ If Git blocks the Pico SDK with a `dubious ownership` error, run:
 ```powershell
 git config --global --add safe.directory D:\YQRepo\pico\pico-sdk
 ```
+
+## Recommended build flow: Builder.bat
+
+完整的繁體中文逐步操作、picotool 2.1.1 安裝、UF2 產生與常見錯誤，請
+參閱 [Windows 建置、picotool 與 UF2 操作手冊](doc/windows-build.zh-TW.md)。
+
+Open PowerShell in the project root and set the Pico SDK path for the current
+terminal:
+
+```powershell
+cd D:\yqgithub\Pico-app
+$env:PICO_SDK_PATH = "D:\YQRepo\pico\pico-sdk"
+```
+
+Then select the board to build:
+
+```powershell
+.\Builder.bat pico
+.\Builder.bat pico_w
+.\Builder.bat waveshare_rp2040_zero
+.\Builder.bat pico2
+```
+
+Running `.\Builder.bat` without a board name defaults to `pico`.
+
+`Builder.bat` is a small command-line entry point. It passes the board and mode
+to `tools/build_firmware.ps1`, which checks the SDK and Ninja, selects the correct
+ARM compiler, configures CMake, builds the firmware, and checks the output. Each
+board has an independent output directory under `build/<board>/`.
+
+### Normal mode: produce a UF2
+
+Use normal mode when you need a file that can be copied to the Pico BOOTSEL
+drive:
+
+```powershell
+.\Builder.bat pico
+```
+
+Expected outputs include:
+
+```text
+build/pico/host.elf
+build/pico/host.bin
+build/pico/host.hex
+build/pico/host.uf2
+```
+
+This mode requires a Pico SDK 2.1.1-compatible `picotool`.
+
+### elf-only mode: compile without a UF2
+
+Use this mode to verify that the C source compiles and links when picotool is
+not available:
+
+```powershell
+.\Builder.bat pico elf-only
+```
+
+It produces ELF/BIN/HEX outputs but deliberately does not produce `host.uf2`.
+The ELF contains the linked firmware and debugging symbols; it proves that the
+compiler and linker completed, but it is not the convenient BOOTSEL copy format.
+
+### Why producing a UF2 can access GitHub
+
+GitHub is not needed to compile this project's C source. The connection happens
+in a later output-conversion step:
+
+1. ARM GCC compiles and links the project into `host.elf`.
+2. Pico SDK asks `picotool` to post-process that firmware into `host.uf2`.
+3. If a compatible installed picotool cannot be found, Pico SDK's CMake scripts
+   try to download the picotool source from its Raspberry Pi GitHub repository.
+4. CMake builds that helper locally and then uses it to create the UF2.
+
+On this machine, no compatible installed picotool was found and the automatic
+GitHub download could not connect to port 443. Therefore the C firmware can be
+built in `elf-only` mode, but normal mode cannot currently finish `host.uf2`.
+Seeing GitHub in the error does not mean the application source is hosted or
+compiled on GitHub; CMake is only trying to obtain a missing build tool.
+
+After normal mode succeeds, locate the UF2 with:
+
+```powershell
+Get-ChildItem .\build\pico\host.uf2
+```
+
+To flash it, hold the board's BOOTSEL button while connecting USB, release the
+button when the `RPI-RP2` drive appears, and copy `host.uf2` to that drive.
 
 ## Build with Ninja
 
@@ -209,6 +308,29 @@ Get-ChildItem build -Recurse -Filter *.uf2
 ```
 
 The `.uf2` file is the firmware image to copy to the Raspberry Pi Pico boot drive.
+
+## Host tests
+
+Configure and run the native unit and characterization tests with:
+
+```powershell
+cmake -S tests/unit -B build-host-tests
+cmake --build build-host-tests
+ctest --test-dir build-host-tests --output-on-failure
+```
+
+The suite covers the stream parser, application protocol, protocol service,
+board profiles, runtime configuration journal, and byte-exact characterization
+contract.
+
+## Runtime configuration
+
+Stage 5 reserves the `0xCF` control namespace for runtime configuration. Board
+profile, FA/DA response delay, and incomplete-frame timeout can be changed in
+RAM and explicitly saved to a two-slot Flash journal. Board changes take effect
+after restart; timing changes take effect immediately. The request/response
+bytes and Flash record format are documented in
+[doc/phaseII-stage5.md](doc/phaseII-stage5.md).
 
 ## UART chamber status backdoor
 

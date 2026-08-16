@@ -51,6 +51,18 @@ Builder.bat pico elf-only
 
 真正邏輯位於 `tools/build_firmware.ps1`，兩個 `.bat` 只是相容入口。每個 board 使用獨立的 `build/<board>/`，切換板型不會重用錯誤的 CMake cache。可透過 `-PicoSdkPath` 明確指定 SDK；未指定時才讀取環境變數，兩種方式都會受 2.1.1 version gate 檢查。
 
+### 為何產生 UF2 時會存取 GitHub
+
+專案 C source 的 compiler/linker 不需要 GitHub。一般模式在 ELF 完成後，
+Pico SDK 會用 `picotool` 產生 UF2；如果系統找不到相容版本，SDK 的 CMake
+腳本會嘗試從 Raspberry Pi 的 GitHub repository 下載 picotool source，於
+本機建置後再執行轉換。因此離線或 GitHub 連線失敗時，錯誤發生在工具
+取得階段，不代表 application C code 編譯失敗。
+
+本機目前的實際狀態是：找不到已安裝的 picotool 2.1.1，且自動下載無法
+連上 `github.com:443`，所以一般模式不能完成 `host.uf2`。在工具可用前，
+可用 `Builder.bat <board> elf-only` 驗證 ELF/BIN/HEX 建置。
+
 ## 驗證結果
 
 四個 profiles 均以 Pico SDK 2.1.1 完成 ARM ELF 建置：
@@ -66,10 +78,10 @@ Native tests 會檢查 profiles 有效、SDK board name 唯一、功能腳位不
 
 ## 尚未完成
 
-- Profile 保存到 Flash、Save Configuration 與 factory reset。
+- Profile 保存到 Flash 與 Save Configuration 已於 Stage 5 完成；factory
+  reset 仍未實作。
 - 開機硬體自動偵測；沒有可靠證據時仍以 build/saved profile 為準。
 - Pico W CYW43 LED driver。
 - RP2040-Zero WS2812 LED driver。
 - 三款現有板的實體 GPIO/UART 驗證；Pico 2 目前只有編譯驗證。
 - 正式 UF2 建置需要安裝與 Pico SDK 2.1.1 相容的 picotool。
-

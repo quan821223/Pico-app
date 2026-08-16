@@ -21,11 +21,18 @@ typedef void (*protocol_response_ready_t)(
     size_t length,
     uint32_t delay_ms,
     void *context);
+typedef uint16_t (*protocol_read_response_delay_t)(void *context);
+typedef void (*protocol_control_handler_t)(
+    const uint8_t request[APP_PROTOCOL_REQUEST_SIZE],
+    app_response_t *response,
+    void *context);
 
 typedef struct {
     protocol_read_chamber_status_t read_chamber_status;
     protocol_apply_effect_t apply_effect;
     protocol_response_ready_t response_ready;
+    protocol_read_response_delay_t read_response_delay_ms;
+    protocol_control_handler_t handle_control;
     void *context;
 } protocol_service_ports_t;
 
@@ -54,4 +61,3 @@ bool protocol_service_expire(
 #endif
 
 #endif
-

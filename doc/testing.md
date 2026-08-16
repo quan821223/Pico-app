@@ -2,12 +2,17 @@
 
 ## Host unit and contract tests
 
-Host tests cover stream parsing, resynchronization, timeout, FA/DA dispatch,
-byte-exact responses, invalid batches, board profiles, persistent records, CRC32,
-version policy, and A/B transitions. Stage 2 made the stream parser native;
+Host tests currently cover stream parsing, resynchronization, timeout, FA/DA
+dispatch, byte-exact responses, board profiles, runtime configuration commands,
+the two-slot persistent record, and CRC32. Version policy, A/B transitions, and
+complete noise-batch error behavior remain planned. Stage 2 made the stream parser native;
 Stage 3 also made the production command logic and protocol service native. The
 JSON contract invokes a compiled production runner for byte-exact validation,
 while mock ports verify inputs, effects, and response delivery.
+
+On 2026-08-16, `ctest --test-dir build-host-tests --output-on-failure` passed
+6/6 tests. All four supported board profiles also produced ELF files with Pico
+SDK 2.1.1 in `elf-only` mode. These results do not constitute HIL validation.
 
 ## Two-board HIL
 

@@ -49,8 +49,12 @@ confirmation before release.
 
 - Non-invasive detection may suggest a profile only when evidence is reliable.
 - There is no guaranteed universal hardware board ID for Pico versus Pico W.
-- Deterministic selection uses a build option or a versioned Flash profile.
-- Profile changes take effect after restart; Pico is the safe default.
+- Deterministic build selection and a versioned saved Flash profile are implemented.
+- An RP2040 binary accepts Pico, Pico W, and RP2040-Zero profiles; a Pico 2 binary
+  accepts only Pico 2, preventing a saved profile from crossing MCU families.
+- A profile can be changed with the Stage 5 `0xCF` protocol and takes effect after
+  Save and restart. If no valid saved record exists, the build profile is used.
+- Automatic hardware detection and factory reset remain unimplemented.
 
 ## Sources
 
