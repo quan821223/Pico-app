@@ -23,6 +23,7 @@ typedef enum {
     APP_EFFECT_TOUCH_0,
     APP_EFFECT_TOUCH_1,
     APP_EFFECT_SET_CHAMBER_STATE,
+    APP_EFFECT_SET_RESET_MICRO_SWITCH,
 } app_effect_type_t;
 
 typedef struct {

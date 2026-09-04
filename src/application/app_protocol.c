@@ -53,6 +53,9 @@ static const uint8_t RESPONSE_ALS[] = {0xFA, 0x01, 0x04, 0x01, 0x05, 0x0D, 0x0A}
 static const uint8_t RESPONSE_CCT[] = {
     0xFA, 0x01, 0x08, 0x01, 0x02, 0x00, 0x02, 0x01, 0x02, 0x0D, 0x0A,
 };
+static const uint8_t RESPONSE_FIXTUREANGLE[] = {0xFA, 0x01, 0x03, 0x00, 0x0D, 0x0A};
+static const uint8_t RESPONSE_ALL_FIXTUREANGLE[] = {0xFA, 0x01, 0x05, 0x00, 0x00, 0x00, 0x0D, 0x0A};
+
 static const uint8_t RESPONSE_DA_STATUS[] = {
     0xDA, 0x00, 0x08, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x0D, 0x0A,
 };
@@ -61,12 +64,17 @@ static const uint8_t RESPONSE_DA_03_STATUS[] = {
     0xDA, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x0D, 0x0A,
 };
 static const uint8_t RESPONSE_DA_CURRENT[] = {0xDA, 0x06, 0x06, 0x01, 0x01, 0x01, 0x01, 0x0D, 0x0A};
+static const uint8_t RESPONSE_DA_MICRO_SWITCH_STATUS[] = {
+    0xDA, 0x0B, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0D, 0x0A,
+};
 static const uint8_t RESPONSE_DA_VOLTAGE_1[] = {0xDA, 0x05, 0x04, 0x01, 0x01, 0x0D, 0x0A};
 static const uint8_t RESPONSE_DA_VOLTAGE_2[] = {0xDA, 0x07, 0x04, 0x01, 0x01, 0x0D, 0x0A};
 static const uint8_t RESPONSE_DA_CHAMBER[] = {0xDA, 0x20, 0x03, 0x01, 0x0D, 0x0A};
 
 _Static_assert(sizeof(RESPONSE_TOUCH_DATA) == APP_PROTOCOL_MAX_RESPONSE_SIZE,
     "maximum response size must include touch data");
+
+static uint8_t micro_switch_read_count;
 
 static void set_response(
     app_protocol_result_t *result,
@@ -118,6 +126,7 @@ static void handle_fa_read(
             break;
         case 0x1B:
             set_response(result, RESPONSE_CONTENT, sizeof(RESPONSE_CONTENT));
+            result->response.data[1] = device;
             break;
         case 0x1C:
             set_response(result, RESPONSE_KNOB, sizeof(RESPONSE_KNOB));
@@ -176,6 +185,22 @@ static void handle_fa_read(
                 set_response(result, RESPONSE_ACK, sizeof(RESPONSE_ACK));
             }
             break;
+        case 0x0B: {
+            const uint8_t micro_switch_value =
+                micro_switch_read_count <= 9u ? 0x00u : 0xB3u;
+
+            if (device == 0x00u) {
+                set_response(result, RESPONSE_ALL_FIXTUREANGLE, sizeof(RESPONSE_ALL_FIXTUREANGLE));
+                result->response.data[3] = micro_switch_value;
+                result->response.data[4] = micro_switch_value;
+                result->response.data[5] = micro_switch_value;
+            } else {
+                set_response(result, RESPONSE_FIXTUREANGLE, sizeof(RESPONSE_FIXTUREANGLE));
+                set_device(result, device);
+                result->response.data[3] = micro_switch_value;
+            }
+            break;
+        }
         default:
             break;
     }
@@ -211,6 +236,18 @@ static void handle_da_read(
     } else if (is_generic_da_status_device(device)) {
         set_response(result, RESPONSE_DA_STATUS, sizeof(RESPONSE_DA_STATUS));
         set_device(result, device);
+    } else if (device == 0x0Bu) {
+        const uint8_t micro_switch_value =
+            micro_switch_read_count >= 9u ? 0x01u : 0x00u;
+
+        if (micro_switch_read_count < 10u) {
+            ++micro_switch_read_count;
+        }
+
+        set_response(result, RESPONSE_DA_MICRO_SWITCH_STATUS, sizeof(RESPONSE_DA_MICRO_SWITCH_STATUS));
+        for (size_t index = 3u; index <= 8u; ++index) {
+            result->response.data[index] = micro_switch_value;
+        }
     } else if (device == 0x0Cu) {
         set_response(result, RESPONSE_DA_CURRENT, sizeof(RESPONSE_DA_CURRENT));
         result->response.data[3] = parameter;
@@ -244,6 +281,14 @@ static void handle_write(
     app_protocol_result_t *result)
 {
     if (header != APP_PROTOCOL_HEADER_DA) {
+        set_response(result, RESPONSE_ACK, sizeof(RESPONSE_ACK));
+        return;
+    }
+
+    if (device == 0x0Bu || (device == DEVICE_3 && category == 0x0Bu)) {
+        result->effect.type = APP_EFFECT_SET_RESET_MICRO_SWITCH;
+        result->effect.value = parameter;
+        micro_switch_read_count = 0u;
         set_response(result, RESPONSE_ACK, sizeof(RESPONSE_ACK));
         return;
     }

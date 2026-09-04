@@ -15,57 +15,116 @@ validation, and sinusoidal temperature simulation are not complete.
 
 ## Build prerequisites
 
-Before building, confirm these tools and environment variables are available in the current terminal.
+Windows 建置與燒錄建議先確認工具，再執行 `Builder.bat`。完整的繁體中文逐步操作、picotool 2.1.1 安裝、UF2 產生與常見錯誤，也可參閱 [Windows 建置、picotool 與 UF2 操作手冊](doc/windows-build.zh-TW.md)。
+
+需要的工具：
+
+- CMake
+- Ninja，`Builder.bat pico` 會檢查它是否在 `PATH`
+- GNU Arm Embedded Toolchain，例如 `arm-none-eabi-gcc`
+- Raspberry Pi Pico SDK，透過 `PICO_SDK_PATH` 指定
+- Pico SDK 2.1.1-compatible `picotool`，正常 UF2 build 需要它
+- Visual Studio 2019 或 2022，只有在需要自己建置 picotool 時才需要
+
+在 PowerShell 先檢查：
 
 ```powershell
 cmake --version
+ninja --version
 arm-none-eabi-gcc --version
 $env:PICO_SDK_PATH
 Test-Path "$env:PICO_SDK_PATH\external\pico_sdk_import.cmake"
 ```
 
-Expected result:
+預期結果：
 
-- `cmake --version` prints a CMake version.
-- `arm-none-eabi-gcc --version` prints the GNU Arm Embedded Toolchain version.
-- `$env:PICO_SDK_PATH` points to the Pico SDK directory.
-- `Test-Path ...pico_sdk_import.cmake` returns `True`.
+- `cmake --version` 顯示 CMake 版本。
+- `ninja --version` 顯示 Ninja 版本。
+- `arm-none-eabi-gcc --version` 顯示 GNU Arm Embedded Toolchain 版本。
+- `$env:PICO_SDK_PATH` 指向 Pico SDK 目錄。
+- `Test-Path ...pico_sdk_import.cmake` 回傳 `True`。
 
-For this machine, the known Pico SDK path is:
+若缺少 Ninja，先安裝：
 
 ```powershell
-$env:PICO_SDK_PATH="D:\YQRepo\pico\pico-sdk"
+winget install Ninja-build.Ninja
 ```
 
-The SDK path must point to the directory that contains `external\pico_sdk_import.cmake`.
+安裝後關閉並重新開啟 PowerShell，再確認：
 
-If `arm-none-eabi-gcc` is not found, add the ARM toolchain `bin` folder to the current terminal:
+```powershell
+ninja --version
+where.exe ninja
+```
+
+若缺少 ARM toolchain，將 `bin` 目錄加到目前 terminal 的 `PATH`：
 
 ```powershell
 $env:Path = "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\bin;" + $env:Path
 arm-none-eabi-gcc --version
 ```
 
-If Git blocks the Pico SDK with a `dubious ownership` error, run:
+設定 Pico SDK 路徑。此專案常用路徑如下，請依實際電腦調整：
 
 ```powershell
-git config --global --add safe.directory D:\YQRepo\pico\pico-sdk
+$env:PICO_SDK_PATH = "D:\YQRepos\pico\pico-sdk"
+Test-Path "$env:PICO_SDK_PATH\external\pico_sdk_import.cmake"
 ```
 
-## Recommended build flow: Builder.bat
-
-完整的繁體中文逐步操作、picotool 2.1.1 安裝、UF2 產生與常見錯誤，請
-參閱 [Windows 建置、picotool 與 UF2 操作手冊](doc/windows-build.zh-TW.md)。
-
-Open PowerShell in the project root and set the Pico SDK path for the current
-terminal:
+如果 Git 因 `dubious ownership` 擋住 Pico SDK，執行：
 
 ```powershell
-cd D:\yqgithub\Pico-app
-$env:PICO_SDK_PATH = "D:\YQRepo\pico\pico-sdk"
+git config --global --add safe.directory D:\YQRepos\pico\pico-sdk
 ```
 
-Then select the board to build:
+## Recommended Windows build flow
+
+### 1. Open the project root
+
+```powershell
+Set-Location -LiteralPath "D:\YQHubRepo\Pico-app"
+$env:PICO_SDK_PATH = "D:\YQRepos\pico\pico-sdk"
+```
+
+### 2. Verify required tools
+
+```powershell
+cmake --version
+ninja --version
+arm-none-eabi-gcc --version
+Test-Path "$env:PICO_SDK_PATH\external\pico_sdk_import.cmake"
+```
+
+`Builder.bat pico` requires Ninja. If it fails with `Ninja is required and was not found in PATH.`, install Ninja with `winget install Ninja-build.Ninja`, reopen PowerShell, and run `ninja --version` again.
+
+### 3. Prepare picotool when building UF2
+
+Normal mode produces `host.uf2`, so Pico SDK needs a compatible `picotool`.
+
+Check whether picotool is already installed:
+
+```powershell
+$env:picotool_DIR = "D:\YQRepos\pico\picotool-install\picotool"
+Test-Path "$env:picotool_DIR\picotool.exe"
+```
+
+If this returns `True`, verify the executable:
+
+```powershell
+& "$env:picotool_DIR\picotool.exe" version
+```
+
+If this returns `False`, first check whether `picotool.exe` already exists under the source tree:
+
+```powershell
+Get-ChildItem "D:\YQRepos\pico\picotool" -Recurse -Filter picotool.exe
+```
+
+If no executable is found, build and install picotool from source.
+
+### 4. Build firmware
+
+Select the board to build:
 
 ```powershell
 .\Builder.bat pico
@@ -76,21 +135,7 @@ Then select the board to build:
 
 Running `.\Builder.bat` without a board name defaults to `pico`.
 
-`Builder.bat` is a small command-line entry point. It passes the board and mode
-to `tools/build_firmware.ps1`, which checks the SDK and Ninja, selects the correct
-ARM compiler, configures CMake, builds the firmware, and checks the output. Each
-board has an independent output directory under `build/<board>/`.
-
-### Normal mode: produce a UF2
-
-Use normal mode when you need a file that can be copied to the Pico BOOTSEL
-drive:
-
-```powershell
-.\Builder.bat pico
-```
-
-Expected outputs include:
+Expected normal-mode outputs include:
 
 ```text
 build/pico/host.elf
@@ -99,113 +144,186 @@ build/pico/host.hex
 build/pico/host.uf2
 ```
 
-This mode requires a Pico SDK 2.1.1-compatible `picotool`.
-
-### elf-only mode: compile without a UF2
-
-Use this mode to verify that the C source compiles and links when picotool is
-not available:
-
-```powershell
-.\Builder.bat pico elf-only
-```
-
-It produces ELF/BIN/HEX outputs but deliberately does not produce `host.uf2`.
-The ELF contains the linked firmware and debugging symbols; it proves that the
-compiler and linker completed, but it is not the convenient BOOTSEL copy format.
-
-### Why producing a UF2 can access GitHub
-
-GitHub is not needed to compile this project's C source. The connection happens
-in a later output-conversion step:
-
-1. ARM GCC compiles and links the project into `host.elf`.
-2. Pico SDK asks `picotool` to post-process that firmware into `host.uf2`.
-3. If a compatible installed picotool cannot be found, Pico SDK's CMake scripts
-   try to download the picotool source from its Raspberry Pi GitHub repository.
-4. CMake builds that helper locally and then uses it to create the UF2.
-
-On this machine, no compatible installed picotool was found and the automatic
-GitHub download could not connect to port 443. Therefore the C firmware can be
-built in `elf-only` mode, but normal mode cannot currently finish `host.uf2`.
-Seeing GitHub in the error does not mean the application source is hosted or
-compiled on GitHub; CMake is only trying to obtain a missing build tool.
-
 After normal mode succeeds, locate the UF2 with:
 
 ```powershell
 Get-ChildItem .\build\pico\host.uf2
 ```
 
-To flash it, hold the board's BOOTSEL button while connecting USB, release the
-button when the `RPI-RP2` drive appears, and copy `host.uf2` to that drive.
+### 5. Flash firmware
 
-## Build with Ninja
+Hold the board's BOOTSEL button while connecting USB, release the button when the `RPI-RP2` drive appears, and copy `host.uf2` to that drive.
 
-Use this method if `ninja` is installed and available in `PATH`.
+## Build picotool from source
 
-Check Ninja:
+Use this only when normal UF2 build cannot find a compatible `picotool`.
+
+Important CMake rule: a build directory is tied to the generator that created it. Do not reuse a CMake build directory with a different generator. For example, if `build` was created with `Visual Studio 17 2022`, do not reuse that same `build` directory for `NMake Makefiles` or VS 2019. Use a separate directory such as `build-vs2019`, `build-vs2022`, or `build-nmake`.
+
+Generator choices:
+
+- Visual Studio 2019: `-G "Visual Studio 16 2019" -A x64`
+- Visual Studio 2022: `-G "Visual Studio 17 2022" -A x64`
+- NMake: `-G "NMake Makefiles"`
+
+When using `NMake Makefiles`, run CMake from the matching Native Tools prompt. A normal PowerShell may fail with `nmake` not found.
+
+- VS 2019: `x64 Native Tools Command Prompt for VS 2019`
+- VS 2022: `x64 Native Tools Command Prompt for VS 2022`
+
+NMake example:
 
 ```powershell
-ninja --version
+Set-Location -LiteralPath "D:\YQRepos\pico\picotool"
+git fetch --tags
+git checkout 2.1.1
+
+$env:PICO_SDK_PATH = "D:\YQRepos\pico\pico-sdk"
+cmake -S . -B build-nmake -G "NMake Makefiles" -DPICOTOOL_NO_LIBUSB=1 -DPICOTOOL_FLAT_INSTALL=1 "-DCMAKE_INSTALL_PREFIX=D:\YQRepos\pico\picotool-install" "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
+cmake --build build-nmake
+cmake --install build-nmake
+
+$env:picotool_DIR = "D:\YQRepos\pico\picotool-install\picotool"
+Test-Path "$env:picotool_DIR\picotool.exe"
+& "$env:picotool_DIR\picotool.exe" version
 ```
 
-Configure and build:
+Visual Studio generator examples:
 
 ```powershell
-cd <PROJECT_ROOT>
+Set-Location -LiteralPath "D:\YQRepos\pico\picotool"
+git fetch --tags
+git checkout 2.1.1
+$env:PICO_SDK_PATH = "D:\YQRepos\pico\pico-sdk"
 
-$env:PICO_SDK_PATH="D:\YQRepo\pico\pico-sdk"
+# VS 2019
+cmake -S . -B build-vs2019 -G "Visual Studio 16 2019" -A x64 -DPICOTOOL_NO_LIBUSB=1 -DPICOTOOL_FLAT_INSTALL=1 "-DCMAKE_INSTALL_PREFIX=D:\YQRepos\pico\picotool-install" "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
+cmake --build build-vs2019 --config Release
+cmake --install build-vs2019 --config Release
+
+# VS 2022
+cmake -S . -B build-vs2022 -G "Visual Studio 17 2022" -A x64 -DPICOTOOL_NO_LIBUSB=1 -DPICOTOOL_FLAT_INSTALL=1 "-DCMAKE_INSTALL_PREFIX=D:\YQRepos\pico\picotool-install" "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
+cmake --build build-vs2022 --config Release
+cmake --install build-vs2022 --config Release
+```
+
+After `Test-Path "$env:picotool_DIR\picotool.exe"` returns `True`, rerun the firmware build:
+
+```powershell
+Set-Location -LiteralPath "D:\YQHubRepo\Pico-app"
+.\Builder.bat pico
+```
+
+## elf-only mode: compile without UF2
+
+Use this mode to verify that the C source compiles and links when picotool is not available:
+
+```powershell
+.\Builder.bat pico elf-only
+```
+
+It produces ELF/BIN/HEX outputs but deliberately does not produce `host.uf2`. The ELF contains the linked firmware and debugging symbols; it proves that the compiler and linker completed, but it is not the convenient BOOTSEL copy format.
+
+## Why producing UF2 can access GitHub
+
+GitHub is not needed to compile this project's C source. The connection happens in a later output-conversion step:
+
+1. ARM GCC compiles and links the project into `host.elf`.
+2. Pico SDK asks `picotool` to post-process that firmware into `host.uf2`.
+3. If a compatible installed picotool cannot be found, Pico SDK's CMake scripts try to download the picotool source from its Raspberry Pi GitHub repository.
+4. CMake builds that helper locally and then uses it to create the UF2.
+
+If the automatic GitHub download cannot connect to port 443, install/build picotool manually with the steps above, then rerun normal mode.
+
+## Manual build alternatives
+
+`Builder.bat` is the recommended entry point. It passes the board and mode to `tools/build_firmware.ps1`, which checks the SDK and Ninja, selects the correct ARM compiler, configures CMake, builds the firmware, and checks the output. Each board has an independent output directory under `build/<board>/`.
+
+Manual Ninja build:
+
+```powershell
+Set-Location -LiteralPath "D:\YQHubRepo\Pico-app"
+$env:PICO_SDK_PATH = "D:\YQRepos\pico\pico-sdk"
 $env:Path = "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\bin;" + $env:Path
 
 Remove-Item build -Recurse -Force -ErrorAction SilentlyContinue
-
 cmake -S . -B build -G Ninja -DPICO_COMPILER=pico_arm_cortex_m0plus_gcc
 cmake --build build
 ```
 
-Important: `cmake --build build` only compiles an already configured build directory. If `build\build.ninja` does not exist, run the `cmake -S . -B build -G Ninja ...` command first.
-
-Equivalent commands when already inside the `build` directory:
+Manual NMake build, from a Visual Studio developer terminal:
 
 ```powershell
-cmake -G Ninja -DPICO_COMPILER=pico_arm_cortex_m0plus_gcc ..
-ninja
+Set-Location -LiteralPath "D:\YQHubRepo\Pico-app"
+$env:PICO_SDK_PATH = "D:\YQRepos\pico\pico-sdk"
+$env:Path = "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\bin;" + $env:Path
+
+Remove-Item build -Recurse -Force -ErrorAction SilentlyContinue
+cmake -S . -B build -G "NMake Makefiles" -DPICO_COMPILER=pico_arm_cortex_m0plus_gcc
+cmake --build build
 ```
 
-## Build with NMake
+If CMake output says `The C compiler identification is MSVC`, the build directory is configured incorrectly for Pico. Delete `build`, make sure `arm-none-eabi-gcc --version` works, then configure again. Pico should use ARM GCC, not MSVC `cl.exe`.
 
-Use this method from a Visual Studio developer terminal, such as:
+## Common environment problems
 
-- `Developer PowerShell for VS 2022`
-- `x64 Native Tools Command Prompt for VS 2022`
-- Visual Studio Build Tools developer prompt
+### Ninja is missing
 
-Check NMake:
+Error example:
+
+```text
+Ninja is required and was not found in PATH.
+```
+
+Cause: `Builder.bat pico` requires Ninja, but `ninja.exe` is not installed or not in `PATH`.
+
+Fix:
+
+```powershell
+winget install Ninja-build.Ninja
+```
+
+Close and reopen PowerShell, then check:
+
+```powershell
+ninja --version
+where.exe ninja
+```
+
+### NMake is missing
+
+Error example:
+
+```text
+Running
+
+ 'nmake' '-?'
+
+failed with:
+
+ no such file or directory
+```
+
+Cause: `NMake Makefiles` was used from a terminal that did not load the Visual Studio build environment.
+
+Fix: open the matching `x64 Native Tools Command Prompt` for VS 2019 or VS 2022, then run:
 
 ```powershell
 nmake /?
 ```
 
-Configure and build:
+### Build directory has the wrong generator
 
-```powershell
-cd <PROJECT_ROOT>
+Error example:
 
-$env:PICO_SDK_PATH="D:\YQRepo\pico\pico-sdk"
-$env:Path = "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\bin;" + $env:Path
-
-Remove-Item build -Recurse -Force -ErrorAction SilentlyContinue
-New-Item -ItemType Directory build | Out-Null
-cd build
-
-cmake -G "NMake Makefiles" -DPICO_COMPILER=pico_arm_cortex_m0plus_gcc ..
-nmake
+```text
+generator : NMake Makefiles
+Does not match the generator used previously: Visual Studio 17 2022
 ```
 
-Important: if CMake output says `The C compiler identification is MSVC`, the build directory is configured incorrectly for Pico. Delete `build`, make sure `arm-none-eabi-gcc --version` works, then configure again. Pico should use ARM GCC, not MSVC `cl.exe`.
+Cause: the same CMake build directory was reused with a different generator.
 
-## Common environment problems
+Fix: use a different build directory, such as `build-nmake`, `build-vs2019`, or `build-vs2022`. Only delete a build directory when you are sure it contains disposable CMake output.
 
 ### Pico SDK is missing
 
@@ -223,7 +341,7 @@ Cause: `PICO_SDK_PATH` is empty or wrong.
 Fix:
 
 ```powershell
-$env:PICO_SDK_PATH="D:\YQRepo\pico\pico-sdk"
+$env:PICO_SDK_PATH = "D:\YQRepos\pico\pico-sdk"
 Test-Path "$env:PICO_SDK_PATH\external\pico_sdk_import.cmake"
 ```
 
@@ -245,59 +363,6 @@ Fix:
 $env:Path = "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\bin;" + $env:Path
 arm-none-eabi-gcc --version
 ```
-
-### NMake is missing
-
-Error example:
-
-```text
-The term 'nmake' is not recognized
-```
-
-Cause: the terminal did not load the Visual Studio build environment.
-
-Fix: open `Developer PowerShell for VS 2022` or `x64 Native Tools Command Prompt for VS 2022`, then run:
-
-```powershell
-nmake /?
-```
-
-If `nmake` is found, rerun the NMake build flow from a clean `build` directory.
-
-### Ninja is missing
-
-Error example:
-
-```text
-The term 'ninja' is not recognized
-```
-
-Cause: Ninja is not installed or not in `PATH`.
-
-Fix:
-
-```powershell
-winget install Ninja-build.Ninja
-```
-
-Close and reopen PowerShell, then check:
-
-```powershell
-ninja --version
-```
-
-### Build directory has the wrong generator or compiler
-
-If you previously configured `build` with NMake/MSVC and then switch to Ninja/ARM GCC, do not reuse the same cache.
-
-Always reset the build directory when changing generators or compiler settings:
-
-```powershell
-cd <PROJECT_ROOT>
-Remove-Item build -Recurse -Force -ErrorAction SilentlyContinue
-```
-
-Then configure again with either the Ninja or NMake flow above.
 
 ## Build output
 
@@ -322,6 +387,84 @@ ctest --test-dir build-host-tests --output-on-failure
 The suite covers the stream parser, application protocol, protocol service,
 board profiles, runtime configuration journal, and byte-exact characterization
 contract.
+
+## Micro switch and fixture angle commands
+
+These commands use the normal USB CDC protocol path, not the UART chamber backdoor. Send each request as raw HEX bytes with the standard five-byte layout:
+
+```text
+[header] [operation] [device] [category] [parameter]
+```
+
+### Read micro switch status
+
+```text
+DA 52 0B 00 00
+```
+
+Response before the read counter reaches the threshold:
+
+```text
+DA 0B 08 00 00 00 00 00 00 0D 0A
+```
+
+Response after the threshold is reached:
+
+```text
+DA 0B 08 01 01 01 01 01 01 0D 0A
+```
+
+The firmware currently returns `00` for the first nine reads after reset. From the tenth read onward, bytes 3 through 8 return `01` and stay `01` until the reset command is received.
+
+### Reset micro switch read counter
+
+Recommended reset command:
+
+```text
+DA 57 0B 00 00
+```
+
+Compatibility reset command:
+
+```text
+DA 57 03 0B 00
+```
+
+Both reset commands return ACK:
+
+```text
+C3 0D 0A
+```
+
+After reset, the next `DA 52 0B 00 00` response returns all switch status bytes to `00`.
+
+### Read fixture angle value
+
+Single fixture angle command:
+
+```text
+FA 52 01 0B 00
+```
+
+Initial response:
+
+```text
+FA 01 03 00 0D 0A
+```
+
+All fixture angle command:
+
+```text
+FA 52 00 0B 00
+```
+
+Initial response:
+
+```text
+FA 01 05 00 00 00 0D 0A
+```
+
+The fixture angle value is derived from the same micro switch read counter. It returns `00` while the counter is within the initial range and `B3` after the counter crosses the threshold.
 
 ## Runtime configuration
 

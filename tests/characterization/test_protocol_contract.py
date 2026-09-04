@@ -8,7 +8,7 @@ from pathlib import Path
 
 
 CONTRACT_PATH = Path(__file__).with_name("protocol_vectors.json")
-EXPECTED_VECTOR_SHA256 = "651a8cc07078f32f7cb831f973b6156c9f29b46b681d17773e8183ed244b9ee1"
+EXPECTED_VECTOR_SHA256 = "5e165a0139dd1d06df5166b85c6ff19da62a43404eeb1b52063d1344e3a2c84a"
 HEX_BYTES = re.compile(r"^(?:[0-9A-F]{2})(?: [0-9A-F]{2})*$")
 PATTERN_BYTES = re.compile(r"^(?:[0-9A-F?]{2})(?: [0-9A-F?]{2})*$")
 

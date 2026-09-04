@@ -1,6 +1,6 @@
 # Current protocol baseline
 
-This document describes the firmware at commit `8d3920f`. It is a compatibility
+This document describes the firmware at version `0.2.0`. It was originally based on commit `8d3920f`. It is a compatibility
 baseline, not a claim that every behavior is desirable.
 
 ## Transport and framing
@@ -34,6 +34,22 @@ The machine-readable compatibility vectors live in
 `tests/characterization/protocol_vectors.json`. Dynamic responses are expressed
 with masks or named effects rather than invented values.
 
+## Micro switch and fixture angle commands
+
+These commands are handled by the normal USB CDC application protocol. They are not handled by the UART chamber backdoor.
+
+| Request | Meaning | Response |
+| --- | --- | --- |
+| `DA 52 0B 00 00` | Read micro switch status | `DA 0B 08 xx xx xx xx xx xx 0D 0A` |
+| `DA 57 0B 00 00` | Reset micro switch read counter | `C3 0D 0A` |
+| `DA 57 03 0B 00` | Legacy-compatible micro switch reset | `C3 0D 0A` |
+| `FA 52 01 0B 00` | Read fixture angle value | `FA 01 03 xx 0D 0A` |
+| `FA 52 00 0B 00` | Read all fixture angle values | `FA 01 05 xx xx xx 0D 0A` |
+
+Micro switch status returns `00` for the first nine reads after reset. From the tenth `DA 52 0B 00 00` read onward, response bytes 3 through 8 return `01`. `DA 57 0B 00 00` resets the read counter so the next read returns `00` again.
+
+Fixture angle responses are derived from the same read counter: `00` before the threshold and `B3` after the threshold.
+
 ## GPIO effects
 
 - DA write, device `03`, category `01`: pulse GP20 for `parameter * 100 ms`.
@@ -41,6 +57,8 @@ with masks or named effects rather than invented values.
 - DA write, device `03`, category decimal `10` (`0x0A` in source intent): set
   chamber outputs GP2/GP3 from the parameter.
 - DA read category/device mapping includes chamber address value from GP18/GP19.
+- DA write, device `0B`: reset the micro switch read counter and return ACK.
+- DA write, device `03`, category `0B`: compatibility reset for the same micro switch counter.
 
 ## UART chamber backdoor
 
