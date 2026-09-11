@@ -61,7 +61,7 @@ static const uint8_t RESPONSE_DA_STATUS[] = {
 };
 static const uint8_t RESPONSE_DA_02_STATUS[] = {0xDA, 0x02, 0x05, 0x01, 0x01, 0x01, 0x0D, 0x0A};
 static const uint8_t RESPONSE_DA_03_STATUS[] = {
-    0xDA, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x0D, 0x0A,
+    0xDA, 0x00, 0x08, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x0D, 0x0A,
 };
 static const uint8_t RESPONSE_DA_CURRENT[] = {0xDA, 0x06, 0x06, 0x01, 0x01, 0x01, 0x01, 0x0D, 0x0A};
 static const uint8_t RESPONSE_DA_MICRO_SWITCH_STATUS[] = {
@@ -123,6 +123,7 @@ static void handle_fa_read(
     switch (category) {
         case 0x1A:
             set_response(result, RESPONSE_IDENTIFY, sizeof(RESPONSE_IDENTIFY));
+            result->response.data[1] = APP_PROTOCOL_IDENTIFIER_DEVICE_TYPE;
             break;
         case 0x1B:
             set_response(result, RESPONSE_CONTENT, sizeof(RESPONSE_CONTENT));
