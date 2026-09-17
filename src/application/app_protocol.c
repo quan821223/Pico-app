@@ -4,6 +4,8 @@
 
 #define DEVICE_3 0x03u
 
+
+
 static const uint8_t RESPONSE_ACK[] = {0xC3, 0x0D, 0x0A};
 static const uint8_t RESPONSE_IDENTIFY[] = {0xFA, 0x01, 0x0D, 0x0A};
 static const uint8_t RESPONSE_CONTENT[] = {
@@ -22,13 +24,22 @@ static const uint8_t RESPONSE_FIDM_HW[] = {
 static const uint8_t RESPONSE_FIDM_BL[] = {
     0xFA, 0x01, 0x0A, 0x46, 0x49, 0x44, 0x4D, 0x42, 0x4C, 0x23, 0x31, 0x0D, 0x0A,
 };
-static const uint8_t RESPONSE_TCON[] = {
+static const uint8_t RESPONSE_APP_VERSION[] = {
+    0xFA, 0x01, 0x0A, 0x46, 0x49, 0x44, 0x4D, 0x42, 0x4C, 0x23, 0x31, 0x0D, 0x0A,
+};
+static const uint8_t RESPONSE_TCON_FW_VERSION[] = {
     0xFA, 0x01, 0x0A, 0x54, 0x43, 0x4F, 0x4E, 0x58, 0x58, 0x23, 0x31, 0x0D, 0x0A,
 };
-static const uint8_t RESPONSE_TOUCH_VERSION[] = {
+static const uint8_t RESPONSE_TOUCH_FW_VERSION[] = {
     0xFA, 0x01, 0x0A, 0x54, 0x4F, 0x55, 0x43, 0x48, 0x58, 0x23, 0x31, 0x0D, 0x0A,
 };
 static const uint8_t RESPONSE_LCM_VERSION[] = {
+    0xFA, 0x01, 0x0A, 0x4C, 0x43, 0x4D, 0x58, 0x58, 0x58, 0x23, 0x31, 0x0D, 0x0A,
+};
+static const uint8_t RESPONSE_SC_HW_VERSION[] = {
+    0xFA, 0x01, 0x0A, 0x4C, 0x43, 0x4D, 0x58, 0x58, 0x58, 0x23, 0x31, 0x0D, 0x0A,
+};
+static const uint8_t RESPONSE_SC_FW_VERSION[] = {
     0xFA, 0x01, 0x0A, 0x4C, 0x43, 0x4D, 0x58, 0x58, 0x58, 0x23, 0x31, 0x0D, 0x0A,
 };
 static const uint8_t RESPONSE_BRIGHTNESS[] = {0xFA, 0x01, 0x03, 0x64, 0x0D, 0x0A};
@@ -70,6 +81,8 @@ static const uint8_t RESPONSE_DA_MICRO_SWITCH_STATUS[] = {
 static const uint8_t RESPONSE_DA_VOLTAGE_1[] = {0xDA, 0x05, 0x04, 0x01, 0x01, 0x0D, 0x0A};
 static const uint8_t RESPONSE_DA_VOLTAGE_2[] = {0xDA, 0x07, 0x04, 0x01, 0x01, 0x0D, 0x0A};
 static const uint8_t RESPONSE_DA_CHAMBER[] = {0xDA, 0x20, 0x03, 0x01, 0x0D, 0x0A};
+static const uint8_t RESPONSE_DA_HW_VERSION[] = {0xDA, 0xFF, 0x05, 0x01,0x01,0x02, 0x0D, 0x0A};
+static const uint8_t RESPONSE_DA_FW_VERSION[] = {0xDA, 0xFF, 0x05, 0x01,0x01,0x03, 0x0D, 0x0A};
 
 _Static_assert(sizeof(RESPONSE_TOUCH_DATA) == APP_PROTOCOL_MAX_RESPONSE_SIZE,
     "maximum response size must include touch data");
@@ -102,9 +115,12 @@ static const uint8_t *information_response(uint8_t parameter)
         RESPONSE_FIDM_HW,
         RESPONSE_FIDM_SW,
         RESPONSE_FIDM_BL,
-        RESPONSE_TCON,
-        RESPONSE_TOUCH_VERSION,
+        RESPONSE_APP_VERSION,
+        RESPONSE_TCON_FW_VERSION,
+        RESPONSE_TOUCH_FW_VERSION,
         RESPONSE_LCM_VERSION,
+        RESPONSE_SC_HW_VERSION,
+        RESPONSE_SC_FW_VERSION,
     };
 
     return parameter < (sizeof(responses) / sizeof(responses[0]))
@@ -229,7 +245,14 @@ static void handle_da_read(
     uint8_t chamber_status,
     app_protocol_result_t *result)
 {
-    if (device == 0x02u) {
+    if (device == 0x00u) {
+        if(parameter == 0x00u) {
+            set_response(result, RESPONSE_DA_HW_VERSION, sizeof(RESPONSE_DA_HW_VERSION));
+        } else if(parameter == 0x01u) {
+            set_response(result, RESPONSE_DA_FW_VERSION, sizeof(RESPONSE_DA_FW_VERSION));
+        } 
+
+    } else if (device == 0x02u) {
         set_response(result, RESPONSE_DA_02_STATUS, sizeof(RESPONSE_DA_02_STATUS));
     } else if (device == 0x03u) {
         set_response(result, RESPONSE_DA_03_STATUS, sizeof(RESPONSE_DA_03_STATUS));

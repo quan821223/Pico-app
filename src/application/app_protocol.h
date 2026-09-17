@@ -9,6 +9,12 @@
 extern "C" {
 #endif
 
+/*
+ * Protocol for communication with the application.
+ * The number is the device type identifier for the application, which is used in the identify response.
+ * SuperCarrier : 1u ~ 3u
+ * SuperEcho : 16u
+*/
 #define APP_PROTOCOL_IDENTIFIER_DEVICE_TYPE 16u
 #define APP_PROTOCOL_REQUEST_SIZE 5u
 #define APP_PROTOCOL_MAX_RESPONSE_SIZE 66u
